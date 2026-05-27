@@ -1,0 +1,15 @@
+# macOS junk
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+# Misc
+Thumbs.db
+desktop.ini

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jordan Syring &mdash; School</title>
+<style>
+  :root {
+    --bg: #fdfcf8;
+    --paper: #ffffff;
+    --ink: #1a1a1a;
+    --muted: #5b5b5b;
+    --rule: #d8d2c4;
+    --accent: #2c5a7a;
+    --accent-soft: #e6eef5;
+    --shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 14px rgba(0,0,0,0.06);
+  }
+  /* University of Tampa Spartans theme */
+  :root[data-theme="ut"] {
+    --bg: #fdfaf8;
+    --paper: #ffffff;
+    --ink: #1a1a1a;
+    --muted: #5b5b5b;
+    --rule: #e0d5d3;
+    --accent: #B22634;
+    --accent-soft: #fae0e3;
+    --shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 14px rgba(178,38,52,0.08);
+  }
+  /* Dark mode */
+  :root[data-theme="dark"] {
+    --bg: #15171c;
+    --paper: #1f2228;
+    --ink: #e8e8e6;
+    --muted: #9098a4;
+    --rule: #2c2f36;
+    --accent: #7ab0d8;
+    --accent-soft: #1c2a38;
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.4);
+  }
+  [data-theme="dark"] header {
+    background: linear-gradient(180deg, var(--paper) 0%, var(--bg) 100%);
+  }
+
+  .theme-toggle {
+    display: inline-flex;
+    gap: 0;
+    padding: 3px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+  }
+  .theme-toggle button {
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.84rem;
+    cursor: pointer;
+    transition: all 0.12s ease;
+  }
+  .theme-toggle button:hover { color: var(--accent); }
+  .theme-toggle button.active {
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Iowan Old Style", "Palatino", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    font-size: 17px;
+    line-height: 1.55;
+  }
+  header {
+    background: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+    border-bottom: 1px solid var(--rule);
+    padding: 64px 24px 36px;
+    text-align: center;
+  }
+  header h1 {
+    margin: 0 0 6px 0;
+    font-size: 2.4rem;
+    letter-spacing: -0.01em;
+  }
+  header .subtitle {
+    color: var(--muted);
+    font-style: italic;
+    font-size: 1.1rem;
+  }
+  header .meta {
+    margin-top: 14px;
+    font-size: 0.92rem;
+    color: var(--muted);
+  }
+  main {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+  .controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  h2.section-title {
+    font-size: 1.05rem;
+    font-variant: small-caps;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 32px 4px 14px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 18px;
+  }
+  .card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    padding: 22px 24px 20px;
+    transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+    display: flex;
+    flex-direction: column;
+  }
+  .card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05), 0 10px 24px rgba(0,0,0,0.08);
+  }
+  .card .code {
+    font-family: "SF Mono", "Menlo", Consolas, monospace;
+    font-size: 0.78rem;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .card h3 {
+    margin: 0 0 6px;
+    font-size: 1.25rem;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .card p.desc {
+    margin: 0 0 14px;
+    color: var(--muted);
+    font-size: 0.95rem;
+    flex: 1;
+  }
+  .card .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+  }
+  .card a.btn {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    transition: all 0.12s ease;
+  }
+  .card a.btn:hover {
+    background: var(--accent);
+    color: var(--paper);
+  }
+  .card a.btn.secondary {
+    background: transparent;
+    border-color: var(--rule);
+    color: var(--ink);
+  }
+  .card a.btn.secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    padding: 36px 24px 48px;
+    border-top: 1px solid var(--rule);
+    margin-top: 56px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Jordan Syring</h1>
+  <div class="subtitle">School &mdash; coursework, notes, references</div>
+  <div class="meta">University of Tampa</div>
+</header>
+
+<main>
+
+  <div class="controls">
+    <div class="theme-toggle" role="group" aria-label="Theme">
+      <button data-theme-btn="default" onclick="setTheme('default')">Default</button>
+      <button data-theme-btn="ut" onclick="setTheme('ut')">UT</button>
+      <button data-theme-btn="dark" onclick="setTheme('dark')">Dark</button>
+    </div>
+  </div>
+
+  <h2 class="section-title">Current term &mdash; Summer I 2026</h2>
+  <div class="grid">
+    <article class="card">
+      <div class="code">AWR 201</div>
+      <h3>Writing and Research</h3>
+      <p class="desc">The Local and the Global. Course tracker with all assignments, process work, and the week-by-week calendar.</p>
+      <div class="links">
+        <a class="btn" href="AWR%20201.html">Open page</a>
+        <a class="btn secondary" href="AWR%20201/Syllabus.md">Syllabus</a>
+      </div>
+    </article>
+  </div>
+
+  <h2 class="section-title">Reference &amp; archived work</h2>
+  <div class="grid">
+    <article class="card">
+      <div class="code">CHE &mdash; Analytical Chem</div>
+      <h3>Analytical Chemistry</h3>
+      <p class="desc">Formula reference page covering the analytical chemistry curriculum. Lecture notes archived in the folder.</p>
+      <div class="links">
+        <a class="btn" href="Analytical%20Chemistry%20Formula%20Reference.html">Formula reference</a>
+        <a class="btn secondary" href="Analytical%20Chemistry/Lecture%20Notes/">Lecture notes</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="code">MAT &mdash; Calc III</div>
+      <h3>Calculus III</h3>
+      <p class="desc">Multivariable calculus formula reference. Lecture notes and past tests are archived in the folder.</p>
+      <div class="links">
+        <a class="btn" href="Calc%20III%20Formula%20Reference.html">Formula reference</a>
+        <a class="btn secondary" href="Calc%20III/Lecture%20Notes/">Lecture notes</a>
+        <a class="btn secondary" href="Calc%20III/Tests/">Tests</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="code">PHY &mdash; Physics II</div>
+      <h3>Physics II</h3>
+      <p class="desc">Final exam practice solutions with worked-out answers, plus the original practice PDF.</p>
+      <div class="links">
+        <a class="btn" href="Physics%20II%20Final%20Practice%20Solutions.html">Practice solutions</a>
+        <a class="btn secondary" href="Physics%20II/Final_practice-4.pdf">Practice PDF</a>
+      </div>
+    </article>
+  </div>
+
+</main>
+
+<footer>
+  Personal study site &middot; built for tracking coursework
+</footer>
+
+<script>
+  function setTheme(name) {
+    const root = document.documentElement;
+    if (name === 'default') root.removeAttribute('data-theme');
+    else root.setAttribute('data-theme', name);
+    try { localStorage.setItem('site-theme', name); } catch(e) {}
+    document.querySelectorAll('[data-theme-btn]').forEach(b => {
+      b.classList.toggle('active', b.dataset.themeBtn === name);
+    });
+  }
+  (function initTheme() {
+    let saved = 'default';
+    try { saved = localStorage.getItem('site-theme') || 'default'; } catch(e) {}
+    setTheme(saved);
+  })();
+</script>
+
+</body>
+</html>

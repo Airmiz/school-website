@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analytical Chemistry — Formula Reference</title>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+<style>
+  :root {
+    --bg: #fdfcf8;
+    --paper: #ffffff;
+    --ink: #1a1a1a;
+    --muted: #5b5b5b;
+    --rule: #d8d2c4;
+    --accent: #2c5a7a;
+    --accent-soft: #e6eef5;
+    --shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 14px rgba(0,0,0,0.06);
+  }
+  /* University of Tampa Spartans theme */
+  :root[data-theme="ut"] {
+    --bg: #fdfaf8;
+    --paper: #ffffff;
+    --ink: #1a1a1a;
+    --muted: #5b5b5b;
+    --rule: #e0d5d3;
+    --accent: #B22634;
+    --accent-soft: #fae0e3;
+    --shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 14px rgba(178,38,52,0.08);
+  }
+  /* Dark mode — light blue accent on near-black */
+  :root[data-theme="dark"] {
+    --bg: #15171c;
+    --paper: #1f2228;
+    --ink: #e8e8e6;
+    --muted: #9098a4;
+    --rule: #2c2f36;
+    --accent: #7ab0d8;
+    --accent-soft: #1c2a38;
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.4);
+  }
+  [data-theme="dark"] header {
+    background: linear-gradient(180deg, var(--paper) 0%, var(--bg) 100%);
+  }
+  [data-theme="dark"] .note { color: var(--ink); }
+  [data-theme="ut"]   .note { color: #5a1a22; }
+  /* Theme toggle widget */
+  .theme-toggle {
+    display: inline-flex;
+    gap: 0;
+    padding: 3px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+  }
+  .theme-toggle button {
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.84rem;
+    cursor: pointer;
+    transition: all 0.12s ease;
+  }
+  .theme-toggle button:hover { color: var(--accent); }
+  .theme-toggle button.active {
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 600;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Iowan Old Style", "Palatino", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    font-size: 17px;
+    line-height: 1.55;
+  }
+  header {
+    background: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+    border-bottom: 1px solid var(--rule);
+    padding: 56px 24px 32px;
+    text-align: center;
+  }
+  header h1 {
+    margin: 0 0 4px 0;
+    font-size: 2.2rem;
+    letter-spacing: -0.01em;
+  }
+  header .subtitle {
+    color: var(--muted);
+    font-style: italic;
+    font-size: 1.05rem;
+  }
+  header .meta {
+    margin-top: 14px;
+    font-size: 0.92rem;
+    color: var(--muted);
+  }
+  main {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+  nav.toc {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 20px 28px;
+    margin: 24px 0 36px;
+    box-shadow: var(--shadow);
+  }
+  nav.toc h2 {
+    margin: 0 0 12px 0;
+    font-size: 1.05rem;
+    font-variant: small-caps;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+  }
+  nav.toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    columns: 2;
+    column-gap: 32px;
+  }
+  nav.toc li { margin: 4px 0; break-inside: avoid; }
+  nav.toc a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px dotted transparent;
+  }
+  nav.toc a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+  .controls button {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 0.88rem;
+    padding: 7px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.12s ease;
+  }
+  .controls button:hover { background: var(--accent-soft); border-color: var(--accent); }
+  .chapter { margin-bottom: 48px; }
+  .chapter > h2 {
+    font-size: 1.55rem;
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 6px;
+    margin: 16px 0 20px;
+    letter-spacing: -0.01em;
+  }
+  .chapter > h2 .ch-num {
+    color: var(--muted);
+    font-weight: normal;
+    margin-right: 10px;
+  }
+  details.section {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  details.section[open] { border-color: var(--accent); }
+  details.section > summary {
+    cursor: pointer;
+    padding: 14px 22px;
+    list-style: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    user-select: none;
+    transition: background 0.12s;
+  }
+  details.section > summary:hover { background: var(--accent-soft); }
+  details.section > summary::-webkit-details-marker { display: none; }
+  details.section > summary::before {
+    content: "▸";
+    color: var(--accent);
+    font-size: 0.85rem;
+    transition: transform 0.18s ease;
+    display: inline-block;
+  }
+  details.section[open] > summary::before { transform: rotate(90deg); }
+  details.section > summary .sec-num {
+    color: var(--muted);
+    font-weight: normal;
+    font-size: 0.95rem;
+    min-width: 38px;
+  }
+  .sec-body {
+    padding: 4px 28px 22px 28px;
+    border-top: 1px solid var(--rule);
+  }
+  .formula {
+    margin: 18px 0;
+    padding: 0 0 0 14px;
+    border-left: 3px solid var(--accent-soft);
+  }
+  .formula .label {
+    font-weight: 600;
+    font-size: 0.97rem;
+    color: var(--accent);
+    margin-bottom: 2px;
+  }
+  .formula .desc {
+    color: var(--muted);
+    font-size: 0.93rem;
+    font-style: italic;
+    margin-bottom: 6px;
+  }
+  .formula .math {
+    overflow-x: auto;
+    padding: 4px 0;
+  }
+  .group-label {
+    font-variant: small-caps;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin: 22px 0 6px;
+    border-bottom: 1px dotted var(--rule);
+    padding-bottom: 3px;
+  }
+  .note {
+    background: var(--accent-soft);
+    border-radius: 4px;
+    padding: 10px 14px;
+    font-size: 0.93rem;
+    margin: 14px 0;
+    color: #1f3a4f;
+  }
+  .example {
+    background: #fafafa;
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--accent);
+    border-radius: 4px;
+    padding: 16px 20px;
+    margin: 22px 0;
+  }
+  .example .ex-title {
+    font-variant: small-caps;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.92rem;
+    margin-bottom: 8px;
+  }
+  .example .ex-question {
+    margin-bottom: 14px;
+    font-style: italic;
+    color: #2a2a2a;
+  }
+  .example .ex-step {
+    margin: 14px 0;
+  }
+  .example .ex-step strong {
+    color: var(--accent);
+  }
+  .example .ex-step .math,
+  .example .math {
+    padding: 4px 0;
+    overflow-x: auto;
+  }
+  .example .ex-takeaway {
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--rule);
+    font-size: 0.93rem;
+    color: var(--muted);
+  }
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    padding: 30px 24px 50px;
+    border-top: 1px solid var(--rule);
+    margin-top: 40px;
+  }
+  @media (max-width: 700px) {
+    body { font-size: 16px; }
+    nav.toc ul { columns: 1; }
+    main { padding: 16px; }
+    .sec-body { padding: 4px 18px 18px 18px; }
+    header { padding: 36px 16px 24px; }
+    header h1 { font-size: 1.7rem; }
+  }
+  @media print {
+    .controls, nav.toc { display: none; }
+    details.section { break-inside: avoid; box-shadow: none; }
+    details.section > summary::before { display: none; }
+    details.section[open] > .sec-body { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Analytical Chemistry — Formula Reference</h1>
+  <div class="subtitle">CHE 310 · Fundamentals of Analytical Chemistry · Skoog et al., 10th Ed.</div>
+  <div class="meta">Every formula from the chapter notes, organized by chapter.</div>
+</header>
+
+<main>
+
+<nav class="toc">
+  <h2>Contents</h2>
+  <ul>
+    <li><a href="#ch2">2. Calculations Used in Analytical Chemistry</a></li>
+    <li><a href="#ch3">3. Precision and Accuracy</a></li>
+    <li><a href="#ch4">4. Random Errors</a></li>
+    <li><a href="#ch5">5. Statistical Data Treatment</a></li>
+    <li><a href="#ch7">7. Aqueous Solutions &amp; Equilibria</a></li>
+    <li><a href="#ch8">8. Effect of Electrolytes</a></li>
+    <li><a href="#ch10">10. Gravimetric Methods</a></li>
+    <li><a href="#ch11">11. Titrations</a></li>
+    <li><a href="#ch12">12. Neutralization Titrations</a></li>
+    <li><a href="#ch13">13. Polyfunctional Acids</a></li>
+    <li><a href="#ch15">15. Complexation &amp; EDTA</a></li>
+    <li><a href="#ch16-17">16–17. Electrochemistry</a></li>
+    <li><a href="#ch22">22. Spectrochemical Methods</a></li>
+    <li><a href="#ch29">29. Chromatographic Separations</a></li>
+  </ul>
+</nav>
+
+<div class="controls">
+  <button onclick="document.querySelectorAll('details.section').forEach(d => d.open = true)">Expand all</button>
+  <button onclick="document.querySelectorAll('details.section').forEach(d => d.open = false)">Collapse all</button>
+  <div class="theme-toggle" role="group" aria-label="Theme">
+    <button data-theme="default">Default</button>
+    <button data-theme="ut">UT Spartans</button>
+    <button data-theme="dark">Dark</button>
+  </div>
+</div>
+
+<!-- =========================== CHAPTER 2 =========================== -->
+<section class="chapter" id="ch2">
+  <h2><span class="ch-num">2</span>Calculations Used in Analytical Chemistry</h2>
+
+  <details class="section" id="s2-conc">
+    <summary><span class="sec-num">2.1</span> Concentration Units</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Avogadro's number</div>
+        <div class="desc">Particles per mole — atoms, ions, or molecules.</div>
+        <div class="math">$$N_A=6.023\times 10^{23}\;\text{mol}^{-1}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Molarity</div>
+        <div class="desc">Moles of solute per liter of solution; also mmol per mL.</div>
+        <div class="math">$$M=\frac{\text{mol solute}}{\text{L solution}}=\frac{\text{mmol solute}}{\text{mL solution}}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Weight percent (w/w%)</div>
+        <div class="math">$$\text{w/w\%}=\frac{\text{mass of solute}}{\text{mass of solution}}\times 100\%$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Volume percent (v/v%)</div>
+        <div class="math">$$\text{v/v\%}=\frac{\text{volume of solute}}{\text{volume of solution}}\times 100\%$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Weight/volume percent (w/v%)</div>
+        <div class="math">$$\text{w/v\%}=\frac{\text{mass of solute (g)}}{\text{volume of solution (mL)}}\times 100\%$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Parts per million (ppm)</div>
+        <div class="desc">For dilute aqueous solutions, mg solute per L solution.</div>
+        <div class="math">$$1\;\text{ppm}=\frac{1\;\text{mg solute}}{1\;\text{L solution}}=\frac{1\;\text{g}}{10^6\;\text{g solution}}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Parts per billion (ppb)</div>
+        <div class="math">$$1\;\text{ppb}=\frac{1\;\mu\text{g solute}}{1\;\text{L solution}}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">p-function</div>
+        <div class="desc">Negative log of molar concentration.</div>
+        <div class="math">$$\mathrm{p}X=-\log[X]$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Specific gravity / density</div>
+        <div class="desc">Used interchangeably in this course.</div>
+        <div class="math">$$\text{density}=\frac{\text{g of solution}}{\text{mL of solution}}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Dilution equation</div>
+        <div class="desc">Moles of solute are conserved on dilution.</div>
+        <div class="math">$$M_{\text{conc}}\,V_{\text{conc}}=M_{\text{dil}}\,V_{\text{dil}}$$</div>
+      </div>
+
+    </div>
+  </details>
+</section>
+
+<!-- =========================== CHAPTER 3 =========================== -->
+<section class="chapter" id="ch3">
+  <h2><span class="ch-num">3</span>Precision and Accuracy of Chemical Analyses</h2>
+
+  <details class="section" id="s3-stats">
+    <summary><span class="sec-num">3.1</span> Central Value &amp; Error</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Mean (arithmetic average)</div>
+        <div class="math">$$\bar{x}=\frac{\displaystyle\sum_{i=1}^{N}x_i}{N}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Median</div>
+        <div class="desc">Middle result when data are arranged in order; for an even number of results, average the two middle values.</div>
+        <div class="math">$$\text{median}=\text{middle value (or mean of the two middle values)}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Absolute error</div>
+        <div class="desc">Signed difference between measured and accepted (true) value.</div>
+        <div class="math">$$E=x_i-x_t$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Relative error</div>
+        <div class="math">$$E_r=\frac{x_i-x_t}{x_t}\times 100\%$$</div>
+      </div>
+
+    </div>
+  </details>
+</section>
+
+<!-- =========================== CHAPTER 4 =========================== -->
+<section class="chapter" id="ch4">
+  <h2><span class="ch-num">4</span>Random Errors in Chemical Analysis</h2>
+
+  <details class="section" id="s4-spread">
+    <summary><span class="sec-num">4.1</span> Population vs. Sample Statistics</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Population standard deviation ($N\ge 20$)</div>
+        <div class="desc">$\mu$ is the population mean.</div>
+        <div class="math">$$\sigma=\sqrt{\frac{\sum (x_i-\mu)^2}{N}}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Sample standard deviation ($N&lt;20$)</div>
+        <div class="desc">Unbiased estimator using $N-1$ degrees of freedom.</div>
+        <div class="math">$$s=\sqrt{\frac{\sum (x_i-\bar{x})^2}{N-1}}$$</div>
+      </div>
+
+      <div class="note">
+        Under a Gaussian distribution: $\sim 68.3\%$ of the area lies within $\pm 1\sigma$, $\sim 95.4\%$ within $\pm 2\sigma$, and $\sim 99.7\%$ within $\pm 3\sigma$.
+      </div>
+
+      <div class="formula">
+        <div class="label">Variance</div>
+        <div class="math">$$\sigma^2\quad\text{or}\quad s^2$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Relative standard deviation (RSD)</div>
+        <div class="math">$$\text{RSD}=s_r=\frac{s}{\bar{x}}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">RSD in parts per thousand</div>
+        <div class="math">$$\text{RSD}_{\text{ppt}}=\frac{s}{\bar{x}}\times 1000\;\text{ppt}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Coefficient of variation (CV)</div>
+        <div class="math">$$\text{CV}=\frac{s}{\bar{x}}\times 100\%$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Spread (range)</div>
+        <div class="math">$$w=x_{\max}-x_{\min}$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s4-prop">
+    <summary><span class="sec-num">4.2</span> Propagation of Error</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Std. deviation of a sum or difference</div>
+        <div class="desc">$y=a+b-c+\cdots$. Add absolute uncertainties in quadrature.</div>
+        <div class="math">$$s_y=\sqrt{s_a^{\,2}+s_b^{\,2}+s_c^{\,2}+\cdots+s_x^{\,2}}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Std. deviation of a product or quotient</div>
+        <div class="desc">$y=\dfrac{a\,b}{c}$. Add relative uncertainties in quadrature.</div>
+        <div class="math">$$\frac{s_y}{y}=\sqrt{\left(\frac{s_a}{a}\right)^{\!2}+\left(\frac{s_b}{b}\right)^{\!2}+\left(\frac{s_c}{c}\right)^{\!2}+\cdots+\left(\frac{s_x}{x}\right)^{\!2}}$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s4-sig">
+    <summary><span class="sec-num">4.3</span> Significant Figures Rules</summary>
+    <div class="sec-body">
+
+      <div class="note">
+        <strong>Sums and differences:</strong> the result has the same number of decimal places as the term with the fewest decimal places.<br><br>
+        <strong>Products and quotients:</strong> the result has the same number of significant figures as the term with the fewest significant figures.<br><br>
+        <strong>Logarithms:</strong> keep as many digits to the right of the decimal as there are sig figs in the original number.<br><br>
+        <strong>Antilogarithms:</strong> keep as many digits as there are digits to the right of the decimal in the original number.<br><br>
+        <strong>Rounding a 5:</strong> round to the nearest even digit.
+      </div>
+
+    </div>
+  </details>
+</section>
+
+<!-- =========================== CHAPTER 5 =========================== -->
+<section class="chapter" id="ch5">
+  <h2><span class="ch-num">5</span>Statistical Data Treatment and Evaluation</h2>
+
+  <details class="section" id="s5-ci">
+    <summary><span class="sec-num">5.1</span> Confidence Intervals</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Confidence interval (σ unknown)</div>
+        <div class="desc">$t$ is taken from Student's $t$-table at the desired confidence level with $N-1$ degrees of freedom.</div>
+        <div class="math">$$\text{CI}=\bar{x}\pm\frac{t\,s}{\sqrt{N}}$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s5-tests">
+    <summary><span class="sec-num">5.2</span> Hypothesis Tests</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Small-sample $t$-test (mean vs. accepted value)</div>
+        <div class="desc">Test $H_0:\mu=\mu_0$. Reject $H_0$ if $t_{\text{exp}}\ge t_{\text{crit}}$.</div>
+        <div class="math">$$t_{\text{exp}}=\frac{|\bar{x}-\mu_0|}{s}\,\sqrt{N}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Bias</div>
+        <div class="math">$$\text{bias}=\mu_B-\mu_0$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Pooled standard deviation</div>
+        <div class="desc">Used when comparing two means assumed to share a common standard deviation. Degrees of freedom = $N_A+N_B-2$.</div>
+        <div class="math">$$s_{\text{pooled}}=\sqrt{\frac{(s_A)^2(N_A-1)+(s_B)^2(N_B-1)}{N_A+N_B-2}}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">$t$-test for difference of two means</div>
+        <div class="math">$$t_{\text{exp}}=\frac{|\bar{x}_A-\bar{x}_B|}{s_{\text{pooled}}}\sqrt{\frac{N_A\,N_B}{N_A+N_B}}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">$F$-test (comparison of variances)</div>
+        <div class="desc">Tests $H_0:\sigma_1^2=\sigma_2^2$. Always place the larger $s$ in the numerator.</div>
+        <div class="math">$$F_{\text{exp}}=\frac{(s_{\text{larger}})^2}{(s_{\text{smaller}})^2}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">$Q$-test (rejection of an outlier)</div>
+        <div class="desc">$w$ is the spread (range) of the data. Reject the questionable result if $Q_{\text{exp}}&gt;Q_{\text{crit}}$.</div>
+        <div class="math">$$Q_{\text{exp}}=\frac{|x_?-x_{\text{nearest}}|}{w}$$</div>
+      </div>
+
+    </div>
+  </details>
+</section>
+
+<!-- =========================== CHAPTER 7 =========================== -->
+<section class="chapter" id="ch7">
+  <h2><span class="ch-num">7</span>Aqueous Solutions and Chemical Equilibria</h2>
+
+  <details class="section" id="s7-eq">
+    <summary><span class="sec-num">7.1</span> Equilibrium Constants</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">General equilibrium-constant expression</div>
+        <div class="desc">For $aA+bB\rightleftharpoons cC+dD$. Pure liquids, pure solids, and excess solvent are omitted.</div>
+        <div class="math">$$K=\frac{[C]^c[D]^d}{[A]^a[B]^b}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Solubility-product constant ($K_{sp}$)</div>
+        <div class="desc">Example: $\mathrm{Ba(IO_3)_2}\rightleftharpoons\mathrm{Ba^{2+}}+2\,\mathrm{IO_3^{-}}$.</div>
+        <div class="math">$$K_{sp}=[\mathrm{Ba^{2+}}]\,[\mathrm{IO_3^{-}}]^2$$</div>
+      </div>
+
+    </div>
+  </details>
+</section>
+
+<!-- =========================== CHAPTER 8 =========================== -->
+<section class="chapter" id="ch8">
+  <h2><span class="ch-num">8</span>Effect of Electrolytes on Chemical Equilibria</h2>
+
+  <details class="section" id="s8-ionic">
+    <summary><span class="sec-num">8.1</span> Ionic Strength &amp; Activity</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Coulomb's law (electrostatic force)</div>
+        <div class="desc">$\varepsilon$ is the dielectric constant of the medium.</div>
+        <div class="math">$$F=\frac{q_1q_2}{\varepsilon\,r^2}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Ionic strength $\mu$</div>
+        <div class="desc">Sum is taken over all ionic species; $Z$ is the charge of the species.</div>
+        <div class="math">$$\mu=\tfrac{1}{2}\sum_i [X_i]\,Z_i^{\,2}=\tfrac{1}{2}\!\left([A]Z_A^2+[B]Z_B^2+[C]Z_C^2+\cdots\right)$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Activity</div>
+        <div class="desc">Effective concentration; $\gamma_X$ is the activity coefficient.</div>
+        <div class="math">$$a_X=[X]\,\gamma_X$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Thermodynamic vs. concentration $K_{sp}$</div>
+        <div class="desc">For $X_m Y_n$. The thermodynamic $K_{sp}$ is independent of ionic strength.</div>
+        <div class="math">$$K_{sp}=a_X^{\,m}\,a_Y^{\,n}=[X]^m\gamma_X^{\,m}\,[Y]^n\gamma_Y^{\,n}$$</div>
+        <div class="math">$$K_{sp}'=[X]^m[Y]^n,\qquad K_{sp}=K_{sp}'\,\gamma_X^{\,m}\,\gamma_Y^{\,n}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Debye–Hückel equation</div>
+        <div class="desc">$\alpha_X$ is the effective ion diameter (nm). Constants 0.51 and 3.3 apply to aqueous solutions at $25^\circ\mathrm{C}$.</div>
+        <div class="math">$$-\log\gamma_X=\frac{0.51\,Z_X^{\,2}\sqrt{\mu}}{1+3.3\,\alpha_X\sqrt{\mu}}$$</div>
+      </div>
+
+      <div class="note">
+        <strong>Activity coefficient properties:</strong> $\gamma\to 1$ as $\mu\to 0$; $\gamma$ decreases as ionic charge increases; $\gamma\approx 1$ for uncharged species; ions of the same charge have approximately the same $\gamma$ at any given $\mu$.
+      </div>
+
+    </div>
+  </details>
+</section>
+
+<!-- =========================== CHAPTER 10 =========================== -->
+<section class="chapter" id="ch10">
+  <h2><span class="ch-num">10</span>Gravimetric Methods of Analysis</h2>
+
+  <details class="section" id="s10-grav">
+    <summary><span class="sec-num">10.1</span> Precipitation Gravimetry</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Percent of analyte $X$ in a sample</div>
+        <div class="math">$$\%X=\frac{\text{mass of }X}{\text{sample mass}}\times 100\%$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Gravimetric percent (with gravimetric factor)</div>
+        <div class="desc">$\dfrac{a}{b}$ is the gravimetric factor — the mole ratio that converts moles of precipitate to moles of substance sought.</div>
+        <div class="math">$$\%X=\frac{\text{mass}_{\text{ppt}}\cdot\dfrac{a}{b}\cdot\dfrac{\text{FW}_X}{\text{FW}_{\text{ppt}}}}{\text{sample mass}}\times 100\%$$</div>
+      </div>
+
+    </div>
+  </details>
+</section>
+
+<!-- =========================== CHAPTER 11 =========================== -->
+<section class="chapter" id="ch11">
+  <h2><span class="ch-num">11</span>Titrations in Analytical Chemistry</h2>
+
+  <details class="section" id="s11-tit">
+    <summary><span class="sec-num">11.1</span> Titration Definitions</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Titration error</div>
+        <div class="desc">Difference in volume between the experimentally observed end point and the true equivalence point.</div>
+        <div class="math">$$E_t=V_{\text{ep}}-V_{\text{eq}}$$</div>
+      </div>
+
+      <div class="note">
+        At the equivalence point: $\text{mol}_{\text{titrant}}\times\dfrac{\text{stoich. coeff.}_{\text{analyte}}}{\text{stoich. coeff.}_{\text{titrant}}}=\text{mol}_{\text{analyte}}$.
+      </div>
+
+    </div>
+  </details>
+</section>
+
+<!-- =========================== CHAPTER 12 =========================== -->
+<section class="chapter" id="ch12">
+  <h2><span class="ch-num">12</span>Principles of Neutralization Titrations</h2>
+
+  <details class="section" id="s12-water">
+    <summary><span class="sec-num">12.1</span> Autoionization of Water &amp; pH</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Water autoionization</div>
+        <div class="math">$$2\,\mathrm{H_2O}\rightleftharpoons \mathrm{H_3O^+}+\mathrm{OH^-}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Ion-product constant of water</div>
+        <div class="math">$$K_w=[\mathrm{H_3O^+}][\mathrm{OH^-}]=1.0\times 10^{-14}\;\text{at}\;25^\circ\mathrm{C}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">pH and pOH definitions</div>
+        <div class="math">$$\mathrm{pH}=-\log[\mathrm{H_3O^+}],\qquad \mathrm{pOH}=-\log[\mathrm{OH^-}]$$</div>
+        <div class="math">$$[\mathrm{H_3O^+}]=10^{-\mathrm{pH}},\qquad [\mathrm{OH^-}]=10^{-\mathrm{pOH}}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">pH + pOH relation</div>
+        <div class="math">$$\mathrm{pH}+\mathrm{pOH}=14.00$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">$pK_a$ and $pK_b$</div>
+        <div class="math">$$\mathrm{p}K_a=-\log K_a,\qquad K_a=10^{-\mathrm{p}K_a}$$</div>
+        <div class="math">$$\mathrm{p}K_b=-\log K_b,\qquad K_b=10^{-\mathrm{p}K_b}$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s12-ka">
+    <summary><span class="sec-num">12.2</span> Weak Acid / Base Equilibria</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Acid dissociation constant</div>
+        <div class="desc">$\mathrm{HA}+\mathrm{H_2O}\rightleftharpoons \mathrm{A^-}+\mathrm{H_3O^+}$.</div>
+        <div class="math">$$K_a=\frac{[\mathrm{A^-}][\mathrm{H_3O^+}]}{[\mathrm{HA}]}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Base dissociation constant</div>
+        <div class="desc">$\mathrm{A^-}+\mathrm{H_2O}\rightleftharpoons \mathrm{HA}+\mathrm{OH^-}$.</div>
+        <div class="math">$$K_b=\frac{[\mathrm{HA}][\mathrm{OH^-}]}{[\mathrm{A^-}]}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Conjugate-pair relation</div>
+        <div class="math">$$K_a\,K_b=K_w,\qquad \mathrm{p}K_a+\mathrm{p}K_b=14.00$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s12-quad">
+    <summary><span class="sec-num">12.3</span> Quadratic Solutions for Weak Acids &amp; Buffers</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Quadratic for a weak acid</div>
+        <div class="desc">Exact solution; $M_{HA}$ is the molarity of the acid form.</div>
+        <div class="math">$$[\mathrm{H^+}]=\frac{-K_a+\sqrt{K_a^{\,2}+4K_a\,M_{HA}}}{2}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Quadratic for a buffer</div>
+        <div class="desc">$M_{A^-}$ is the molarity of the conjugate base; $M_{HA}$ is the molarity of the acid.</div>
+        <div class="math">$$[\mathrm{H^+}]=\frac{-(K_a+M_{A^-})+\sqrt{(K_a+M_{A^-})^2+4K_a\,M_{HA}}}{2}$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s12-buf">
+    <summary><span class="sec-num">12.4</span> Buffers — Henderson–Hasselbalch</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Henderson–Hasselbalch equation</div>
+        <div class="math">$$\mathrm{pH}=\mathrm{p}K_a+\log\frac{[\mathrm{A^-}]_{\text{initial}}}{[\mathrm{HA}]_{\text{initial}}}$$</div>
+      </div>
+
+      <div class="note">
+        <strong>When the H–H approximation fails:</strong> $K_a&gt;10^{-3}$ (i.e., $\mathrm{p}K_a&lt;3$), or when $x$ is not small relative to the initial acid/salt concentrations. In those cases use the buffer quadratic above.
+      </div>
+
+      <div class="formula">
+        <div class="label">Reactions of a buffer with added acid or base</div>
+        <div class="math">$$\mathrm{H^+}+\mathrm{A^-}\to\mathrm{HA},\qquad \mathrm{HA}+\mathrm{OH^-}\to\mathrm{A^-}+\mathrm{H_2O}$$</div>
+      </div>
+
+      <div class="example">
+        <div class="ex-title">Worked example — ACS-style</div>
+        <div class="ex-question">
+          A buffer is prepared by dissolving 0.150 mol of acetic acid ($\mathrm{HC_2H_3O_2}$, $K_a=1.8\times 10^{-5}$) and 0.250 mol of sodium acetate in enough water to make 1.00 L of solution. Calculate the pH of the buffer (a) initially, and (b) after 20.0 mL of 1.00 M NaOH has been added.
+        </div>
+
+        <div class="ex-step">
+          <strong>Step 1.</strong> Identify the buffer components and compute $\mathrm{p}K_a$. The species in equilibrium are the weak acid $\mathrm{HA}=\mathrm{HC_2H_3O_2}$ and its conjugate base $\mathrm{A^-}=\mathrm{C_2H_3O_2^-}$.
+          <div class="math">$$[\mathrm{HA}]_0=0.150\;\mathrm{M},\qquad [\mathrm{A^-}]_0=0.250\;\mathrm{M}$$</div>
+          <div class="math">$$\mathrm{p}K_a=-\log(1.8\times 10^{-5})=4.74$$</div>
+        </div>
+
+        <div class="ex-step">
+          <strong>Step 2 — part (a).</strong> Check that Henderson–Hasselbalch is valid: $K_a=1.8\times 10^{-5}\ll 10^{-3}$ and both initial concentrations are $\gg K_a$, so the approximation holds. Plug in.
+          <div class="math">$$\mathrm{pH}=\mathrm{p}K_a+\log\frac{[\mathrm{A^-}]_0}{[\mathrm{HA}]_0}=4.74+\log\!\left(\frac{0.250}{0.150}\right)=4.74+0.222$$</div>
+          <div class="math">$$\boxed{\mathrm{pH}=4.96}$$</div>
+        </div>
+
+        <div class="ex-step">
+          <strong>Step 3 — part (b).</strong> Strong base added to a buffer is consumed by the weak acid; track the stoichiometry in moles (volumes cancel in the H–H ratio).
+          <div class="math">$$\mathrm{HA}+\mathrm{OH^-}\;\longrightarrow\;\mathrm{A^-}+\mathrm{H_2O}$$</div>
+          <div class="math">$$n_{\mathrm{OH^-},\,\text{added}}=(0.0200\;\mathrm{L})(1.00\;\mathrm{M})=0.0200\;\mathrm{mol}$$</div>
+          <div class="math">$$\begin{aligned}n_{\mathrm{HA},\,\text{new}}&amp;=0.150-0.0200=0.130\;\mathrm{mol}\\ n_{\mathrm{A^-},\,\text{new}}&amp;=0.250+0.0200=0.270\;\mathrm{mol}\end{aligned}$$</div>
+        </div>
+
+        <div class="ex-step">
+          <strong>Step 4.</strong> Re-apply Henderson–Hasselbalch with the new amounts.
+          <div class="math">$$\mathrm{pH}=4.74+\log\!\left(\frac{0.270}{0.130}\right)=4.74+0.318$$</div>
+          <div class="math">$$\boxed{\mathrm{pH}=5.06}$$</div>
+        </div>
+
+        <div class="ex-takeaway">
+          <strong>Takeaway.</strong> Adding 20.0 mmol of strong base shifted the pH by only $+0.10$ — that is the buffer doing its job. The same 0.0200 mol of $\mathrm{OH^-}$ dropped into 1.00 L of pure water would give $[\mathrm{OH^-}]\approx 0.020\;\mathrm{M}$ and $\mathrm{pH}\approx 12.3$, a swing of more than seven units.
+        </div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s12-tit">
+    <summary><span class="sec-num">12.5</span> Titration of a Weak Acid with a Strong Base</summary>
+    <div class="sec-body">
+      <div class="note">
+        <strong>Four regions of the titration curve:</strong>
+        <ol style="margin: 8px 0 0 22px; padding: 0;">
+          <li><em>Initial:</em> weak-acid equilibrium, use $K_a$.</li>
+          <li><em>Buffer region (before equivalence):</em> Henderson–Hasselbalch with mol $\mathrm{HA}$ and mol $\mathrm{A^-}$. At half-neutralization, $\mathrm{pH}=\mathrm{p}K_a$.</li>
+          <li><em>Equivalence point:</em> conjugate-base equilibrium, use $K_b$ on $[\mathrm{A^-}]_{\text{init}}=\dfrac{\text{mol HA}_0}{V_{\text{total}}}$.</li>
+          <li><em>After equivalence:</em> excess strong base dominates; $[\mathrm{OH^-}]=\dfrac{\text{mol}\,\mathrm{OH^-}_{\text{excess}}}{V_{\text{total}}}$.</li>
+        </ol>
+      </div>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== CHAPTER 13 =========================== -->
+<section class="chapter" id="ch13">
+  <h2><span class="ch-num">13</span>Polyfunctional Acids</h2>
+
+  <details class="section" id="s13-poly">
+    <summary><span class="sec-num">13.1</span> Stepwise Dissociation</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">First and second dissociation (e.g., $\mathrm{H_2CO_3}$)</div>
+        <div class="math">$$K_{a1}=\frac{[\mathrm{H_3O^+}][\mathrm{HCO_3^-}]}{[\mathrm{H_2CO_3}]},\qquad K_{a2}=\frac{[\mathrm{H_3O^+}][\mathrm{CO_3^{2-}}]}{[\mathrm{HCO_3^-}]}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">CO₂ hydration to carbonic acid</div>
+        <div class="math">$$K_{\text{hyd}}=\frac{[\mathrm{H_2CO_3}]}{[\mathrm{CO_2}]},\qquad K_{a1}^{\text{(overall)}}=K_{\text{hyd}}\cdot K_1$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s13-amph">
+    <summary><span class="sec-num">13.2</span> Amphiprotic Species</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Acid- and base-side equilibria for $\mathrm{HA^-}$</div>
+        <div class="math">$$K_{a2}=\frac{[\mathrm{H_3O^+}][\mathrm{A^{2-}}]}{[\mathrm{HA^-}]},\qquad K_{b2}=\frac{K_w}{K_{a1}}=\frac{[\mathrm{H_2A}][\mathrm{OH^-}]}{[\mathrm{HA^-}]}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">[H₃O⁺] for an amphiprotic species (full form)</div>
+        <div class="desc">$C_{\text{NaHA}}$ is the analytical concentration of the amphoteric species.</div>
+        <div class="math">$$[\mathrm{H_3O^+}]=\sqrt{\frac{K_{a2}\,C_{\text{NaHA}}+K_w}{1+C_{\text{NaHA}}/K_{a1}}}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">[H₃O⁺] for an amphiprotic species (simplified)</div>
+        <div class="desc">Valid when $C_{\text{NaHA}}/K_{a1}\gg 1$ and $K_{a2}\,C_{\text{NaHA}}\gg K_w$.</div>
+        <div class="math">$$[\mathrm{H_3O^+}]=\sqrt{K_{a1}\,K_{a2}}$$</div>
+      </div>
+
+      <div class="note">
+        Compare $K_{b2}$ to $K_{a2}$: $K_{b2}&gt;K_{a2}\Rightarrow$ basic solution; $K_{b2}&lt;K_{a2}\Rightarrow$ acidic solution.
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s13-alpha">
+    <summary><span class="sec-num">13.3</span> Alpha (Distribution) Functions</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Total concentration $C_T$</div>
+        <div class="math">$$C_T=[\mathrm{H_2A}]+[\mathrm{HA^-}]+[\mathrm{A^{2-}}]$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Fraction of each species (diprotic)</div>
+        <div class="math">$$\alpha_0=\frac{[\mathrm{H_2A}]}{C_T},\quad \alpha_1=\frac{[\mathrm{HA^-}]}{C_T},\quad \alpha_2=\frac{[\mathrm{A^{2-}}]}{C_T},\quad \alpha_0+\alpha_1+\alpha_2=1$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Diprotic α expressions</div>
+        <div class="math">$$\alpha_0=\frac{[\mathrm{H_3O^+}]^2}{[\mathrm{H_3O^+}]^2+K_{a1}[\mathrm{H_3O^+}]+K_{a1}K_{a2}}$$</div>
+        <div class="math">$$\alpha_1=\frac{K_{a1}[\mathrm{H_3O^+}]}{[\mathrm{H_3O^+}]^2+K_{a1}[\mathrm{H_3O^+}]+K_{a1}K_{a2}}$$</div>
+        <div class="math">$$\alpha_2=\frac{K_{a1}K_{a2}}{[\mathrm{H_3O^+}]^2+K_{a1}[\mathrm{H_3O^+}]+K_{a1}K_{a2}}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">General α denominator for $\mathrm{H_n A}$</div>
+        <div class="math">$$D=[\mathrm{H_3O^+}]^n+K_{a1}[\mathrm{H_3O^+}]^{n-1}+K_{a1}K_{a2}[\mathrm{H_3O^+}]^{n-2}+\cdots+K_{a1}K_{a2}\cdots K_{an}$$</div>
+      </div>
+
+      <div class="note">
+        $\alpha_i$ is given by the $(i+1)^{\text{th}}$ term of $D$ divided by $D$ itself.
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s13-sol">
+    <summary><span class="sec-num">13.4</span> pH Effect on Solubility</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Connecting α functions to $K_{sp}$</div>
+        <div class="desc">For a precipitate dissociating to a basic anion (e.g., $\mathrm{Ag_2CO_3}$).</div>
+        <div class="math">$$[\mathrm{CO_3^{2-}}]=\alpha_2\,C_T,\qquad K_{sp}=[\mathrm{Ag^+}]^2[\mathrm{CO_3^{2-}}]$$</div>
+      </div>
+
+    </div>
+  </details>
+</section>
+
+<!-- =========================== CHAPTER 15 =========================== -->
+<section class="chapter" id="ch15">
+  <h2><span class="ch-num">15</span>Complexation, EDTA, and Precipitation Titrations</h2>
+
+  <details class="section" id="s15-edta">
+    <summary><span class="sec-num">15.1</span> EDTA Equilibria</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Formation constant $K_{MY}$</div>
+        <div class="desc">For the 1 : 1 reaction $\mathrm{M^{n+}}+\mathrm{Y^{4-}}\rightleftharpoons \mathrm{MY^{(n-4)+}}$.</div>
+        <div class="math">$$K_{MY}=\frac{[\mathrm{MY^{(n-4)+}}]}{[\mathrm{M^{n+}}][\mathrm{Y^{4-}}]}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Total EDTA concentration</div>
+        <div class="math">$$C_T=[\mathrm{Y^{4-}}]+[\mathrm{HY^{3-}}]+[\mathrm{H_2Y^{2-}}]+[\mathrm{H_3Y^{-}}]+[\mathrm{H_4Y}]$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Fraction of fully deprotonated EDTA</div>
+        <div class="math">$$\alpha_4=\frac{[\mathrm{Y^{4-}}]}{C_T},\qquad [\mathrm{Y^{4-}}]=\alpha_4\,C_T$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">α₄ in closed form</div>
+        <div class="math">$$\alpha_4=\frac{K_{a1}K_{a2}K_{a3}K_{a4}}{D}$$</div>
+        <div class="math">$$D=[\mathrm{H_3O^+}]^4+K_{a1}[\mathrm{H_3O^+}]^3+K_{a1}K_{a2}[\mathrm{H_3O^+}]^2+K_{a1}K_{a2}K_{a3}[\mathrm{H_3O^+}]+K_{a1}K_{a2}K_{a3}K_{a4}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Conditional formation constant</div>
+        <div class="desc">Constant only at the pH where $\alpha_4$ is evaluated.</div>
+        <div class="math">$$K'_{MY}=\alpha_4\,K_{MY}=\frac{[\mathrm{MY^{(n-4)+}}]}{[\mathrm{M^{n+}}]\,C_T}$$</div>
+      </div>
+
+    </div>
+  </details>
+</section>
+
+<!-- =========================== CHAPTERS 16 & 17 =========================== -->
+<section class="chapter" id="ch16-17">
+  <h2><span class="ch-num">16–17</span>Electrochemistry</h2>
+
+  <details class="section" id="s16-cell">
+    <summary><span class="sec-num">16.1</span> Cell Notation &amp; Standard Potential</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Cell notation</div>
+        <div class="desc">Anode written on the left, cathode on the right; $\|$ is the salt bridge.</div>
+        <div class="math">$$\text{anode}\,\|\,\text{cathode}\;:\;\mathrm{Zn}\mid\mathrm{Zn^{2+}}\,(aq)\,\|\,\mathrm{Cu^{2+}}\,(aq)\mid\mathrm{Cu}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Standard cell potential</div>
+        <div class="desc">All half-cell values must be reduction potentials. Do not multiply $E^\circ$ when balancing electrons.</div>
+        <div class="math">$$E^\circ_{\text{cell}}=E^\circ_{\text{cathode}}-E^\circ_{\text{anode}}=E^\circ_{\text{reduction}}+E^\circ_{\text{oxidation}}$$</div>
+      </div>
+
+      <div class="note">
+        For a spontaneous (galvanic) reaction at standard state: $\Delta G^\circ&lt;0$, $E^\circ_{\text{cell}}&gt;0$, $K&gt;1$. The standard hydrogen electrode (SHE) is assigned $E^\circ=0\;\mathrm{V}$.
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s16-thermo">
+    <summary><span class="sec-num">16.2</span> Thermodynamics of Cells</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Free energy ↔ cell potential</div>
+        <div class="desc">$F=96{,}485\;\mathrm{C/mol\;e^-}$, $R=8.314\;\mathrm{J/(mol\,K)}$.</div>
+        <div class="math">$$\Delta G^\circ=-nFE^\circ_{\text{cell}}=-RT\ln K$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Standard potential ↔ equilibrium constant</div>
+        <div class="math">$$\log K=\frac{n\,E^\circ_{\text{cell}}}{0.0592}\quad(\text{at } 25^\circ\mathrm{C})$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s16-nernst">
+    <summary><span class="sec-num">16.3</span> Nernst Equation</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">General Nernst equation</div>
+        <div class="desc">$Q$ is the reaction quotient.</div>
+        <div class="math">$$E=E^\circ-\frac{RT}{nF}\ln Q$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Nernst at $25^\circ\mathrm{C}$</div>
+        <div class="math">$$E=E^\circ-\frac{0.0592}{n}\log Q$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Nernst applied to $aA+bB\rightleftharpoons cC+dD$</div>
+        <div class="math">$$E=E^\circ-\frac{0.0592}{n}\log\frac{[C]^c[D]^d}{[A]^a[B]^b}$$</div>
+      </div>
+
+      <div class="example">
+        <div class="ex-title">Worked example — ACS-style</div>
+        <div class="ex-question">
+          Consider the galvanic cell at $25^\circ\mathrm{C}$:
+          <div style="text-align:center; margin: 8px 0;">$\mathrm{Zn}\,\bigl|\,\mathrm{Zn^{2+}}\,(0.0100\;\mathrm{M})\,\bigl\|\,\mathrm{Cu^{2+}}\,(1.50\;\mathrm{M})\,\bigr|\,\mathrm{Cu}$</div>
+          Standard reduction potentials: $E^\circ(\mathrm{Cu^{2+}/Cu})=+0.34\;\mathrm{V}$ and $E^\circ(\mathrm{Zn^{2+}/Zn})=-0.76\;\mathrm{V}$. Calculate (a) $E^\circ_{\text{cell}}$, and (b) the actual $E_{\text{cell}}$ at the given concentrations. Is the cell galvanic?
+        </div>
+
+        <div class="ex-step">
+          <strong>Step 1.</strong> Identify the half-reactions and the standard cell potential. By cell convention, the right-hand electrode is the cathode (reduction) and the left-hand electrode is the anode (oxidation).
+          <div class="math">$$\text{Cathode:}\quad \mathrm{Cu^{2+}}+2e^-\to\mathrm{Cu},\qquad E^\circ_{\text{cath}}=+0.34\;\mathrm{V}$$</div>
+          <div class="math">$$\text{Anode:}\quad \mathrm{Zn}\to\mathrm{Zn^{2+}}+2e^-,\qquad E^\circ_{\text{red,anode}}=-0.76\;\mathrm{V}$$</div>
+          <div class="math">$$E^\circ_{\text{cell}}=E^\circ_{\text{cath}}-E^\circ_{\text{anode}}=(+0.34)-(-0.76)$$</div>
+          <div class="math">$$\boxed{E^\circ_{\text{cell}}=+1.10\;\mathrm{V}}$$</div>
+        </div>
+
+        <div class="ex-step">
+          <strong>Step 2.</strong> Write the overall reaction and the reaction quotient $Q$. Pure solids are omitted from $Q$.
+          <div class="math">$$\mathrm{Zn}(s)+\mathrm{Cu^{2+}}(aq)\;\longrightarrow\;\mathrm{Zn^{2+}}(aq)+\mathrm{Cu}(s),\qquad n=2$$</div>
+          <div class="math">$$Q=\frac{[\mathrm{Zn^{2+}}]}{[\mathrm{Cu^{2+}}]}=\frac{0.0100}{1.50}=6.67\times 10^{-3}$$</div>
+        </div>
+
+        <div class="ex-step">
+          <strong>Step 3 — part (b).</strong> Apply the Nernst equation at $25^\circ\mathrm{C}$.
+          <div class="math">$$E_{\text{cell}}=E^\circ_{\text{cell}}-\frac{0.0592}{n}\log Q=1.10-\frac{0.0592}{2}\log(6.67\times 10^{-3})$$</div>
+          <div class="math">$$E_{\text{cell}}=1.10-(0.0296)(-2.176)=1.10+0.0644$$</div>
+          <div class="math">$$\boxed{E_{\text{cell}}=+1.16\;\mathrm{V}}$$</div>
+        </div>
+
+        <div class="ex-takeaway">
+          <strong>Takeaway.</strong> $E_{\text{cell}}&gt;0$, so the cell is galvanic (spontaneous as written). Note the direction of the shift: $Q&lt;1$ means more reactant than product relative to standard state, which Le Châtelier predicts will <em>raise</em> the driving force above $E^\circ$. Whenever the question asks "what is $E$ at non-standard conditions," the workflow is always: identify cathode/anode → compute $E^\circ$ → write the overall reaction → form $Q$ → plug into Nernst.
+        </div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s17-faraday">
+    <summary><span class="sec-num">17.1</span> Faraday's Law &amp; Stoichiometry of Electrolysis</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Charge / current / time</div>
+        <div class="math">$$Q=I\cdot t,\qquad 1\;\mathrm{A}=1\;\mathrm{C/s}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Faraday's constant</div>
+        <div class="math">$$F=96{,}485\;\mathrm{C/mol\;e^-}\;\;(\approx 96{,}500)$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Moles of electrons</div>
+        <div class="math">$$n_{e^-}=\frac{I\cdot t}{F}$$</div>
+      </div>
+
+    </div>
+  </details>
+</section>
+
+<!-- =========================== CHAPTER 22 =========================== -->
+<section class="chapter" id="ch22">
+  <h2><span class="ch-num">22</span>Introduction to Spectrochemical Methods</h2>
+
+  <details class="section" id="s22-em">
+    <summary><span class="sec-num">22.1</span> Electromagnetic Radiation</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Wave equation (any medium)</div>
+        <div class="math">$$v=\nu\,\lambda$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Speed of light in vacuum</div>
+        <div class="math">$$c=\nu\,\lambda=3.00\times 10^{8}\;\mathrm{m/s}=3.00\times 10^{10}\;\mathrm{cm/s}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Wavenumber</div>
+        <div class="desc">Common in IR; units are $\mathrm{cm}^{-1}$.</div>
+        <div class="math">$$\bar{\nu}=\frac{1}{\lambda}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Photon energy</div>
+        <div class="desc">$h=6.626\times 10^{-34}\;\mathrm{J\,s}$.</div>
+        <div class="math">$$E=h\nu=\frac{hc}{\lambda}=hc\,\bar{\nu}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Radiant power (intensity)</div>
+        <div class="math">$$\mathrm{Watts}=\frac{\mathrm{J}}{\mathrm{m^2\,s}}$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s22-beer">
+    <summary><span class="sec-num">22.2</span> Absorbance, Transmittance, and Beer's Law</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Transmittance</div>
+        <div class="desc">$P_0$ is the incident radiant power; $P$ is the transmitted power.</div>
+        <div class="math">$$T=\frac{P}{P_0},\qquad \%T=\frac{P}{P_0}\times 100\%$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Absorbance</div>
+        <div class="math">$$A=-\log T=\log\frac{P_0}{P}=2-\log\,\%T$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Beer–Lambert law</div>
+        <div class="desc">$a$ has units of $\mathrm{L\,g^{-1}\,cm^{-1}}$ when $c$ is in $\mathrm{g\,L^{-1}}$.</div>
+        <div class="math">$$A=a\,b\,c$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Beer's law (molar form)</div>
+        <div class="desc">Molar absorptivity $\varepsilon$ has units of $\mathrm{L\,mol^{-1}\,cm^{-1}}$.</div>
+        <div class="math">$$A=\varepsilon\,b\,c$$</div>
+      </div>
+
+      <div class="example">
+        <div class="ex-title">Worked example — ACS-style</div>
+        <div class="ex-question">
+          A colored organic dye has a molar absorptivity of $\varepsilon=4.50\times 10^{3}\;\mathrm{L\,mol^{-1}\,cm^{-1}}$ at $525\;\mathrm{nm}$. When measured in a $1.00\;\mathrm{cm}$ cuvette, the absorbance of an unknown stock sample is $0.642$. A 10.0 mL aliquot of the stock is then transferred to a 50.0 mL volumetric flask and diluted to the mark. Calculate (a) the molar concentration of the original stock, and (b) the percent transmittance of the diluted solution measured in the same cuvette.
+        </div>
+
+        <div class="ex-step">
+          <strong>Step 1 — part (a).</strong> Solve Beer's law for $c$.
+          <div class="math">$$c_{\text{stock}}=\frac{A}{\varepsilon\,b}=\frac{0.642}{(4.50\times 10^{3}\;\mathrm{L\,mol^{-1}\,cm^{-1}})(1.00\;\mathrm{cm})}$$</div>
+          <div class="math">$$\boxed{c_{\text{stock}}=1.43\times 10^{-4}\;\mathrm{M}}$$</div>
+        </div>
+
+        <div class="ex-step">
+          <strong>Step 2 — part (b), dilution.</strong> Apply $M_1V_1=M_2V_2$.
+          <div class="math">$$c_{\text{dil}}=c_{\text{stock}}\cdot\frac{V_1}{V_2}=(1.43\times 10^{-4}\;\mathrm{M})\cdot\frac{10.0\;\mathrm{mL}}{50.0\;\mathrm{mL}}=2.85\times 10^{-5}\;\mathrm{M}$$</div>
+        </div>
+
+        <div class="ex-step">
+          <strong>Step 3.</strong> Beer's law gives the new absorbance.
+          <div class="math">$$A_{\text{dil}}=\varepsilon\,b\,c_{\text{dil}}=(4.50\times 10^{3})(1.00)(2.85\times 10^{-5})=0.128$$</div>
+        </div>
+
+        <div class="ex-step">
+          <strong>Step 4.</strong> Convert absorbance back to percent transmittance.
+          <div class="math">$$\%T=10^{-A}\times 100\%=10^{-0.128}\times 100\%$$</div>
+          <div class="math">$$\boxed{\%T=74.5\%}$$</div>
+        </div>
+
+        <div class="ex-takeaway">
+          <strong>Takeaway.</strong> Beer's law is linear in concentration, so a 5× dilution gives an absorbance 5× smaller — but transmittance is logarithmic, so a 5× drop in $A$ moves $\%T$ from $22.8\%$ at the stock concentration to $74.5\%$ at the diluted concentration. Working in $A$ keeps the math linear.
+        </div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s22-merit">
+    <summary><span class="sec-num">22.3</span> Figures of Merit</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Calibration sensitivity</div>
+        <div class="desc">Slope of the calibration curve.</div>
+        <div class="math">$$\text{calibration sensitivity}=m=\frac{dS}{dc}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Analytical sensitivity</div>
+        <div class="desc">$s_s$ is the standard deviation of the measurement.</div>
+        <div class="math">$$\gamma=\frac{m}{s_s}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Detection limit (signal)</div>
+        <div class="math">$$S_m=3\,s_{\text{bl}}+\bar{S}_{\text{bl}}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Limit of quantitation (LOQ)</div>
+        <div class="math">$$\text{LOQ}=10\,s_{\text{bl}}$$</div>
+      </div>
+
+      <div class="note">
+        <strong>Dynamic range</strong> extends from the LOQ to the limit of linearity (LOL, where the calibration curve departs from linearity by ~5%).
+      </div>
+
+    </div>
+  </details>
+</section>
+
+<!-- =========================== CHAPTER 29 =========================== -->
+<section class="chapter" id="ch29">
+  <h2><span class="ch-num">29</span>Introduction to Chromatographic Separations</h2>
+
+  <details class="section" id="s29-time">
+    <summary><span class="sec-num">29.1</span> Retention Time &amp; Linear Velocity</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Retention time relation</div>
+        <div class="desc">$t_m$ = void/dead time (un-retained); $t_s$ = time spent in the stationary phase; $t_r$ = total retention time.</div>
+        <div class="math">$$t_r=t_s+t_m$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Average linear velocity of the mobile phase</div>
+        <div class="desc">$L$ is the column length.</div>
+        <div class="math">$$\upsilon=\frac{L}{t_m}$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s29-k">
+    <summary><span class="sec-num">29.2</span> Partition Coefficient and Ratio</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Partition coefficient</div>
+        <div class="desc">Ratio of stationary-phase to mobile-phase analyte concentration.</div>
+        <div class="math">$$K=\frac{C_s}{C_m}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Partition (retention) ratio — definitions</div>
+        <div class="math">$$k'=\frac{C_s\,V_s}{C_m\,V_m}=\frac{t_r-t_m}{t_m}$$</div>
+      </div>
+
+      <div class="note">
+        Practical guidance: $k'&lt;1$ rarely gives adequate separation; $k'&gt;10$ takes too long to elute. Aim for $1\le k'\le 10$.
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s29-eff">
+    <summary><span class="sec-num">29.3</span> Column Efficiency</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Effective plate number</div>
+        <div class="desc">$W_b$ is the peak width at the base.</div>
+        <div class="math">$$N_{\text{eff}}=16\!\left(\frac{t_r}{W_b}\right)^{\!2}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Plate height</div>
+        <div class="math">$$H=\frac{L}{N_{\text{eff}}}\qquad\Longleftrightarrow\qquad N_{\text{eff}}=\frac{L}{H}$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s29-res">
+    <summary><span class="sec-num">29.4</span> Resolution</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Column resolution $R_s$</div>
+        <div class="desc">$W_A$, $W_B$ are baseline peak widths; $(t_r)_A&lt;(t_r)_B$.</div>
+        <div class="math">$$R_s=\frac{2\,[(t_r)_B-(t_r)_A]}{W_A+W_B}$$</div>
+      </div>
+
+      <div class="note">
+        Common interpretation: $R_s\approx 0.75$ → poor separation; $R_s\approx 1.0$ → fair; $R_s\ge 1.5$ → baseline resolved. Improve resolution by reducing the plate height (smaller particle size) or by increasing column length.
+      </div>
+
+      <div class="example">
+        <div class="ex-title">Worked example — ACS-style</div>
+        <div class="ex-question">
+          On a $25.0\;\mathrm{cm}$ HPLC column, two analytes elute at retention times of $7.50\;\mathrm{min}$ (compound A) and $8.20\;\mathrm{min}$ (compound B), with baseline peak widths of $0.40\;\mathrm{min}$ and $0.45\;\mathrm{min}$ respectively. An un-retained marker passes through the column in $1.20\;\mathrm{min}$. Calculate (a) the partition ratio $k'$ for compound B, (b) the effective plate number $N_{\text{eff}}$ for compound B, (c) the plate height $H$ for compound B, and (d) the resolution $R_s$ between the two peaks. Is the pair baseline-resolved?
+        </div>
+
+        <div class="ex-step">
+          <strong>Step 1 — part (a).</strong> Use the partition-ratio definition with $t_m=1.20\;\mathrm{min}$ and $(t_r)_B=8.20\;\mathrm{min}$.
+          <div class="math">$$k'_B=\frac{t_r-t_m}{t_m}=\frac{8.20-1.20}{1.20}=\frac{7.00}{1.20}$$</div>
+          <div class="math">$$\boxed{k'_B=5.83}$$</div>
+          <div style="font-size: 0.92rem; color: var(--muted); margin-top: 4px;">Comfortably in the recommended range $1\le k'\le 10$.</div>
+        </div>
+
+        <div class="ex-step">
+          <strong>Step 2 — part (b).</strong> Effective plate number from $t_r$ and the baseline peak width $W_b$.
+          <div class="math">$$N_{\text{eff}}=16\!\left(\frac{t_r}{W_b}\right)^{\!2}=16\!\left(\frac{8.20}{0.45}\right)^{\!2}=16\,(18.22)^2$$</div>
+          <div class="math">$$\boxed{N_{\text{eff}}\approx 5.31\times 10^{3}\;\text{plates}}$$</div>
+        </div>
+
+        <div class="ex-step">
+          <strong>Step 3 — part (c).</strong> Plate height is column length divided by plate number.
+          <div class="math">$$H=\frac{L}{N_{\text{eff}}}=\frac{25.0\;\mathrm{cm}}{5310}=4.71\times 10^{-3}\;\mathrm{cm}$$</div>
+          <div class="math">$$\boxed{H\approx 47\;\mu\mathrm{m}}$$</div>
+        </div>
+
+        <div class="ex-step">
+          <strong>Step 4 — part (d).</strong> Resolution from the two retention times and the average peak width.
+          <div class="math">$$R_s=\frac{2\,[(t_r)_B-(t_r)_A]}{W_A+W_B}=\frac{2\,(8.20-7.50)}{0.40+0.45}=\frac{1.40}{0.85}$$</div>
+          <div class="math">$$\boxed{R_s=1.65}$$</div>
+        </div>
+
+        <div class="ex-takeaway">
+          <strong>Takeaway.</strong> $R_s=1.65\ge 1.5$, so the pair is baseline-resolved — peaks are well separated for accurate quantitation. The standard "one-knob" levers if you needed to push $R_s$ higher are: smaller-particle stationary phase (drives $H$ down), longer column (raises $N_{\text{eff}}$), or a more selective mobile phase composition (changes $k'$ ratios).
+        </div>
+      </div>
+
+    </div>
+  </details>
+</section>
+
+</main>
+
+<footer>
+  Compiled from chapter notes for Fundamentals of Analytical Chemistry (Skoog et al., 10th Ed.) — Chapters 2–29.
+</footer>
+
+<script>
+  // Theme switching with localStorage persistence
+  function setTheme(name) {
+    if (!name || name === 'default') {
+      document.documentElement.removeAttribute('data-theme');
+    } else {
+      document.documentElement.setAttribute('data-theme', name);
+    }
+    document.querySelectorAll('.theme-toggle button').forEach(btn => {
+      btn.classList.toggle('active', (btn.dataset.theme || 'default') === (name || 'default'));
+    });
+    try { localStorage.setItem('theme', name || 'default'); } catch(e) {}
+  }
+  document.querySelectorAll('.theme-toggle button').forEach(btn => {
+    btn.addEventListener('click', () => setTheme(btn.dataset.theme));
+  });
+  (function loadSavedTheme() {
+    let saved = 'default';
+    try { saved = localStorage.getItem('theme') || 'default'; } catch(e) {}
+    setTheme(saved);
+  })();
+
+  // Open the section if linked via hash, e.g. #s12-buf
+  if (window.location.hash) {
+    const target = document.querySelector(window.location.hash);
+    if (target && target.tagName === 'DETAILS') target.open = true;
+  }
+</script>
+
+</body>
+</html>

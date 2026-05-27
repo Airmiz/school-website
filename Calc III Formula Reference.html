@@ -1,0 +1,2595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAT 262 — Calculus III Formula Reference</title>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+<style>
+  :root {
+    --bg: #fdfcf8;
+    --paper: #ffffff;
+    --ink: #1a1a1a;
+    --muted: #5b5b5b;
+    --rule: #d8d2c4;
+    --accent: #7a4a2c;
+    --accent-soft: #f3ece0;
+    --shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 14px rgba(0,0,0,0.06);
+  }
+  /* University of Tampa Spartans theme */
+  :root[data-theme="ut"] {
+    --bg: #fdfaf8;
+    --paper: #ffffff;
+    --ink: #1a1a1a;
+    --muted: #5b5b5b;
+    --rule: #e0d5d3;
+    --accent: #B22634;
+    --accent-soft: #fae0e3;
+    --shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 14px rgba(178,38,52,0.08);
+  }
+  /* Dark mode */
+  :root[data-theme="dark"] {
+    --bg: #15171c;
+    --paper: #1f2228;
+    --ink: #e8e8e6;
+    --muted: #9098a4;
+    --rule: #2c2f36;
+    --accent: #d4a47c;
+    --accent-soft: #2a2218;
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.4);
+  }
+  [data-theme="dark"] header {
+    background: linear-gradient(180deg, var(--paper) 0%, var(--bg) 100%);
+  }
+  [data-theme="dark"] .note { color: var(--ink); }
+  [data-theme="ut"]   .note { color: #5a1a22; }
+  /* Theme toggle widget */
+  .theme-toggle {
+    display: inline-flex;
+    gap: 0;
+    padding: 3px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+  }
+  .theme-toggle button {
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.84rem;
+    cursor: pointer;
+    transition: all 0.12s ease;
+  }
+  .theme-toggle button:hover { color: var(--accent); }
+  .theme-toggle button.active {
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 600;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Iowan Old Style", "Palatino", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    font-size: 17px;
+    line-height: 1.55;
+  }
+  header {
+    background: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+    border-bottom: 1px solid var(--rule);
+    padding: 56px 24px 32px;
+    text-align: center;
+  }
+  header h1 {
+    margin: 0 0 4px 0;
+    font-size: 2.2rem;
+    letter-spacing: -0.01em;
+  }
+  header .subtitle {
+    color: var(--muted);
+    font-style: italic;
+    font-size: 1.05rem;
+  }
+  header .meta {
+    margin-top: 14px;
+    font-size: 0.92rem;
+    color: var(--muted);
+  }
+  main {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+  nav.toc {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 20px 28px;
+    margin: 24px 0 36px;
+    box-shadow: var(--shadow);
+  }
+  nav.toc h2 {
+    margin: 0 0 12px 0;
+    font-size: 1.05rem;
+    font-variant: small-caps;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+  }
+  nav.toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    columns: 2;
+    column-gap: 32px;
+  }
+  nav.toc li {
+    margin: 4px 0;
+    break-inside: avoid;
+  }
+  nav.toc a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px dotted transparent;
+  }
+  nav.toc a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+  .controls button {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 0.88rem;
+    padding: 7px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.12s ease;
+  }
+  .controls button:hover {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+  }
+  .chapter {
+    margin-bottom: 48px;
+  }
+  .chapter > h2 {
+    font-size: 1.55rem;
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 6px;
+    margin: 16px 0 20px;
+    letter-spacing: -0.01em;
+  }
+  .chapter > h2 .ch-num {
+    color: var(--muted);
+    font-weight: normal;
+    margin-right: 10px;
+  }
+  details.section {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  details.section[open] {
+    border-color: var(--accent);
+  }
+  details.section > summary {
+    cursor: pointer;
+    padding: 14px 22px;
+    list-style: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    user-select: none;
+    transition: background 0.12s;
+  }
+  details.section > summary:hover {
+    background: var(--accent-soft);
+  }
+  details.section > summary::-webkit-details-marker { display: none; }
+  details.section > summary::before {
+    content: "▸";
+    color: var(--accent);
+    font-size: 0.85rem;
+    transition: transform 0.18s ease;
+    display: inline-block;
+  }
+  details.section[open] > summary::before {
+    transform: rotate(90deg);
+  }
+  details.section > summary .sec-num {
+    color: var(--muted);
+    font-weight: normal;
+    font-size: 0.95rem;
+    min-width: 38px;
+  }
+  .sec-body {
+    padding: 4px 28px 22px 28px;
+    border-top: 1px solid var(--rule);
+  }
+  .formula {
+    margin: 18px 0;
+    padding: 0 0 0 14px;
+    border-left: 3px solid var(--accent-soft);
+  }
+  .formula .label {
+    font-weight: 600;
+    font-size: 0.97rem;
+    color: var(--accent);
+    margin-bottom: 2px;
+  }
+  .formula .desc {
+    color: var(--muted);
+    font-size: 0.93rem;
+    font-style: italic;
+    margin-bottom: 6px;
+  }
+  .formula .math {
+    overflow-x: auto;
+    padding: 4px 0;
+  }
+  .group-label {
+    font-variant: small-caps;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin: 22px 0 6px;
+    border-bottom: 1px dotted var(--rule);
+    padding-bottom: 3px;
+  }
+  .note {
+    background: var(--accent-soft);
+    border-radius: 4px;
+    padding: 10px 14px;
+    font-size: 0.93rem;
+    margin: 14px 0;
+    color: #4a3520;
+  }
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    padding: 30px 24px 50px;
+    border-top: 1px solid var(--rule);
+    margin-top: 40px;
+  }
+  @media (max-width: 700px) {
+    body { font-size: 16px; }
+    nav.toc ul { columns: 1; }
+    main { padding: 16px; }
+    .sec-body { padding: 4px 18px 18px 18px; }
+    header { padding: 36px 16px 24px; }
+    header h1 { font-size: 1.7rem; }
+  }
+  /* Tab bar */
+  .tabbar {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin: 24px 0 8px;
+    border-bottom: 2px solid var(--rule);
+  }
+  .tabbar button {
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: var(--muted);
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 12px 26px;
+    margin-bottom: -2px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    letter-spacing: 0.01em;
+  }
+  .tabbar button:hover { color: var(--accent); }
+  .tabbar button.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .tabpanel { display: none; }
+  .tabpanel.active { display: block; }
+
+  /* Test problem styling */
+  .problem {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 22px 28px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+  }
+  .problem .q-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .problem .q-num {
+    font-variant: small-caps;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 1rem;
+  }
+  .problem .q-topic {
+    color: var(--muted);
+    font-style: italic;
+    font-size: 0.92rem;
+  }
+  .problem .q-text {
+    margin-bottom: 16px;
+    color: #2a2a2a;
+  }
+  .problem .sol-label {
+    font-variant: small-caps;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.88rem;
+    margin: 14px 0 6px;
+  }
+  .problem .step {
+    margin: 12px 0;
+  }
+  .problem .step .step-tag {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .problem .step .math,
+  .problem .math {
+    padding: 4px 0;
+    overflow-x: auto;
+  }
+  .problem .answer {
+    margin-top: 18px;
+    padding: 12px 16px;
+    background: var(--accent-soft);
+    border-radius: 4px;
+    border-left: 4px solid var(--accent);
+    font-weight: 600;
+  }
+
+  /* Print friendly */
+  @media print {
+    .controls, nav.toc, .tabbar { display: none; }
+    details.section { break-inside: avoid; box-shadow: none; }
+    details.section > summary::before { display: none; }
+    details.section[open] > .sec-body { display: block; }
+    .tabpanel { display: block !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Calculus III — Formula Reference</h1>
+  <div class="subtitle">MAT 262 · Dr. Pfeffer · Chapters 11–15</div>
+  <div class="meta">Formulas from every section, plus a fully worked Test 1.</div>
+</header>
+
+<main>
+
+<div class="tabbar" role="tablist">
+  <button class="tab-btn active" data-tab="tab-formulas" role="tab">Formula Reference</button>
+  <button class="tab-btn" data-tab="tab-test1" role="tab">Test 1 — Worked Solutions</button>
+  <button class="tab-btn" data-tab="tab-test2" role="tab">Test 2 — Worked Solutions</button>
+  <button class="tab-btn" data-tab="tab-test3" role="tab">Test 3 — Worked Solutions</button>
+</div>
+
+<div class="tabpanel active" id="tab-formulas" role="tabpanel">
+
+<nav class="toc">
+  <h2>Contents</h2>
+  <ul>
+    <li><a href="#ch11">11. Vectors &amp; Geometry of Space</a></li>
+    <li><a href="#ch12">12. Vector-Valued Functions</a></li>
+    <li><a href="#ch13">13. Partial Derivatives</a></li>
+    <li><a href="#ch14">14. Multiple Integrals</a></li>
+    <li><a href="#ch15">15. Vector Calculus</a></li>
+  </ul>
+</nav>
+
+<div class="controls">
+  <button onclick="document.querySelectorAll('details.section').forEach(d => d.open = true)">Expand all</button>
+  <button onclick="document.querySelectorAll('details.section').forEach(d => d.open = false)">Collapse all</button>
+  <div class="theme-toggle" role="group" aria-label="Theme">
+    <button data-theme="default">Default</button>
+    <button data-theme="ut">UT Spartans</button>
+    <button data-theme="dark">Dark</button>
+  </div>
+</div>
+
+<!-- =========================== CHAPTER 11 =========================== -->
+<section class="chapter" id="ch11">
+  <h2><span class="ch-num">11</span>Vectors and the Geometry of Space</h2>
+
+  <details class="section" id="s11-1">
+    <summary><span class="sec-num">11.1</span> Three-Dimensional Coordinate Systems</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Distance between two points in 3-space</div>
+        <div class="desc">Distance from $P_1(x_1,y_1,z_1)$ to $P_2(x_2,y_2,z_2)$.</div>
+        <div class="math">$$d(P_1,P_2)=|\overrightarrow{P_1P_2}|=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2+(z_2-z_1)^2}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Standard equation of a sphere</div>
+        <div class="desc">Sphere of radius $r$ centered at $(x_0,y_0,z_0)$.</div>
+        <div class="math">$$(x-x_0)^2+(y-y_0)^2+(z-z_0)^2=r^2$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s11-2">
+    <summary><span class="sec-num">11.2</span> Vectors</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Component form of a vector (2D)</div>
+        <div class="desc">Vector from $P(x_1,y_1)$ to $Q(x_2,y_2)$.</div>
+        <div class="math">$$\mathbf{v}=\langle v_1,v_2\rangle=\langle x_2-x_1,\; y_2-y_1\rangle$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Component form of a vector (3D)</div>
+        <div class="desc">Vector from $P(x_1,y_1,z_1)$ to $Q(x_2,y_2,z_2)$.</div>
+        <div class="math">$$\mathbf{v}=\langle x_2-x_1,\; y_2-y_1,\; z_2-z_1\rangle$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Magnitude (norm, length) of a vector</div>
+        <div class="desc">Length of $\mathbf{v}=\langle v_1,v_2,v_3\rangle$.</div>
+        <div class="math">$$\|\mathbf{v}\|=\sqrt{v_1^{\,2}+v_2^{\,2}+v_3^{\,2}}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Vector addition and scalar multiplication</div>
+        <div class="desc">For $\mathbf{u}=\langle u_1,u_2,u_3\rangle$, $\mathbf{v}=\langle v_1,v_2,v_3\rangle$, scalar $k$.</div>
+        <div class="math">$$\mathbf{u}+\mathbf{v}=\langle u_1+v_1,\,u_2+v_2,\,u_3+v_3\rangle,\qquad k\mathbf{u}=\langle ku_1,ku_2,ku_3\rangle$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Standard unit vector decomposition</div>
+        <div class="desc">Any vector written in terms of $\mathbf{i},\mathbf{j},\mathbf{k}$.</div>
+        <div class="math">$$\mathbf{v}=\langle v_1,v_2,v_3\rangle=v_1\mathbf{i}+v_2\mathbf{j}+v_3\mathbf{k}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Direction (unit) vector and length-direction split</div>
+        <div class="desc">Every nonzero vector equals its length times its direction.</div>
+        <div class="math">$$\mathbf{v}=\|\mathbf{v}\|\,\frac{\mathbf{v}}{\|\mathbf{v}\|}$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s11-3">
+    <summary><span class="sec-num">11.3</span> The Dot Product</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Dot (inner / scalar) product</div>
+        <div class="desc">For $\mathbf{u}=\langle u_1,u_2,u_3\rangle$, $\mathbf{v}=\langle v_1,v_2,v_3\rangle$.</div>
+        <div class="math">$$\mathbf{u}\cdot\mathbf{v}=u_1v_1+u_2v_2+u_3v_3$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Angle between two vectors</div>
+        <div class="desc">$\theta$ is the angle between nonzero $\mathbf{u}$ and $\mathbf{v}$.</div>
+        <div class="math">$$\cos\theta=\frac{\mathbf{u}\cdot\mathbf{v}}{\|\mathbf{u}\|\,\|\mathbf{v}\|},\qquad \theta=\arccos\!\left(\frac{\mathbf{u}\cdot\mathbf{v}}{\|\mathbf{u}\|\,\|\mathbf{v}\|}\right)$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Orthogonality test</div>
+        <div class="desc">Vectors are perpendicular iff their dot product is zero.</div>
+        <div class="math">$$\mathbf{u}\perp\mathbf{v}\;\Longleftrightarrow\;\mathbf{u}\cdot\mathbf{v}=0$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Algebraic properties of the dot product</div>
+        <div class="desc">For any vectors $\mathbf{u},\mathbf{v},\mathbf{w}$ and scalar $c$.</div>
+        <div class="math">$$\mathbf{u}\cdot\mathbf{v}=\mathbf{v}\cdot\mathbf{u},\qquad (c\mathbf{u})\cdot\mathbf{v}=c(\mathbf{u}\cdot\mathbf{v}),\qquad \mathbf{u}\cdot(\mathbf{v}+\mathbf{w})=\mathbf{u}\cdot\mathbf{v}+\mathbf{u}\cdot\mathbf{w}$$</div>
+        <div class="math">$$\mathbf{u}\cdot\mathbf{u}=\|\mathbf{u}\|^2,\qquad \vec{0}\cdot\mathbf{u}=0$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Vector projection of $\mathbf{u}$ onto $\mathbf{v}$</div>
+        <div class="desc">The "shadow" of $\mathbf{u}$ on $\mathbf{v}$.</div>
+        <div class="math">$$\operatorname{proj}_{\mathbf{v}}(\mathbf{u})=\left(\frac{\mathbf{u}\cdot\mathbf{v}}{\|\mathbf{v}\|^2}\right)\mathbf{v}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Scalar projection (scalar component)</div>
+        <div class="desc">Signed length of the projection of $\mathbf{u}$ in the direction of $\mathbf{v}$.</div>
+        <div class="math">$$\mathbf{u}\cdot\frac{\mathbf{v}}{\|\mathbf{v}\|}=\frac{\mathbf{u}\cdot\mathbf{v}}{\|\mathbf{v}\|}$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s11-4">
+    <summary><span class="sec-num">11.4</span> The Cross Product</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">$2\times 2$ determinant</div>
+        <div class="desc">Building block for the cross product.</div>
+        <div class="math">$$\det\begin{bmatrix}a&amp;b\\ c&amp;d\end{bmatrix}=\begin{vmatrix}a&amp;b\\ c&amp;d\end{vmatrix}=ad-bc$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">$3\times 3$ determinant by cofactor expansion</div>
+        <div class="desc">Expand across the first row.</div>
+        <div class="math">$$\det\!\begin{bmatrix}a&amp;b&amp;c\\ d&amp;e&amp;f\\ g&amp;h&amp;i\end{bmatrix}=a\begin{vmatrix}e&amp;f\\ h&amp;i\end{vmatrix}-b\begin{vmatrix}d&amp;f\\ g&amp;i\end{vmatrix}+c\begin{vmatrix}d&amp;e\\ g&amp;h\end{vmatrix}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Cross (vector) product</div>
+        <div class="desc">$\mathbf{u}\times\mathbf{v}$ is orthogonal to both $\mathbf{u}$ and $\mathbf{v}$ (right-hand rule).</div>
+        <div class="math">$$\mathbf{u}\times\mathbf{v}=\begin{vmatrix}\mathbf{i}&amp;\mathbf{j}&amp;\mathbf{k}\\ u_1&amp;u_2&amp;u_3\\ v_1&amp;v_2&amp;v_3\end{vmatrix}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Algebraic properties of the cross product</div>
+        <div class="desc">For vectors $\mathbf{u},\mathbf{v},\mathbf{w}$ and scalars $r,s$.</div>
+        <div class="math">$$(r\mathbf{u})\times(s\mathbf{v})=(rs)(\mathbf{u}\times\mathbf{v}),\qquad \mathbf{u}\times(\mathbf{v}+\mathbf{w})=(\mathbf{u}\times\mathbf{v})+(\mathbf{u}\times\mathbf{w})$$</div>
+        <div class="math">$$\mathbf{v}\times\mathbf{u}=-(\mathbf{u}\times\mathbf{v}),\qquad \vec{0}\times\mathbf{u}=\vec{0}$$</div>
+        <div class="math">$$\mathbf{u}\times(\mathbf{v}\times\mathbf{w})=(\mathbf{u}\cdot\mathbf{w})\mathbf{v}-(\mathbf{u}\cdot\mathbf{v})\mathbf{w}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Parallel test</div>
+        <div class="desc">Two vectors are parallel iff their cross product is zero.</div>
+        <div class="math">$$\mathbf{u}\parallel\mathbf{v}\;\Longleftrightarrow\;\mathbf{u}\times\mathbf{v}=\vec{0}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Magnitude of the cross product / area of parallelogram</div>
+        <div class="desc">$\theta$ is the angle between $\mathbf{u}$ and $\mathbf{v}$.</div>
+        <div class="math">$$\|\mathbf{u}\times\mathbf{v}\|=\|\mathbf{u}\|\,\|\mathbf{v}\|\sin\theta\;=\;\text{Area of parallelogram}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Triple scalar product / volume of parallelepiped</div>
+        <div class="desc">Volume of the parallelepiped spanned by $\mathbf{u},\mathbf{v},\mathbf{w}$.</div>
+        <div class="math">$$|(\mathbf{u}\times\mathbf{v})\cdot\mathbf{w}|=\left|\det\!\begin{bmatrix}u_1&amp;u_2&amp;u_3\\ v_1&amp;v_2&amp;v_3\\ w_1&amp;w_2&amp;w_3\end{bmatrix}\right|$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s11-5">
+    <summary><span class="sec-num">11.5</span> Lines and Planes in Space</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Vector equation of a line</div>
+        <div class="desc">Line through $P_0(x_0,y_0,z_0)$ parallel to $\mathbf{v}$.</div>
+        <div class="math">$$\mathbf{r}(t)=\mathbf{r}_0+t\mathbf{v},\qquad -\infty&lt;t&lt;\infty$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Parametric equations of a line</div>
+        <div class="desc">Line through $P_0$ parallel to $\mathbf{v}=\langle v_1,v_2,v_3\rangle$.</div>
+        <div class="math">$$x(t)=x_0+tv_1,\quad y(t)=y_0+tv_2,\quad z(t)=z_0+tv_3$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Distance from a point to a line</div>
+        <div class="desc">Distance from point $S$ to a line through $P$ parallel to $\mathbf{v}$.</div>
+        <div class="math">$$d(S,L)=\frac{\|\overrightarrow{PS}\times\mathbf{v}\|}{\|\mathbf{v}\|}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Equation of a plane (point-normal form)</div>
+        <div class="desc">Plane through $P_0$ with normal vector $\mathbf{n}=\langle A,B,C\rangle$.</div>
+        <div class="math">$$A(x-x_0)+B(y-y_0)+C(z-z_0)=0$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Equation of a plane (general form)</div>
+        <div class="desc">$D=Ax_0+By_0+Cz_0$.</div>
+        <div class="math">$$Ax+By+Cz=D$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Distance from a point to a plane</div>
+        <div class="desc">Magnitude of the scalar projection of $\overrightarrow{PS}$ onto $\mathbf{n}$.</div>
+        <div class="math">$$d(S,M)=\left|\overrightarrow{PS}\cdot\frac{\mathbf{n}}{\|\mathbf{n}\|}\right|$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Angle between two planes</div>
+        <div class="desc">Acute angle between their normal vectors $\mathbf{n}_1,\mathbf{n}_2$.</div>
+        <div class="math">$$\cos\theta=\frac{|\mathbf{n}_1\cdot\mathbf{n}_2|}{\|\mathbf{n}_1\|\,\|\mathbf{n}_2\|}$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s11-6">
+    <summary><span class="sec-num">11.6</span> Cylinders and Quadric Surfaces</summary>
+    <div class="sec-body">
+
+      <div class="group-label">2D conic-section building blocks</div>
+
+      <div class="formula">
+        <div class="label">Circle</div>
+        <div class="math">$$x^2+y^2=r^2$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Ellipse</div>
+        <div class="math">$$\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Parabola</div>
+        <div class="math">$$y=ax^2$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Hyperbola</div>
+        <div class="math">$$\frac{y^2}{a^2}-\frac{x^2}{b^2}=1$$</div>
+      </div>
+
+      <div class="group-label">Standard quadric surfaces</div>
+
+      <div class="formula">
+        <div class="label">Ellipsoid</div>
+        <div class="math">$$\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}=1$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Elliptical paraboloid</div>
+        <div class="math">$$\frac{x^2}{a^2}+\frac{y^2}{b^2}=\frac{z}{c}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Elliptical cone</div>
+        <div class="math">$$\frac{x^2}{a^2}+\frac{y^2}{b^2}=\frac{z^2}{c^2}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Hyperboloid of one sheet</div>
+        <div class="math">$$\frac{x^2}{a^2}+\frac{y^2}{b^2}-\frac{z^2}{c^2}=1$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Hyperboloid of two sheets</div>
+        <div class="math">$$\frac{z^2}{c^2}-\frac{x^2}{a^2}-\frac{y^2}{b^2}=1$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Hyperbolic paraboloid</div>
+        <div class="math">$$\frac{y^2}{b^2}-\frac{x^2}{a^2}=\frac{z}{c},\quad c&gt;0$$</div>
+      </div>
+
+    </div>
+  </details>
+
+</section>
+
+<!-- =========================== CHAPTER 12 =========================== -->
+<section class="chapter" id="ch12">
+  <h2><span class="ch-num">12</span>Vector-Valued Functions and Motion in Space</h2>
+
+  <details class="section" id="s12-1">
+    <summary><span class="sec-num">12.1</span> Curves in Space and Their Tangents</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Vector-valued function</div>
+        <div class="desc">Position vector tracing a curve in 3-space.</div>
+        <div class="math">$$\mathbf{r}(t)=\langle f(t),g(t),h(t)\rangle=f(t)\mathbf{i}+g(t)\mathbf{j}+h(t)\mathbf{k}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Limit (component-wise)</div>
+        <div class="math">$$\lim_{t\to t_0}\mathbf{r}(t)=\Big\langle\lim_{t\to t_0}f(t),\;\lim_{t\to t_0}g(t),\;\lim_{t\to t_0}h(t)\Big\rangle$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Derivative of a vector function</div>
+        <div class="desc">Always points in the direction of motion.</div>
+        <div class="math">$$\mathbf{r}'(t)=\frac{d\mathbf{r}}{dt}=\langle f'(t),g'(t),h'(t)\rangle$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Velocity, speed, acceleration</div>
+        <div class="desc">For a particle with position $\mathbf{r}(t)$.</div>
+        <div class="math">$$\mathbf{v}(t)=\mathbf{r}'(t),\qquad \text{speed}=\|\mathbf{v}(t)\|=\|\mathbf{r}'(t)\|,\qquad \mathbf{a}(t)=\mathbf{v}'(t)=\mathbf{r}''(t)$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Direction of motion</div>
+        <div class="math">$$\frac{\mathbf{v}}{\|\mathbf{v}\|}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Differentiation rules for vector functions</div>
+        <div class="desc">Product, cross-product, and chain rules.</div>
+        <div class="math">$$\frac{d}{dt}\big[\mathbf{u}(t)\cdot\mathbf{v}(t)\big]=\mathbf{u}'(t)\cdot\mathbf{v}(t)+\mathbf{u}(t)\cdot\mathbf{v}'(t)$$</div>
+        <div class="math">$$\frac{d}{dt}\big[\mathbf{u}(t)\times\mathbf{v}(t)\big]=\mathbf{u}'(t)\times\mathbf{v}(t)+\mathbf{u}(t)\times\mathbf{v}'(t)$$</div>
+        <div class="math">$$\frac{d}{dt}\big[\mathbf{u}(f(t))\big]=f'(t)\,\mathbf{u}'(f(t))$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Constant-length theorem</div>
+        <div class="desc">If $\|\mathbf{r}(t)\|$ is constant, position and velocity are orthogonal.</div>
+        <div class="math">$$\mathbf{r}(t)\cdot\mathbf{r}'(t)=0$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s12-2">
+    <summary><span class="sec-num">12.2</span> Integrals of Vector Functions; Projectile Motion</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Indefinite integral of a vector function</div>
+        <div class="math">$$\int\mathbf{r}(t)\,dt=\mathbf{R}(t)+\mathbf{C}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Definite integral (component-wise)</div>
+        <div class="math">$$\int_a^b\mathbf{r}(t)\,dt=\Big\langle\int_a^b f(t)\,dt,\;\int_a^b g(t)\,dt,\;\int_a^b h(t)\,dt\Big\rangle$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Newton's Second Law</div>
+        <div class="math">$$\mathbf{F}=m\,\mathbf{a}=m\,\frac{d^2\mathbf{r}}{dt^2}=m\,\mathbf{r}''(t)$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Ideal projectile motion (launch from origin)</div>
+        <div class="desc">Initial speed $\|\mathbf{v}_0\|$, launch angle $\alpha$, gravity $g$.</div>
+        <div class="math">$$\mathbf{r}(t)=\Big\langle\|\mathbf{v}_0\|\cos(\alpha)\,t,\;\;\|\mathbf{v}_0\|\sin(\alpha)\,t-\tfrac{1}{2}gt^2\Big\rangle$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Projectile path in $xy$-form</div>
+        <div class="desc">After eliminating the parameter $t$.</div>
+        <div class="math">$$y=-\!\left(\frac{g}{2\|\mathbf{v}_0\|^2\cos^2(\alpha)}\right)\!x^2+\tan(\alpha)\,x$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Maximum height condition</div>
+        <div class="desc">Vertical velocity equals zero.</div>
+        <div class="math">$$\frac{d}{dt}\!\left(\|\mathbf{v}_0\|\sin(\alpha)\,t-\tfrac{1}{2}gt^2\right)=0$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Total flight time condition</div>
+        <div class="desc">Vertical position returns to zero.</div>
+        <div class="math">$$\|\mathbf{v}_0\|\sin(\alpha)\,t-\tfrac{1}{2}gt^2=0$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Projectile motion with general initial position</div>
+        <div class="desc">Initial position $\mathbf{r}_0=\langle x_0,y_0\rangle$.</div>
+        <div class="math">$$\mathbf{r}(t)=\Big\langle x_0+\|\mathbf{v}_0\|\cos(\alpha)\,t,\;\;y_0+\|\mathbf{v}_0\|\sin(\alpha)\,t-\tfrac{1}{2}gt^2\Big\rangle$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s12-3">
+    <summary><span class="sec-num">12.3</span> Arclength in Space</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Arclength of a smooth curve</div>
+        <div class="desc">Curve traced exactly once on $[a,b]$.</div>
+        <div class="math">$$L=\int_a^b\sqrt{\big(x'(t)\big)^2+\big(y'(t)\big)^2+\big(z'(t)\big)^2}\;dt=\int_a^b\|\mathbf{v}(t)\|\,dt$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Arclength function</div>
+        <div class="desc">Distance traveled from $t_0$ to $t$.</div>
+        <div class="math">$$s(t)=\int_{t_0}^{t}\|\mathbf{v}(\tau)\|\,d\tau$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Speed as derivative of arclength</div>
+        <div class="math">$$\frac{ds}{dt}=\|\mathbf{v}(t)\|$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Unit tangent vector</div>
+        <div class="desc">Directional unit vector along the curve.</div>
+        <div class="math">$$\mathbf{T}(t)=\frac{\mathbf{v}(t)}{\|\mathbf{v}(t)\|}=\frac{d\mathbf{r}}{ds}$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s12-4">
+    <summary><span class="sec-num">12.4</span> Curvature and Normal Vectors of a Curve</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Curvature (definition)</div>
+        <div class="desc">Rate at which the unit tangent changes direction.</div>
+        <div class="math">$$\kappa=\left\|\frac{d\mathbf{T}}{ds}\right\|$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Curvature in terms of $t$</div>
+        <div class="math">$$\kappa=\frac{1}{\|\mathbf{v}\|}\left\|\frac{d\mathbf{T}}{dt}\right\|=\frac{\|\mathbf{T}'(t)\|}{\|\mathbf{r}'(t)\|}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Curvature for a 3-space curve</div>
+        <div class="math">$$\kappa(t)=\frac{\|\mathbf{r}'(t)\times\mathbf{r}''(t)\|}{\|\mathbf{r}'(t)\|^3}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Curvature for a plane curve $y=f(x)$</div>
+        <div class="math">$$\kappa(x)=\frac{|f''(x)|}{\big(1+(f'(x))^2\big)^{3/2}}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Curvature for a parametric plane curve $\mathbf{r}(t)=\langle x(t),y(t)\rangle$</div>
+        <div class="math">$$\kappa(t)=\frac{|x'(t)y''(t)-x''(t)y'(t)|}{\big((x'(t))^2+(y'(t))^2\big)^{3/2}}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Principal unit normal vector</div>
+        <div class="desc">Orthogonal to $\mathbf{T}$ and points toward the direction of turning.</div>
+        <div class="math">$$\mathbf{N}(s)=\frac{1}{\kappa}\,\frac{d\mathbf{T}}{ds},\qquad \mathbf{N}(t)=\frac{\mathbf{T}'(t)}{\|\mathbf{T}'(t)\|}$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s12-5">
+    <summary><span class="sec-num">12.5</span> Tangential and Normal Components of Acceleration</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Binormal vector</div>
+        <div class="desc">Completes the Frenet (TNB) frame.</div>
+        <div class="math">$$\mathbf{B}=\mathbf{T}\times\mathbf{N}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Acceleration in the Frenet frame</div>
+        <div class="math">$$\mathbf{a}=a_T\mathbf{T}+a_N\mathbf{N}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Tangential scalar component of acceleration</div>
+        <div class="desc">Rate of change of speed.</div>
+        <div class="math">$$a_T=\frac{d^2 s}{dt^2}=\frac{d}{dt}\|\mathbf{v}\|=\frac{\mathbf{v}\cdot\mathbf{a}}{\|\mathbf{v}\|}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Normal scalar component of acceleration</div>
+        <div class="desc">Rate of change of direction.</div>
+        <div class="math">$$a_N=\kappa\!\left(\frac{ds}{dt}\right)^2=\kappa\,\|\mathbf{v}\|^2=\frac{\|\mathbf{v}\times\mathbf{a}\|}{\|\mathbf{v}\|}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Pythagorean shortcut for $a_N$</div>
+        <div class="desc">When $\mathbf{a}$ and $a_T$ are already known.</div>
+        <div class="math">$$\|\mathbf{a}\|^2=a_T^{\,2}+a_N^{\,2}\quad\Longrightarrow\quad a_N=\sqrt{\|\mathbf{a}\|^2-a_T^{\,2}}$$</div>
+      </div>
+
+    </div>
+  </details>
+
+</section>
+
+<!-- =========================== CHAPTER 13 =========================== -->
+<section class="chapter" id="ch13">
+  <h2><span class="ch-num">13</span>Partial Derivatives</h2>
+
+  <details class="section" id="s13-1">
+    <summary><span class="sec-num">13.1</span> Functions of Several Variables</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Volume of a cylinder (sample multivariate function)</div>
+        <div class="math">$$V(r,h)=\pi r^2 h$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Level curve of $z=f(x,y)$</div>
+        <div class="desc">Set of points where $f$ has constant value $c$.</div>
+        <div class="math">$$f(x,y)=c$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Level surface of $w=f(x,y,z)$</div>
+        <div class="math">$$f(x,y,z)=c$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s13-2">
+    <summary><span class="sec-num">13.2</span> Limits and Continuity in Higher Dimensions</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Limit of a bivariate function</div>
+        <div class="desc">Must yield the same value along every path in $D_f$.</div>
+        <div class="math">$$\lim_{(x,y)\to(x_0,y_0)}f(x,y)=L$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Continuity at a point</div>
+        <div class="desc">All three conditions must hold.</div>
+        <div class="math">$$f(x_0,y_0)\text{ exists},\qquad \lim_{(x,y)\to(x_0,y_0)}f(x,y)\text{ exists},\qquad \lim_{(x,y)\to(x_0,y_0)}f(x,y)=f(x_0,y_0)$$</div>
+      </div>
+
+      <div class="note">
+        <strong>Two-Path Test for Nonexistence:</strong> If $f(x,y)$ has different limits along two different paths to $(x_0,y_0)$, then $\displaystyle\lim_{(x,y)\to(x_0,y_0)}f(x,y)$ does not exist.
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s13-3">
+    <summary><span class="sec-num">13.3</span> Partial Derivatives</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Partial derivative with respect to $x$ (definition)</div>
+        <div class="math">$$\frac{\partial f}{\partial x}(x,y)=f_x(x,y)=\lim_{h\to 0}\frac{f(x+h,y)-f(x,y)}{h}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Second-order partial derivatives</div>
+        <div class="desc">Four possible second-order combinations.</div>
+        <div class="math">$$f_{xx}=\frac{\partial^2 f}{\partial x^2},\qquad f_{yy}=\frac{\partial^2 f}{\partial y^2}$$</div>
+        <div class="math">$$f_{xy}=(f_x)_y=\frac{\partial^2 f}{\partial y\,\partial x},\qquad f_{yx}=(f_y)_x=\frac{\partial^2 f}{\partial x\,\partial y}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Clairaut's Theorem (mixed partials)</div>
+        <div class="desc">When $f, f_x, f_y, f_{xy}, f_{yx}$ are continuous near $(a,b)$.</div>
+        <div class="math">$$f_{xy}(a,b)=f_{yx}(a,b)$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s13-4">
+    <summary><span class="sec-num">13.4</span> The Chain Rule</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Chain rule: one independent, two intermediate variables</div>
+        <div class="desc">$w=f(x(t),y(t))$.</div>
+        <div class="math">$$\frac{dw}{dt}=\frac{\partial f}{\partial x}\frac{dx}{dt}+\frac{\partial f}{\partial y}\frac{dy}{dt}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Chain rule: one independent, three intermediate variables</div>
+        <div class="desc">$w=f(x(t),y(t),z(t))$.</div>
+        <div class="math">$$\frac{dw}{dt}=\frac{\partial f}{\partial x}\frac{dx}{dt}+\frac{\partial f}{\partial y}\frac{dy}{dt}+\frac{\partial f}{\partial z}\frac{dz}{dt}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Chain rule: two independent, three intermediate variables</div>
+        <div class="desc">$w=f(x(r,s),y(r,s),z(r,s))$.</div>
+        <div class="math">$$\frac{\partial f}{\partial r}=\frac{\partial f}{\partial x}\frac{\partial x}{\partial r}+\frac{\partial f}{\partial y}\frac{\partial y}{\partial r}+\frac{\partial f}{\partial z}\frac{\partial z}{\partial r}$$</div>
+        <div class="math">$$\frac{\partial f}{\partial s}=\frac{\partial f}{\partial x}\frac{\partial x}{\partial s}+\frac{\partial f}{\partial y}\frac{\partial y}{\partial s}+\frac{\partial f}{\partial z}\frac{\partial z}{\partial s}$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s13-5">
+    <summary><span class="sec-num">13.5</span> Directional Derivatives and Gradient Vectors</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Gradient of a bivariate function</div>
+        <div class="math">$$\nabla f(x,y)=\langle f_x(x,y),f_y(x,y)\rangle=\Big\langle\frac{\partial f}{\partial x},\frac{\partial f}{\partial y}\Big\rangle$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Directional derivative</div>
+        <div class="desc">Rate of change of $f$ in the direction of unit vector $\mathbf{u}=\langle u_1,u_2\rangle$.</div>
+        <div class="math">$$D_{\mathbf{u}}f(x,y)=\nabla f(x,y)\cdot\mathbf{u}=f_x u_1+f_y u_2$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Directional derivative via angle</div>
+        <div class="desc">$\theta$ is the angle between $\mathbf{u}$ and $\nabla f$.</div>
+        <div class="math">$$D_{\mathbf{u}}f(x,y)=\|\nabla f\|\cos\theta$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Maximum / minimum rates of change</div>
+        <div class="desc">Greatest increase points along $\nabla f$; greatest decrease along $-\nabla f$.</div>
+        <div class="math">$$\max D_{\mathbf{u}}f=\|\nabla f\|\quad\text{at}\quad \mathbf{u}=\frac{\nabla f}{\|\nabla f\|}$$</div>
+        <div class="math">$$\min D_{\mathbf{u}}f=-\|\nabla f\|\quad\text{at}\quad \mathbf{u}=-\frac{\nabla f}{\|\nabla f\|}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Tangent line to a level curve at $(x_0,y_0)$</div>
+        <div class="math">$$f_x(x_0,y_0)(x-x_0)+f_y(x_0,y_0)(y-y_0)=0$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Chain rule along a path (gradient form)</div>
+        <div class="math">$$\frac{d}{dt}f(\mathbf{r}(t))=\nabla f(\mathbf{r}(t))\cdot\mathbf{r}'(t)$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s13-6">
+    <summary><span class="sec-num">13.6</span> Tangent Planes and Differentials</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Tangent plane to a level surface $f(x,y,z)=c$</div>
+        <div class="desc">Plane through $P_0(x_0,y_0,z_0)$ with normal $\nabla f(P_0)$.</div>
+        <div class="math">$$f_x(P_0)(x-x_0)+f_y(P_0)(y-y_0)+f_z(P_0)(z-z_0)=0$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Tangent plane to the graph $z=f(x,y)$</div>
+        <div class="desc">At the point $(x_0,y_0,f(x_0,y_0))$.</div>
+        <div class="math">$$f_x(x_0,y_0)(x-x_0)+f_y(x_0,y_0)(y-y_0)-(z-z_0)=0$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Linearization (standard linear approximation)</div>
+        <div class="math">$$L(x,y)=f(x_0,y_0)+f_x(x_0,y_0)(x-x_0)+f_y(x_0,y_0)(y-y_0)$$</div>
+        <div class="math">$$L(x,y)=f(x_0,y_0)+\nabla f(x_0,y_0)\cdot\langle x-x_0,\,y-y_0\rangle$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Differential (single-variable)</div>
+        <div class="math">$$df=f'(x_0)\,dx$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Total differential of $f(x,y)$</div>
+        <div class="math">$$df=\nabla f(x_0,y_0)\cdot\langle dx,dy\rangle=f_x(x_0,y_0)\,dx+f_y(x_0,y_0)\,dy$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s13-7">
+    <summary><span class="sec-num">13.7</span> Extreme Values and Saddle Points</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">First Derivative Test for local extrema</div>
+        <div class="desc">Necessary condition at an interior local max/min.</div>
+        <div class="math">$$f_x(a,b)=0\quad\text{and}\quad f_y(a,b)=0$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Critical points</div>
+        <div class="desc">Either $\nabla f(a,b)=\langle 0,0\rangle$, or $f_x$ or $f_y$ does not exist at $(a,b)$.</div>
+        <div class="math">$$\nabla f(a,b)=\langle 0,0\rangle$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Discriminant / Hessian</div>
+        <div class="math">$$\mathbf{H}f(x,y)=\begin{vmatrix}f_{xx}&amp;f_{xy}\\ f_{yx}&amp;f_{yy}\end{vmatrix}=f_{xx}f_{yy}-(f_{xy})^2$$</div>
+      </div>
+
+      <div class="note">
+        <strong>Second Derivative Test.</strong> Suppose $f_x(a,b)=f_y(a,b)=0$ and the second partials are continuous near $(a,b)$.
+        <ul style="margin: 6px 0 0 18px; padding: 0;">
+          <li>$\mathbf{H}f(a,b)&gt;0$ and $f_{xx}(a,b)&lt;0\;\Rightarrow$ local maximum.</li>
+          <li>$\mathbf{H}f(a,b)&gt;0$ and $f_{xx}(a,b)&gt;0\;\Rightarrow$ local minimum.</li>
+          <li>$\mathbf{H}f(a,b)&lt;0\;\Rightarrow$ saddle point.</li>
+          <li>$\mathbf{H}f(a,b)=0\;\Rightarrow$ test inconclusive.</li>
+        </ul>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s13-8">
+    <summary><span class="sec-num">13.8</span> Lagrange Multipliers</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Lagrange's condition (one constraint)</div>
+        <div class="desc">At a constrained extremum, $\nabla f$ is parallel to $\nabla g$.</div>
+        <div class="math">$$\nabla f=\lambda\,\nabla g$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Lagrange multiplier system (one constraint)</div>
+        <div class="desc">Solve simultaneously for $x,y,z,\lambda$.</div>
+        <div class="math">$$\begin{cases}\nabla f=\lambda\,\nabla g\\ g(x,y,z)=0\end{cases}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Lagrange multiplier system (two constraints)</div>
+        <div class="desc">Solve for $x,y,z,\lambda,\mu$ with $\nabla g_1\not\parallel\nabla g_2$.</div>
+        <div class="math">$$\begin{cases}\nabla f=\lambda\,\nabla g_1+\mu\,\nabla g_2\\ g_1(x,y,z)=0\\ g_2(x,y,z)=0\end{cases}$$</div>
+      </div>
+
+    </div>
+  </details>
+
+</section>
+
+<!-- =========================== CHAPTER 14 =========================== -->
+<section class="chapter" id="ch14">
+  <h2><span class="ch-num">14</span>Multiple Integrals</h2>
+
+  <details class="section" id="s14-1">
+    <summary><span class="sec-num">14.1</span> Double and Iterated Integrals over Rectangles</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Double integral over a rectangle</div>
+        <div class="desc">$R:\,a\le x\le b,\,c\le y\le d$.</div>
+        <div class="math">$$\iint_R f(x,y)\,dA=\int_a^b\!\int_c^d f(x,y)\,dy\,dx$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Fubini's Theorem (rectangular form)</div>
+        <div class="desc">Order of integration may be swapped.</div>
+        <div class="math">$$\iint_R f(x,y)\,dA=\int_a^b\!\int_c^d f(x,y)\,dy\,dx=\int_c^d\!\int_a^b f(x,y)\,dx\,dy$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s14-2">
+    <summary><span class="sec-num">14.2</span> Double Integrals over General Regions</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Volume under a surface over a general region $R$</div>
+        <div class="math">$$\text{Volume}=\iint_R f(x,y)\,dA$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Fubini's Theorem — $y$-simple ($R$ vertically simple)</div>
+        <div class="desc">$g_1(x)\le y\le g_2(x)$, $a\le x\le b$.</div>
+        <div class="math">$$\iint_R f(x,y)\,dA=\int_a^b\!\int_{g_1(x)}^{g_2(x)} f(x,y)\,dy\,dx$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Fubini's Theorem — $x$-simple ($R$ horizontally simple)</div>
+        <div class="desc">$h_1(y)\le x\le h_2(y)$, $c\le y\le d$.</div>
+        <div class="math">$$\iint_R f(x,y)\,dA=\int_c^d\!\int_{h_1(y)}^{h_2(y)} f(x,y)\,dx\,dy$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s14-3">
+    <summary><span class="sec-num">14.3</span> Area by Double Integration</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Area of a region $R$</div>
+        <div class="desc">Integrate the constant function $1$ over $R$.</div>
+        <div class="math">$$\text{Area of }R=\iint_R 1\,dA$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Average value of $f$ over $R$</div>
+        <div class="math">$$\overline{f}=\frac{1}{\text{Area of }R}\iint_R f(x,y)\,dA$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s14-4">
+    <summary><span class="sec-num">14.4</span> Double Integrals in Polar Form</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Polar / Cartesian conversions</div>
+        <div class="math">$$x=r\cos\theta,\qquad y=r\sin\theta$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Fubini's Theorem (polar, $r$-simple)</div>
+        <div class="desc">Note the extra factor of $r$ in the area element.</div>
+        <div class="math">$$\iint_R f(x,y)\,dA=\int_\alpha^\beta\!\int_{g_1(\theta)}^{g_2(\theta)} f(r,\theta)\,r\,dr\,d\theta$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Fubini's Theorem (polar, $\theta$-simple)</div>
+        <div class="math">$$\iint_R f(x,y)\,dA=\int_a^b\!\int_{h_1(r)}^{h_2(r)} f(r,\theta)\,r\,d\theta\,dr$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Area in polar form</div>
+        <div class="math">$$\text{Area of }R=\iint_R r\,dr\,d\theta$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s14-5">
+    <summary><span class="sec-num">14.5</span> Triple Integrals in Rectangular Coordinates</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Volume of a 3D region $D$</div>
+        <div class="math">$$\text{Volume of }D=\iiint_D 1\,dV=\iiint_D 1\,dz\,dy\,dx$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Fubini's Theorem (triple-integral form)</div>
+        <div class="desc">For $a\le x\le b$, $g_1(x)\le y\le g_2(x)$, $f_1(x,y)\le z\le f_2(x,y)$.</div>
+        <div class="math">$$\iiint_D F(x,y,z)\,dV=\int_a^b\!\int_{g_1(x)}^{g_2(x)}\!\int_{f_1(x,y)}^{f_2(x,y)} F(x,y,z)\,dz\,dy\,dx$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Average value of $F$ over $D$</div>
+        <div class="math">$$\overline{F}=\frac{1}{\text{Volume of }D}\iiint_D F(x,y,z)\,dV$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s14-7">
+    <summary><span class="sec-num">14.7</span> Triple Integrals in Cylindrical and Spherical Coordinates</summary>
+    <div class="sec-body">
+
+      <div class="group-label">Cylindrical coordinates</div>
+
+      <div class="formula">
+        <div class="label">Cylindrical-to-rectangular conversions</div>
+        <div class="math">$$x=r\cos\theta,\quad y=r\sin\theta,\quad z=z,\quad r^2=x^2+y^2,\quad \tan\theta=\tfrac{y}{x}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Fubini's Theorem (cylindrical form)</div>
+        <div class="desc">Order $dz\,dr\,d\theta$. Note the $r$ in the volume element.</div>
+        <div class="math">$$\iiint_D F(x,y,z)\,dV=\int_\alpha^\beta\!\int_{h_1(\theta)}^{h_2(\theta)}\!\int_{g_1(r,\theta)}^{g_2(r,\theta)} F(r,\theta,z)\,r\,dz\,dr\,d\theta$$</div>
+      </div>
+
+      <div class="group-label">Spherical coordinates</div>
+
+      <div class="formula">
+        <div class="label">Spherical-to-cylindrical conversions</div>
+        <div class="math">$$r=\rho\sin\phi,\quad z=\rho\cos\phi,\quad \theta=\theta,\quad \rho=\sqrt{r^2+z^2}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Spherical-to-rectangular conversions</div>
+        <div class="math">$$x=\rho\sin\phi\cos\theta,\quad y=\rho\sin\phi\sin\theta,\quad z=\rho\cos\phi,\quad \rho=\sqrt{x^2+y^2+z^2}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Fubini's Theorem (spherical form)</div>
+        <div class="desc">Order $d\rho\,d\phi\,d\theta$. The Jacobian factor is $\rho^2\sin\phi$.</div>
+        <div class="math">$$\iiint_D F(x,y,z)\,dV=\int_\alpha^\beta\!\int_{h_1(\theta)}^{h_2(\theta)}\!\int_{g_1(\phi,\theta)}^{g_2(\phi,\theta)} F(\rho,\phi,\theta)\,\rho^2\sin\phi\,d\rho\,d\phi\,d\theta$$</div>
+      </div>
+
+    </div>
+  </details>
+
+</section>
+
+<!-- =========================== CHAPTER 15 =========================== -->
+<section class="chapter" id="ch15">
+  <h2><span class="ch-num">15</span>Integrals and Vector Fields</h2>
+
+  <details class="section" id="s15-1">
+    <summary><span class="sec-num">15.1</span> Line Integrals</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Arclength differential ("Jacobian")</div>
+        <div class="math">$$s(t)=\int_a^t\|\mathbf{v}(\tau)\|\,d\tau,\qquad ds=\|\mathbf{v}(t)\|\,dt$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Line integral of a scalar field over a curve</div>
+        <div class="desc">$C$ is parametrized by $\mathbf{r}(t)=\langle g(t),h(t)\rangle$, $a\le t\le b$.</div>
+        <div class="math">$$\int_C f(x,y)\,ds=\int_a^b f(g(t),h(t))\,\|\mathbf{v}(t)\|\,dt$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Line integral over a piecewise-smooth curve</div>
+        <div class="math">$$\int_{C_1\cup C_2} f\,ds=\int_{C_1} f\,ds+\int_{C_2} f\,ds$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Contour integral notation (closed curve)</div>
+        <div class="math">$$\oint_C f\,ds$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s15-2">
+    <summary><span class="sec-num">15.2</span> Vector Fields, Circulation, and Flux</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Vector field in 3-space</div>
+        <div class="math">$$\mathbf{F}(x,y,z)=\langle M(x,y,z),N(x,y,z),P(x,y,z)\rangle$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Line integral of a vector field</div>
+        <div class="desc">"Push" of $\mathbf{F}$ along $C$ traced by $\mathbf{r}(t)$, $a\le t\le b$.</div>
+        <div class="math">$$\int_C \mathbf{F}\cdot d\mathbf{r}=\int_C \mathbf{F}\cdot\mathbf{T}\,ds=\int_a^b \mathbf{F}(\mathbf{r}(t))\cdot\mathbf{r}'(t)\,dt$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Flow and circulation</div>
+        <div class="desc">Circulation is flow around a closed curve.</div>
+        <div class="math">$$\text{Flow}=\int_C \mathbf{F}\cdot\mathbf{T}\,ds,\qquad \text{Circulation}=\oint_C \mathbf{F}\cdot\mathbf{T}\,ds$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Differential form (planar vector field)</div>
+        <div class="desc">For $\mathbf{F}=\langle M(x,y),N(x,y)\rangle$ along $C$ in the $xy$-plane.</div>
+        <div class="math">$$\mathbf{F}\cdot\mathbf{T}\,ds=M\,dx+N\,dy$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Flux of $\mathbf{F}$ across a closed curve $C$</div>
+        <div class="desc">$\mathbf{n}$ is the outward unit normal to $C$.</div>
+        <div class="math">$$\text{Flux}=\oint_C \mathbf{F}\cdot\mathbf{n}\,ds$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Flux formula (planar, counter-clockwise $C$)</div>
+        <div class="math">$$\oint_C \mathbf{F}\cdot\mathbf{n}\,ds=\oint_C M\,dy-N\,dx$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s15-3">
+    <summary><span class="sec-num">15.3</span> Path Independence, Conservative Fields, and Potential Functions</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Fundamental Theorem for Line Integrals</div>
+        <div class="desc">For $\mathbf{F}=\nabla f$, $C$ smooth from $P$ to $Q$.</div>
+        <div class="math">$$\int_C \mathbf{F}\cdot d\mathbf{r}=f(Q)-f(P)$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Conservative ⇔ closed contour integral vanishes</div>
+        <div class="math">$$\oint_C \mathbf{F}\cdot d\mathbf{r}=0\;\text{ for all closed }C\;\Longleftrightarrow\;\mathbf{F}\text{ is conservative}\;\Longleftrightarrow\;\mathbf{F}=\nabla f$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Del operator</div>
+        <div class="math">$$\nabla=\Big\langle\frac{\partial}{\partial x},\frac{\partial}{\partial y},\frac{\partial}{\partial z}\Big\rangle$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Curl of a vector field</div>
+        <div class="desc">For $\mathbf{F}=\langle M,N,P\rangle$.</div>
+        <div class="math">$$\operatorname{curl}(\mathbf{F})=\nabla\times\mathbf{F}=\begin{vmatrix}\mathbf{i}&amp;\mathbf{j}&amp;\mathbf{k}\\ \partial_x&amp;\partial_y&amp;\partial_z\\ M&amp;N&amp;P\end{vmatrix}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Component test for conservative fields</div>
+        <div class="desc">On a simply-connected domain with continuous first partials.</div>
+        <div class="math">$$\mathbf{F}\text{ is conservative}\;\Longleftrightarrow\;\operatorname{curl}(\mathbf{F})=\vec{0}$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Potential function recovery</div>
+        <div class="desc">When $\mathbf{F}=\nabla f$, the partials of $f$ match the components of $\mathbf{F}$.</div>
+        <div class="math">$$\frac{\partial f}{\partial x}=M,\qquad \frac{\partial f}{\partial y}=N,\qquad \frac{\partial f}{\partial z}=P$$</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section" id="s15-4">
+    <summary><span class="sec-num">15.4</span> Green's Theorem in the Plane</summary>
+    <div class="sec-body">
+
+      <div class="formula">
+        <div class="label">Green's Theorem — circulation (tangential) form</div>
+        <div class="desc">$C$ is piecewise-smooth, simple, closed, positively oriented; $R$ is the region inside.</div>
+        <div class="math">$$\oint_C \mathbf{F}\cdot\mathbf{T}\,ds=\oint_C M\,dx+N\,dy=\iint_R\!\left(\frac{\partial N}{\partial x}-\frac{\partial M}{\partial y}\right)dA$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Green's Theorem — flux (normal) form</div>
+        <div class="math">$$\oint_C \mathbf{F}\cdot\mathbf{n}\,ds=\oint_C M\,dy-N\,dx=\iint_R\!\left(\frac{\partial M}{\partial x}+\frac{\partial N}{\partial y}\right)dA$$</div>
+      </div>
+
+      <div class="formula">
+        <div class="label">Area of a region by Green's Theorem</div>
+        <div class="desc">Choose $\mathbf{F}=\langle -y/2,\,x/2\rangle$ so that $N_x-M_y=1$.</div>
+        <div class="math">$$\text{Area of }R=\frac{1}{2}\oint_C x\,dy-y\,dx$$</div>
+      </div>
+
+      <div class="note">
+        <strong>Key observation.</strong> Green's Theorem is the planar analogue of the Fundamental Theorem of Calculus: it relates information on the boundary $C$ to information about the interior region $R$.
+      </div>
+
+    </div>
+  </details>
+
+</section>
+
+</div><!-- /#tab-formulas -->
+
+<!-- =========================== TEST 1 SOLUTIONS =========================== -->
+<div class="tabpanel" id="tab-test1" role="tabpanel">
+
+<nav class="toc">
+  <h2>Test 1 — Problem Index</h2>
+  <ul>
+    <li><a href="#q1">1. Sphere — center &amp; radius</a></li>
+    <li><a href="#q2">2. Angle between two planes</a></li>
+    <li><a href="#q3">3. Line ∩ plane intersection</a></li>
+    <li><a href="#q4">4. Vector projection</a></li>
+    <li><a href="#q5">5. Distance from point to plane</a></li>
+    <li><a href="#q6">6. Area of a triangle</a></li>
+    <li><a href="#q7">7. Volume of a parallelepiped</a></li>
+    <li><a href="#q8">8. Distance from point to line</a></li>
+    <li><a href="#q9">9. Line of intersection of two planes</a></li>
+    <li><a href="#q10">10. Match quadric surfaces</a></li>
+  </ul>
+</nav>
+
+<section class="chapter">
+  <h2><span class="ch-num">Test&nbsp;1</span>MAT 262 — Worked Solutions</h2>
+
+  <!-- ============== Q1 ============== -->
+  <div class="problem" id="q1">
+    <div class="q-header">
+      <span class="q-num">Problem 1</span>
+      <span class="q-topic">§11.1 — sphere from general form (complete the square)</span>
+    </div>
+    <div class="q-text">
+      Find the center, $c$, and radius, $r$, of the sphere given by
+      $$x^2+y^2+z^2-6x+2z=0.$$
+    </div>
+
+    <div class="sol-label">Solution</div>
+
+    <div class="step">
+      <span class="step-tag">Step 1.</span> Group the $x$, $y$, and $z$ terms together so we can complete the square in $x$ and in $z$ (no $y$ linear term, so $y$ stays as $y^2$).
+      <div class="math">$$(x^2-6x)+y^2+(z^2+2z)=0$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 2.</span> Complete the square. For $x^2-6x$, half of $-6$ is $-3$, squared is $9$. For $z^2+2z$, half of $2$ is $1$, squared is $1$. Add and subtract.
+      <div class="math">$$(x^2-6x+9)-9+y^2+(z^2+2z+1)-1=0$$</div>
+      <div class="math">$$(x-3)^2+y^2+(z+1)^2=10$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 3.</span> Read off the standard form $(x-x_0)^2+(y-y_0)^2+(z-z_0)^2=r^2$.
+    </div>
+
+    <div class="answer">
+      Center $c=(3,\,0,\,-1)$, &nbsp; Radius $r=\sqrt{10}$.
+    </div>
+  </div>
+
+  <!-- ============== Q2 ============== -->
+  <div class="problem" id="q2">
+    <div class="q-header">
+      <span class="q-num">Problem 2</span>
+      <span class="q-topic">§11.5 — angle between planes via their normals</span>
+    </div>
+    <div class="q-text">
+      Find the angle, $\theta$, between the planes $M$ and $N$, where $M$ is given by $8x+6y=-3$ and $N$ is given by $9x+5y+10z=-19$. Give your answer in degrees, rounded to two decimal places.
+    </div>
+
+    <div class="sol-label">Solution</div>
+
+    <div class="step">
+      <span class="step-tag">Step 1.</span> Read the normal vectors directly from the coefficients of $x,y,z$. (For plane $M$ there is no $z$ term, so the $z$-component of $\mathbf{n}_1$ is $0$.)
+      <div class="math">$$\mathbf{n}_1=\langle 8,6,0\rangle,\qquad \mathbf{n}_2=\langle 9,5,10\rangle$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 2.</span> Compute the dot product and the magnitudes.
+      <div class="math">$$\mathbf{n}_1\cdot\mathbf{n}_2=(8)(9)+(6)(5)+(0)(10)=72+30+0=102$$</div>
+      <div class="math">$$\|\mathbf{n}_1\|=\sqrt{64+36+0}=\sqrt{100}=10$$</div>
+      <div class="math">$$\|\mathbf{n}_2\|=\sqrt{81+25+100}=\sqrt{206}$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 3.</span> Apply the angle formula.
+      <div class="math">$$\cos\theta=\frac{\mathbf{n}_1\cdot\mathbf{n}_2}{\|\mathbf{n}_1\|\,\|\mathbf{n}_2\|}=\frac{102}{10\sqrt{206}}\approx 0.71060$$</div>
+      <div class="math">$$\theta=\arccos(0.71060)$$</div>
+    </div>
+
+    <div class="answer">
+      $\theta\approx 44.71^\circ$
+    </div>
+  </div>
+
+  <!-- ============== Q3 ============== -->
+  <div class="problem" id="q3">
+    <div class="q-header">
+      <span class="q-num">Problem 3</span>
+      <span class="q-topic">§11.5 — line meets plane</span>
+    </div>
+    <div class="q-text">
+      Find the point, $P(x,y,z)$, at which the line $\ell$ given by $x(t)=1+6t$, $y(t)=2+2t$, $z(t)=1+5t$, $-\infty&lt;t&lt;\infty$, intersects the plane $M\colon\ x+y+z=-9$.
+    </div>
+
+    <div class="sol-label">Solution</div>
+
+    <div class="step">
+      <span class="step-tag">Step 1.</span> Substitute the parametric expressions for $x,y,z$ into the plane equation.
+      <div class="math">$$(1+6t)+(2+2t)+(1+5t)=-9$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 2.</span> Combine like terms and solve for $t$.
+      <div class="math">$$4+13t=-9\quad\Longrightarrow\quad 13t=-13\quad\Longrightarrow\quad t=-1$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 3.</span> Plug $t=-1$ back into the parametric equations.
+      <div class="math">$$x(-1)=1+6(-1)=-5,\quad y(-1)=2+2(-1)=0,\quad z(-1)=1+5(-1)=-4$$</div>
+    </div>
+
+    <div class="answer">
+      $P=(-5,\,0,\,-4)$
+    </div>
+  </div>
+
+  <!-- ============== Q4 ============== -->
+  <div class="problem" id="q4">
+    <div class="q-header">
+      <span class="q-num">Problem 4</span>
+      <span class="q-topic">§11.3 — vector projection</span>
+    </div>
+    <div class="q-text">
+      Consider the vectors $\mathbf{v}=\langle 6,3,-2\rangle$ and $\mathbf{u}=\langle 3,4,0\rangle$. Compute $\operatorname{proj}_{\mathbf{v}}(\mathbf{u})$.
+    </div>
+
+    <div class="sol-label">Solution</div>
+
+    <div class="step">
+      <span class="step-tag">Step 1.</span> Recall the formula and identify the pieces you need.
+      <div class="math">$$\operatorname{proj}_{\mathbf{v}}(\mathbf{u})=\left(\frac{\mathbf{u}\cdot\mathbf{v}}{\|\mathbf{v}\|^2}\right)\mathbf{v}$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 2.</span> Compute the dot product and $\|\mathbf{v}\|^2$.
+      <div class="math">$$\mathbf{u}\cdot\mathbf{v}=(3)(6)+(4)(3)+(0)(-2)=18+12+0=30$$</div>
+      <div class="math">$$\|\mathbf{v}\|^2=36+9+4=49$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 3.</span> Plug in.
+      <div class="math">$$\operatorname{proj}_{\mathbf{v}}(\mathbf{u})=\frac{30}{49}\,\langle 6,3,-2\rangle$$</div>
+    </div>
+
+    <div class="answer">
+      $\operatorname{proj}_{\mathbf{v}}(\mathbf{u})=\Big\langle\dfrac{180}{49},\,\dfrac{90}{49},\,-\dfrac{60}{49}\Big\rangle$
+    </div>
+  </div>
+
+  <!-- ============== Q5 ============== -->
+  <div class="problem" id="q5">
+    <div class="q-header">
+      <span class="q-num">Problem 5</span>
+      <span class="q-topic">§11.5 — distance from a point to a plane</span>
+    </div>
+    <div class="q-text">
+      Find the distance from the point $S(4,-2,4)$ to the plane $M\colon\ x+2y+2z=17$.
+    </div>
+
+    <div class="sol-label">Solution</div>
+
+    <div class="step">
+      <span class="step-tag">Step 1.</span> Find any point $P$ on the plane. Set $y=z=0$ in $x+2y+2z=17$ to get $x=17$, so $P=(17,0,0)$.
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 2.</span> Form $\overrightarrow{PS}=S-P$ and read off the normal $\mathbf{n}$ from the plane's coefficients.
+      <div class="math">$$\overrightarrow{PS}=\langle 4-17,\,-2-0,\,4-0\rangle=\langle -13,-2,4\rangle$$</div>
+      <div class="math">$$\mathbf{n}=\langle 1,2,2\rangle,\qquad \|\mathbf{n}\|=\sqrt{1+4+4}=3$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 3.</span> Apply the distance formula.
+      <div class="math">$$d(S,M)=\left|\overrightarrow{PS}\cdot\frac{\mathbf{n}}{\|\mathbf{n}\|}\right|=\frac{|\overrightarrow{PS}\cdot\mathbf{n}|}{\|\mathbf{n}\|}$$</div>
+      <div class="math">$$\overrightarrow{PS}\cdot\mathbf{n}=(-13)(1)+(-2)(2)+(4)(2)=-13-4+8=-9$$</div>
+      <div class="math">$$d(S,M)=\frac{|-9|}{3}=\frac{9}{3}$$</div>
+    </div>
+
+    <div class="answer">
+      $d=3$
+    </div>
+  </div>
+
+  <!-- ============== Q6 ============== -->
+  <div class="problem" id="q6">
+    <div class="q-header">
+      <span class="q-num">Problem 6</span>
+      <span class="q-topic">§11.4 — area of a triangle from cross product</span>
+    </div>
+    <div class="q-text">
+      Determine the area, $A$, of the triangle with vertices at $P(1,3,-2)$, $Q(-1,2,0)$, and $R(-1,5,-1)$.
+    </div>
+
+    <div class="sol-label">Solution</div>
+
+    <div class="step">
+      <span class="step-tag">Step 1.</span> Form two edge vectors that share the vertex $P$.
+      <div class="math">$$\mathbf{u}=\overrightarrow{PQ}=\langle -2,-1,2\rangle,\qquad \mathbf{v}=\overrightarrow{PR}=\langle -2,2,1\rangle$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 2.</span> Compute $\mathbf{u}\times\mathbf{v}$.
+      <div class="math">$$\mathbf{u}\times\mathbf{v}=\begin{vmatrix}\mathbf{i}&amp;\mathbf{j}&amp;\mathbf{k}\\ -2&amp;-1&amp;2\\ -2&amp;2&amp;1\end{vmatrix}=\mathbf{i}(-1-4)-\mathbf{j}(-2+4)+\mathbf{k}(-4-2)$$</div>
+      <div class="math">$$\mathbf{u}\times\mathbf{v}=\langle -5,-2,-6\rangle$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 3.</span> The area of the triangle is half the magnitude of the cross product.
+      <div class="math">$$\|\mathbf{u}\times\mathbf{v}\|=\sqrt{25+4+36}=\sqrt{65}$$</div>
+      <div class="math">$$A=\tfrac{1}{2}\|\mathbf{u}\times\mathbf{v}\|$$</div>
+    </div>
+
+    <div class="answer">
+      $A=\dfrac{\sqrt{65}}{2}\approx 4.03$
+    </div>
+  </div>
+
+  <!-- ============== Q7 ============== -->
+  <div class="problem" id="q7">
+    <div class="q-header">
+      <span class="q-num">Problem 7</span>
+      <span class="q-topic">§11.4 — volume of a parallelepiped (triple scalar product)</span>
+    </div>
+    <div class="q-text">
+      Find the volume, $V$, of the parallelepiped determined by $\mathbf{u}=\langle 4,1,0\rangle$, $\mathbf{v}=\langle 2,-1,2\rangle$, and $\mathbf{w}=\langle 4,0,4\rangle$.
+    </div>
+
+    <div class="sol-label">Solution</div>
+
+    <div class="step">
+      <span class="step-tag">Step 1.</span> Compute $\mathbf{u}\times\mathbf{v}$.
+      <div class="math">$$\mathbf{u}\times\mathbf{v}=\begin{vmatrix}\mathbf{i}&amp;\mathbf{j}&amp;\mathbf{k}\\ 4&amp;1&amp;0\\ 2&amp;-1&amp;2\end{vmatrix}=\mathbf{i}(2-0)-\mathbf{j}(8-0)+\mathbf{k}(-4-2)=\langle 2,-8,-6\rangle$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 2.</span> Take the dot product with $\mathbf{w}$.
+      <div class="math">$$(\mathbf{u}\times\mathbf{v})\cdot\mathbf{w}=(2)(4)+(-8)(0)+(-6)(4)=8+0-24=-16$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 3.</span> Volume is the absolute value of the triple scalar product.
+      <div class="math">$$V=|(\mathbf{u}\times\mathbf{v})\cdot\mathbf{w}|=|-16|$$</div>
+    </div>
+
+    <div class="answer">
+      $V=16$
+    </div>
+  </div>
+
+  <!-- ============== Q8 ============== -->
+  <div class="problem" id="q8">
+    <div class="q-header">
+      <span class="q-num">Problem 8</span>
+      <span class="q-topic">§11.5 — distance from a point to a line</span>
+    </div>
+    <div class="q-text">
+      Find the distance, $d$, from the point $S(1,3,-2)$ to the line $\ell$ given parametrically by $x(t)=-1-2t$, $y(t)=5-t$, $z(t)=-1+2t$, $-\infty&lt;t&lt;\infty$.
+    </div>
+
+    <div class="sol-label">Solution</div>
+
+    <div class="step">
+      <span class="step-tag">Step 1.</span> Pick a point on the line (set $t=0$): $P=(-1,5,-1)$. Read off the direction vector from the coefficients of $t$.
+      <div class="math">$$\mathbf{v}=\langle -2,-1,2\rangle,\qquad \|\mathbf{v}\|=\sqrt{4+1+4}=3$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 2.</span> Form $\overrightarrow{PS}=S-P$.
+      <div class="math">$$\overrightarrow{PS}=\langle 1-(-1),\,3-5,\,-2-(-1)\rangle=\langle 2,-2,-1\rangle$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 3.</span> Compute $\overrightarrow{PS}\times\mathbf{v}$.
+      <div class="math">$$\overrightarrow{PS}\times\mathbf{v}=\begin{vmatrix}\mathbf{i}&amp;\mathbf{j}&amp;\mathbf{k}\\ 2&amp;-2&amp;-1\\ -2&amp;-1&amp;2\end{vmatrix}=\mathbf{i}(-4-1)-\mathbf{j}(4-2)+\mathbf{k}(-2-4)=\langle -5,-2,-6\rangle$$</div>
+      <div class="math">$$\|\overrightarrow{PS}\times\mathbf{v}\|=\sqrt{25+4+36}=\sqrt{65}$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 4.</span> Apply the point-to-line distance formula.
+      <div class="math">$$d(S,\ell)=\frac{\|\overrightarrow{PS}\times\mathbf{v}\|}{\|\mathbf{v}\|}=\frac{\sqrt{65}}{3}$$</div>
+    </div>
+
+    <div class="answer">
+      $d=\dfrac{\sqrt{65}}{3}\approx 2.687$
+    </div>
+  </div>
+
+  <!-- ============== Q9 ============== -->
+  <div class="problem" id="q9">
+    <div class="q-header">
+      <span class="q-num">Problem 9</span>
+      <span class="q-topic">§11.5 — line of intersection of two planes</span>
+    </div>
+    <div class="q-text">
+      Find a parametrization of the line, $\ell$, in which the planes $M$ and $N$ intersect, where $M\colon\ x+3y+3z=-1$ and $N\colon\ x+2y+2z=0$.
+    </div>
+
+    <div class="sol-label">Solution</div>
+
+    <div class="step">
+      <span class="step-tag">Step 1.</span> The line of intersection is perpendicular to both normal vectors, so its direction is $\mathbf{n}_1\times\mathbf{n}_2$.
+      <div class="math">$$\mathbf{n}_1=\langle 1,3,3\rangle,\qquad \mathbf{n}_2=\langle 1,2,2\rangle$$</div>
+      <div class="math">$$\mathbf{v}=\mathbf{n}_1\times\mathbf{n}_2=\begin{vmatrix}\mathbf{i}&amp;\mathbf{j}&amp;\mathbf{k}\\ 1&amp;3&amp;3\\ 1&amp;2&amp;2\end{vmatrix}=\mathbf{i}(6-6)-\mathbf{j}(2-3)+\mathbf{k}(2-3)=\langle 0,1,-1\rangle$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 2.</span> Find a point that lies on both planes. Set $z=0$ and solve the resulting 2×2 system.
+      <div class="math">$$\begin{cases}x+3y=-1\\ x+2y=0\end{cases}\;\Longrightarrow\;\text{subtract: }y=-1,\;\;x=-2y=2$$</div>
+      <div class="math">$$\text{Point on line: }(2,-1,0)$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 3.</span> Combine the point and direction into parametric equations.
+    </div>
+
+    <div class="answer">
+      $x(t)=2,\quad y(t)=-1+t,\quad z(t)=-t,\quad -\infty&lt;t&lt;\infty$
+    </div>
+  </div>
+
+  <!-- ============== Q10 ============== -->
+  <div class="problem" id="q10">
+    <div class="q-header">
+      <span class="q-num">Problem 10</span>
+      <span class="q-topic">§11.6 — match equations to quadric surfaces</span>
+    </div>
+    <div class="q-text">
+      Match each of the following equations to the correct quadric-surface name (Elliptical Paraboloid, Elliptical Cone, Hyperboloid of Two Sheets, Hyperbolic Paraboloid).
+    </div>
+
+    <div class="sol-label">Solution — recognize the standard form</div>
+
+    <div class="step">
+      <span class="step-tag">(a)</span> $16y^2+49z^2=x^2$ has the structure $\dfrac{y^2}{a^2}+\dfrac{z^2}{b^2}=\dfrac{x^2}{c^2}$ — two squared terms equal to a third squared term.
+      <div class="math">$$\Rightarrow\;\textbf{Elliptical Cone}\;\text{(opening along the }x\text{-axis)}$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">(b)</span> $y^2-x^2=4z$ has one positive and one negative squared term equal to a single linear term — the saddle.
+      <div class="math">$$\Rightarrow\;\textbf{Hyperbolic Paraboloid}$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">(c)</span> $-\dfrac{x^2}{25}-\dfrac{y^2}{16}=z$ is two negative squared terms equal to one linear term — a paraboloid opening in the $-z$ direction.
+      <div class="math">$$\Rightarrow\;\textbf{Elliptical Paraboloid (opening downward)}$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">(d)</span> $z^2-x^2-y^2=64$ rewrites to $\dfrac{z^2}{64}-\dfrac{x^2}{64}-\dfrac{y^2}{64}=1$ — one positive squared term minus two negatives, equal to $1$. The right-hand side $+1$ tells you it is the two-sheet variant.
+      <div class="math">$$\Rightarrow\;\textbf{Hyperboloid of Two Sheets}\;\text{(along the }z\text{-axis)}$$</div>
+    </div>
+
+    <div class="answer">
+      <div>(a) $16y^2+49z^2=x^2$ &nbsp;→&nbsp; <strong>Elliptical Cone</strong></div>
+      <div>(b) $y^2-x^2=4z$ &nbsp;→&nbsp; <strong>Hyperbolic Paraboloid</strong></div>
+      <div>(c) $-\dfrac{x^2}{25}-\dfrac{y^2}{16}=z$ &nbsp;→&nbsp; <strong>Elliptical Paraboloid</strong></div>
+      <div>(d) $z^2-x^2-y^2=64$ &nbsp;→&nbsp; <strong>Hyperboloid of Two Sheets</strong></div>
+    </div>
+  </div>
+
+  <div class="note" style="margin-top: 28px;">
+    <strong>Quick recognition cheat sheet for Ch 11.6.</strong>
+    Two squared terms = one squared term → cone.
+    One linear term and two same-sign squared terms → paraboloid (sign tells you the opening direction).
+    One linear term and opposite-sign squared terms → hyperbolic paraboloid (saddle).
+    Sum of squared terms = 1 → ellipsoid.
+    Mixed signs equal to 1 → hyperboloid (one positive squared term ⇒ two sheets along that axis; two positive squared terms ⇒ one sheet around the negative axis).
+  </div>
+
+</section>
+
+</div><!-- /#tab-test1 -->
+
+<!-- =========================== TEST 2 SOLUTIONS =========================== -->
+<div class="tabpanel" id="tab-test2" role="tabpanel">
+
+<nav class="toc">
+  <h2>Test 2 — Problem Index</h2>
+  <ul>
+    <li><a href="#t2q1">1. Velocity &amp; acceleration on a circle</a></li>
+    <li><a href="#t2q2">2. Tangent line to a space curve</a></li>
+    <li><a href="#t2q3">3. Solve dr/dt = ... with r(0) given</a></li>
+    <li><a href="#t2q4">4. Projectile — tennis serve return</a></li>
+    <li><a href="#t2q5">5. Arclength, T, N, and curvature</a></li>
+    <li><a href="#t2q7">7. Curvature of a space curve</a></li>
+    <li><a href="#t2q8">8. Tangential &amp; normal acceleration</a></li>
+  </ul>
+</nav>
+
+<section class="chapter">
+  <h2><span class="ch-num">Test&nbsp;2</span>MAT 262 — Worked Solutions (Ch 12)</h2>
+
+  <!-- ============== T2 Q1 ============== -->
+  <div class="problem" id="t2q1">
+    <div class="q-header">
+      <span class="q-num">Problem 1</span>
+      <span class="q-topic">§12.1 — velocity, acceleration, and a labeled graph</span>
+    </div>
+    <div class="q-text">
+      The equation $\mathbf{r}(t)=\langle 5\sin(t),\,5\cos(t)\rangle$ traces out the circle $x^2+y^2=25$ in a clockwise manner. Find the particle's velocity and acceleration vectors at $t=\dfrac{\pi}{3}$, then draw an appropriately labeled graph of the curve along with these vectors at $t=\pi/3$.
+    </div>
+
+    <div class="sol-label">Solution</div>
+
+    <div class="step">
+      <span class="step-tag">Step 1.</span> Differentiate component by component.
+      <div class="math">$$\mathbf{v}(t)=\mathbf{r}'(t)=\langle 5\cos(t),\,-5\sin(t)\rangle$$</div>
+      <div class="math">$$\mathbf{a}(t)=\mathbf{v}'(t)=\langle -5\sin(t),\,-5\cos(t)\rangle$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 2.</span> Plug in $t=\pi/3$. Recall $\cos(\pi/3)=\tfrac{1}{2}$ and $\sin(\pi/3)=\tfrac{\sqrt{3}}{2}$.
+      <div class="math">$$\mathbf{v}(\pi/3)=\Big\langle 5\cdot\tfrac{1}{2},\,-5\cdot\tfrac{\sqrt{3}}{2}\Big\rangle=\Big\langle \tfrac{5}{2},\,-\tfrac{5\sqrt{3}}{2}\Big\rangle$$</div>
+      <div class="math">$$\mathbf{a}(\pi/3)=\Big\langle -\tfrac{5\sqrt{3}}{2},\,-\tfrac{5}{2}\Big\rangle$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 3.</span> Position at $t=\pi/3$ is the foot of these vectors on the graph: $\mathbf{r}(\pi/3)=\langle 5\sqrt{3}/2,\,5/2\rangle$.
+    </div>
+
+    <div class="answer">
+      $\mathbf{v}(\pi/3)=\Big\langle \tfrac{5}{2},\,-\tfrac{5\sqrt{3}}{2}\Big\rangle,\qquad \mathbf{a}(\pi/3)=\Big\langle -\tfrac{5\sqrt{3}}{2},\,-\tfrac{5}{2}\Big\rangle$
+      <div style="font-size: 0.92rem; font-weight: normal; color: var(--muted); margin-top: 8px;">
+        Graph: circle of radius 5; mark the point $(5\sqrt{3}/2,\,5/2)$. From that point, $\mathbf{v}$ is tangent and points clockwise (down and to the right); $\mathbf{a}$ points back toward the origin (centripetal).
+      </div>
+    </div>
+  </div>
+
+  <!-- ============== T2 Q2 ============== -->
+  <div class="problem" id="t2q2">
+    <div class="q-header">
+      <span class="q-num">Problem 2</span>
+      <span class="q-topic">§12.1 — tangent line at a parameter value</span>
+    </div>
+    <div class="q-text">
+      Consider the smooth curve traced out by
+      $$\mathbf{r}(t)=\Big\langle t\sin(t\pi),\;\ln\!\Big(\tfrac{7}{2t-1}\Big)+t^{2},\;\cos(-t\pi)\Big\rangle.$$
+      Write a set of parametric equations that describe the line $\ell$ tangent to $\mathbf{r}$ at $t=4$.
+    </div>
+
+    <div class="sol-label">Solution</div>
+
+    <div class="step">
+      <span class="step-tag">Step 1.</span> Compute $\mathbf{r}(4)$ — this is the point the tangent line passes through.
+      <div class="math">$$x(4)=4\sin(4\pi)=0$$</div>
+      <div class="math">$$y(4)=\ln\!\Big(\tfrac{7}{2(4)-1}\Big)+16=\ln(1)+16=16$$</div>
+      <div class="math">$$z(4)=\cos(-4\pi)=\cos(4\pi)=1$$</div>
+      <div class="math">$$\mathbf{r}(4)=(0,\,16,\,1)$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 2.</span> Differentiate term by term. For $y$, write $\ln(7/(2t-1))=\ln(7)-\ln(2t-1)$ to avoid mistakes.
+      <div class="math">$$x'(t)=\sin(t\pi)+t\pi\cos(t\pi)$$</div>
+      <div class="math">$$y'(t)=-\frac{2}{2t-1}+2t$$</div>
+      <div class="math">$$z(t)=\cos(t\pi)\;\Rightarrow\;z'(t)=-\pi\sin(t\pi)$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 3.</span> Evaluate $\mathbf{r}'(4)$.
+      <div class="math">$$x'(4)=\sin(4\pi)+4\pi\cos(4\pi)=0+4\pi(1)=4\pi$$</div>
+      <div class="math">$$y'(4)=-\tfrac{2}{7}+8=\tfrac{-2+56}{7}=\tfrac{54}{7}$$</div>
+      <div class="math">$$z'(4)=-\pi\sin(4\pi)=0$$</div>
+      <div class="math">$$\mathbf{v}(4)=\mathbf{r}'(4)=\Big\langle 4\pi,\,\tfrac{54}{7},\,0\Big\rangle$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 4.</span> Combine: parametric line through $(0,16,1)$ in direction $\mathbf{v}(4)$.
+    </div>
+
+    <div class="answer">
+      $x(s)=4\pi s,\quad y(s)=\dfrac{54}{7}s+16,\quad z(s)=1,\quad -\infty&lt;s&lt;\infty$
+    </div>
+  </div>
+
+  <!-- ============== T2 Q3 ============== -->
+  <div class="problem" id="t2q3">
+    <div class="q-header">
+      <span class="q-num">Problem 3</span>
+      <span class="q-topic">§12.2 — solve $\mathbf{r}'(t)=\dots$ with initial condition</span>
+    </div>
+    <div class="q-text">
+      Solve $\dfrac{d\mathbf{r}}{dt}=\Big\langle\tfrac{9}{2}(t+1)^{1/2},\,3e^{-t},\,\tfrac{1}{t+1}\Big\rangle$ for $\mathbf{r}(t)$, where $\mathbf{r}(0)=\langle 0,0,1\rangle$. Show all integration steps.
+    </div>
+
+    <div class="sol-label">Solution — integrate component-wise, then apply the initial condition to each component.</div>
+
+    <div class="step">
+      <span class="step-tag">Component 1.</span>
+      <div class="math">$$\int\tfrac{9}{2}(t+1)^{1/2}\,dt=\tfrac{9}{2}\cdot\tfrac{2}{3}(t+1)^{3/2}+C_1=3(t+1)^{3/2}+C_1$$</div>
+      <div class="math">$$\text{IC: }r_1(0)=0\;\Rightarrow\;3(1)^{3/2}+C_1=0\;\Rightarrow\;C_1=-3$$</div>
+      <div class="math">$$x(t)=3(t+1)^{3/2}-3$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Component 2.</span>
+      <div class="math">$$\int 3e^{-t}\,dt=-3e^{-t}+C_2$$</div>
+      <div class="math">$$\text{IC: }r_2(0)=0\;\Rightarrow\;-3+C_2=0\;\Rightarrow\;C_2=3$$</div>
+      <div class="math">$$y(t)=-3e^{-t}+3$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Component 3.</span>
+      <div class="math">$$\int\tfrac{1}{t+1}\,dt=\ln|t+1|+C_3$$</div>
+      <div class="math">$$\text{IC: }r_3(0)=1\;\Rightarrow\;\ln(1)+C_3=1\;\Rightarrow\;C_3=1$$</div>
+      <div class="math">$$z(t)=\ln(t+1)+1$$</div>
+    </div>
+
+    <div class="answer">
+      $\mathbf{r}(t)=\Big\langle 3(t+1)^{3/2}-3,\;-3e^{-t}+3,\;\ln(t+1)+1\Big\rangle$
+    </div>
+  </div>
+
+  <!-- ============== T2 Q4 ============== -->
+  <div class="problem" id="t2q4">
+    <div class="q-header">
+      <span class="q-num">Problem 4</span>
+      <span class="q-topic">§12.2 — projectile motion (tennis serve return)</span>
+    </div>
+    <div class="q-text">
+      A tennis player stands 3 ft from the back edge of the court. They return a serve with an initial velocity of 40 ft/sec at an angle of $30^\circ$ at a point 4 ft above the ground.
+      <ul style="margin: 8px 0 0 18px; padding: 0;">
+        <li>(i) Write a vector function $\mathbf{r}$ for the ball's path relative to the back edge of the court.</li>
+        <li>(ii) Find the ball's flight time and range.</li>
+        <li>(iii) The court is 78 ft long — does the return land in bounds?</li>
+      </ul>
+    </div>
+
+    <div class="sol-label">Solution</div>
+
+    <div class="step">
+      <span class="step-tag">Part (i).</span> Use the projectile equation with initial position $\langle 3,4\rangle$, $\|\mathbf{v}_0\|=40$, $\alpha=30^\circ$, $g=32\;\mathrm{ft/sec^2}$.
+      <div class="math">$$\mathbf{r}(t)=\Big\langle 3+40\cos(30^\circ)t,\;4+40\sin(30^\circ)t-\tfrac{1}{2}(32)t^2\Big\rangle$$</div>
+      <div class="math">$$\mathbf{r}(t)=\Big\langle 3+20\sqrt{3}\,t,\;4+20t-16t^2\Big\rangle$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Part (ii) — flight time.</span> Solve $y(t)=0$.
+      <div class="math">$$4+20t-16t^2=0\;\Longleftrightarrow\;4t^2-5t-1=0$$</div>
+      <div class="math">$$t=\frac{5\pm\sqrt{25+16}}{8}=\frac{5\pm\sqrt{41}}{8}$$</div>
+      <div class="math">$$t\approx\frac{5+6.4031}{8}\approx 1.425\;\mathrm{sec}\quad(\text{the negative root is rejected})$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Part (ii) — range.</span> Plug the flight time into $x(t)$.
+      <div class="math">$$R=3+20\sqrt{3}\,(1.425)\approx 3+49.36\approx 52.4\;\mathrm{ft}$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Part (iii).</span> Compare the range to the court length.
+      <div class="math">$$R\approx 52.4\;\mathrm{ft}\;<\;78\;\mathrm{ft}$$</div>
+    </div>
+
+    <div class="answer">
+      (i) $\mathbf{r}(t)=\langle 3+20\sqrt{3}\,t,\;4+20t-16t^2\rangle$<br>
+      (ii) Flight time $\approx 1.425\;\mathrm{sec}$, &nbsp; range $\approx 52.4\;\mathrm{ft}$<br>
+      (iii) Yes — the return lands in bounds.
+    </div>
+  </div>
+
+  <!-- ============== T2 Q5 ============== -->
+  <div class="problem" id="t2q5">
+    <div class="q-header">
+      <span class="q-num">Problem 5</span>
+      <span class="q-topic">§12.3, 12.4 — arclength, $\mathbf{T}$, $\mathbf{N}$, and $\kappa$</span>
+    </div>
+    <div class="q-text">
+      Consider $\mathbf{r}(t)=\langle\sin^3(t),\,\cos^3(t),\,0\rangle$.
+      <ul style="margin: 8px 0 0 18px; padding: 0;">
+        <li>(i) Compute the arclength of $\mathbf{r}$ over $0\le t\le \pi/3$. (Hint: $\sin(2\theta)=2\sin\theta\cos\theta$.)</li>
+        <li>(ii) Find $\mathbf{T}$ and $\mathbf{N}$.</li>
+        <li>(iii) Find the curvature $\kappa$.</li>
+      </ul>
+    </div>
+
+    <div class="sol-label">Solution</div>
+
+    <div class="step">
+      <span class="step-tag">(i) Step 1.</span> Differentiate.
+      <div class="math">$$\mathbf{v}(t)=\langle 3\sin^2(t)\cos(t),\,-3\cos^2(t)\sin(t),\,0\rangle$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">(i) Step 2.</span> Compute $\|\mathbf{v}\|$.
+      <div class="math">$$\|\mathbf{v}\|^2=9\sin^4(t)\cos^2(t)+9\cos^4(t)\sin^2(t)=9\sin^2(t)\cos^2(t)\big[\sin^2(t)+\cos^2(t)\big]=9\sin^2(t)\cos^2(t)$$</div>
+      <div class="math">$$\|\mathbf{v}(t)\|=3\sin(t)\cos(t)\;\;\text{on }[0,\pi/3]$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">(i) Step 3.</span> Integrate. Use $u=\sin(t)$, $du=\cos(t)\,dt$; when $t=0$, $u=0$; when $t=\pi/3$, $u=\sqrt{3}/2$.
+      <div class="math">$$L=\int_0^{\pi/3}3\sin(t)\cos(t)\,dt=\int_0^{\sqrt{3}/2}3u\,du=\tfrac{3}{2}u^2\Big|_0^{\sqrt{3}/2}=\tfrac{3}{2}\cdot\tfrac{3}{4}$$</div>
+    </div>
+
+    <div class="answer">
+      (i) $L=\dfrac{9}{8}$
+    </div>
+
+    <div class="step" style="margin-top: 18px;">
+      <span class="step-tag">(ii) Unit tangent.</span> Divide $\mathbf{v}$ by $\|\mathbf{v}\|=3\sin(t)\cos(t)$.
+      <div class="math">$$\mathbf{T}(t)=\langle\sin(t),\,-\cos(t),\,0\rangle$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">(ii) Principal unit normal.</span> Differentiate $\mathbf{T}$ and normalize. Note $\|\mathbf{T}'(t)\|=\sqrt{\cos^2(t)+\sin^2(t)}=1$.
+      <div class="math">$$\mathbf{T}'(t)=\langle\cos(t),\,\sin(t),\,0\rangle$$</div>
+    </div>
+
+    <div class="answer">
+      (ii) $\mathbf{T}(t)=\langle\sin(t),-\cos(t),0\rangle,\qquad \mathbf{N}(t)=\langle\cos(t),\sin(t),0\rangle$
+    </div>
+
+    <div class="step" style="margin-top: 18px;">
+      <span class="step-tag">(iii) Curvature.</span> Use $\kappa=\dfrac{\|\mathbf{T}'(t)\|}{\|\mathbf{v}(t)\|}$.
+      <div class="math">$$\kappa=\frac{1}{3\sin(t)\cos(t)}=\frac{2}{3\sin(2t)}$$</div>
+    </div>
+
+    <div class="answer">
+      (iii) $\kappa=\dfrac{1}{3\sin(t)\cos(t)}=\dfrac{2}{3\sin(2t)}$
+    </div>
+  </div>
+
+  <!-- ============== T2 Q7 ============== -->
+  <div class="problem" id="t2q7">
+    <div class="q-header">
+      <span class="q-num">Problem 7</span>
+      <span class="q-topic">§12.4 — curvature of a 3-space curve</span>
+    </div>
+    <div class="q-text">
+      Calculate the curvature, $\kappa$, for the space curve $\mathbf{r}(t)=\langle 2t,\,3t^2,\,4t^3\rangle$ at the point $(4,12,32)$.
+    </div>
+
+    <div class="note">
+      <strong>Heads-up.</strong> The planar formula $\kappa=\dfrac{|x'y''-x''y'|}{((x')^2+(y')^2)^{3/2}}$ does <em>not</em> apply here — it only handles 2D curves. For a space curve use $\kappa(t)=\dfrac{\|\mathbf{r}'(t)\times\mathbf{r}''(t)\|}{\|\mathbf{r}'(t)\|^{3}}$.
+    </div>
+
+    <div class="sol-label">Solution</div>
+
+    <div class="step">
+      <span class="step-tag">Step 1.</span> Find the parameter value at the given point. From $x=2t=4$ we get $t=2$ (and $3(4)=12$, $4(8)=32$ check out).
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 2.</span> Compute $\mathbf{r}'$ and $\mathbf{r}''$ at $t=2$.
+      <div class="math">$$\mathbf{r}'(t)=\langle 2,\,6t,\,12t^2\rangle\;\Rightarrow\;\mathbf{r}'(2)=\langle 2,\,12,\,48\rangle$$</div>
+      <div class="math">$$\mathbf{r}''(t)=\langle 0,\,6,\,24t\rangle\;\Rightarrow\;\mathbf{r}''(2)=\langle 0,\,6,\,48\rangle$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 3.</span> Cross product.
+      <div class="math">$$\mathbf{r}'(2)\times\mathbf{r}''(2)=\begin{vmatrix}\mathbf{i}&amp;\mathbf{j}&amp;\mathbf{k}\\ 2&amp;12&amp;48\\ 0&amp;6&amp;48\end{vmatrix}=\mathbf{i}(576-288)-\mathbf{j}(96-0)+\mathbf{k}(12-0)=\langle 288,-96,12\rangle$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 4.</span> Magnitudes.
+      <div class="math">$$\|\mathbf{r}'(2)\times\mathbf{r}''(2)\|=\sqrt{288^2+96^2+12^2}=\sqrt{92304}=12\sqrt{641}$$</div>
+      <div class="math">$$\|\mathbf{r}'(2)\|=\sqrt{4+144+2304}=\sqrt{2452}=2\sqrt{613}$$</div>
+      <div class="math">$$\|\mathbf{r}'(2)\|^{3}=(2\sqrt{613})^3=8\cdot 613\sqrt{613}=4904\sqrt{613}$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 5.</span> Plug in.
+      <div class="math">$$\kappa=\frac{12\sqrt{641}}{4904\sqrt{613}}\approx\frac{303.81}{121420}$$</div>
+    </div>
+
+    <div class="answer">
+      $\kappa=\dfrac{12\sqrt{641}}{4904\sqrt{613}}\approx 0.00250$
+    </div>
+  </div>
+
+  <!-- ============== T2 Q8 ============== -->
+  <div class="problem" id="t2q8">
+    <div class="q-header">
+      <span class="q-num">Problem 8</span>
+      <span class="q-topic">§12.5 — $\mathbf{a}=a_T\mathbf{T}+a_N\mathbf{N}$ without finding $\mathbf{T},\mathbf{N}$</span>
+    </div>
+    <div class="q-text">
+      Consider the smooth curve $\mathbf{r}(t)=\langle 6e^t\sin(t),\,6e^t\sqrt{6},\,6e^t\cos(t)\rangle$. Without finding $\mathbf{T}$ or $\mathbf{N}$, write the acceleration $\mathbf{a}$ in the form $\mathbf{a}=a_T\mathbf{T}+a_N\mathbf{N}$ at $t=0$.
+    </div>
+
+    <div class="sol-label">Solution — use $a_T=\dfrac{\mathbf{v}\cdot\mathbf{a}}{\|\mathbf{v}\|}$ and $a_N=\sqrt{\|\mathbf{a}\|^2-a_T^{\,2}}$.</div>
+
+    <div class="step">
+      <span class="step-tag">Step 1.</span> Differentiate using the product rule on each term.
+      <div class="math">$$\mathbf{v}(t)=\langle 6e^t(\sin t+\cos t),\,6e^t\sqrt{6},\,6e^t(\cos t-\sin t)\rangle$$</div>
+      <div class="math">$$\mathbf{a}(t)=\langle 12e^t\cos(t),\,6e^t\sqrt{6},\,-12e^t\sin(t)\rangle$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 2.</span> Evaluate at $t=0$ ($e^0=1$, $\sin 0=0$, $\cos 0=1$).
+      <div class="math">$$\mathbf{v}(0)=\langle 6,\,6\sqrt{6},\,6\rangle,\qquad \mathbf{a}(0)=\langle 12,\,6\sqrt{6},\,0\rangle$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 3.</span> Magnitudes and dot product.
+      <div class="math">$$\|\mathbf{v}(0)\|^2=36+216+36=288\;\Rightarrow\;\|\mathbf{v}(0)\|=12\sqrt{2}$$</div>
+      <div class="math">$$\|\mathbf{a}(0)\|^2=144+216+0=360$$</div>
+      <div class="math">$$\mathbf{v}(0)\cdot\mathbf{a}(0)=72+216+0=288$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 4.</span> Tangential component.
+      <div class="math">$$a_T=\frac{\mathbf{v}\cdot\mathbf{a}}{\|\mathbf{v}\|}=\frac{288}{12\sqrt{2}}=\frac{24}{\sqrt{2}}=12\sqrt{2}$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 5.</span> Normal component (Pythagorean shortcut).
+      <div class="math">$$a_N=\sqrt{\|\mathbf{a}\|^2-a_T^{\,2}}=\sqrt{360-288}=\sqrt{72}=6\sqrt{2}$$</div>
+    </div>
+
+    <div class="answer">
+      $\mathbf{a}=12\sqrt{2}\,\mathbf{T}+6\sqrt{2}\,\mathbf{N}\quad\text{at }t=0$
+    </div>
+  </div>
+
+</section>
+
+</div><!-- /#tab-test2 -->
+
+<!-- =========================== TEST 3 SOLUTIONS =========================== -->
+<div class="tabpanel" id="tab-test3" role="tabpanel">
+
+<nav class="toc">
+  <h2>Test 3 — Problem Index</h2>
+  <ul>
+    <li><a href="#t3q1">1. Three multivariable limits</a></li>
+    <li><a href="#t3q2">2. Implicit partial derivative</a></li>
+    <li><a href="#t3q3">3. Chain rule (composite of three)</a></li>
+    <li><a href="#t3q4">4. Direction of fastest decrease and $D_\mathbf{u}f$</a></li>
+    <li><a href="#t3q5">5. Tangent plane and normal line to a level surface</a></li>
+    <li><a href="#t3q6">6. Linearization $L(x,y,z)$</a></li>
+    <li><a href="#t3q7">7. Local extrema &amp; saddle points</a></li>
+    <li><a href="#t3q8">8. Lagrange multipliers (two constraints)</a></li>
+  </ul>
+</nav>
+
+<section class="chapter">
+  <h2><span class="ch-num">Test&nbsp;3</span>MAT 262 — Worked Solutions (Ch 13)</h2>
+
+  <!-- ============== T3 Q1 ============== -->
+  <div class="problem" id="t3q1">
+    <div class="q-header">
+      <span class="q-num">Problem 1</span>
+      <span class="q-topic">§13.2 — multivariable limits</span>
+    </div>
+    <div class="q-text">
+      If possible, compute the following limits. If not possible, give detailed reasoning.
+      <div style="margin: 8px 0 0 18px;">
+        (i) $\displaystyle\lim_{(x,y)\to(0,0)}\dfrac{4e^{-5y}\sin(-2x)}{5x}$<br>
+        (ii) $\displaystyle\lim_{(x,y)\to(6,0)}\dfrac{\sqrt{6x-y}-6}{6x-y-36}$<br>
+        (iii) $\displaystyle\lim_{(x,y)\to(0,0)}\dfrac{y^4-2x^2}{y^4+x^2}$
+      </div>
+    </div>
+
+    <div class="sol-label">Solution</div>
+
+    <div class="step">
+      <span class="step-tag">(i).</span> Split into pieces whose limits you know, using $\sin(\theta)/\theta\to 1$.
+      <div class="math">$$\frac{4e^{-5y}\sin(-2x)}{5x}=\frac{4e^{-5y}}{5}\cdot\frac{\sin(-2x)}{x}=\frac{4e^{-5y}}{5}\cdot(-2)\cdot\frac{\sin(-2x)}{-2x}$$</div>
+      <div class="math">$$\to\frac{4(1)}{5}\cdot(-2)\cdot 1=-\frac{8}{5}$$</div>
+    </div>
+
+    <div class="answer">
+      (i) $\displaystyle\lim=-\dfrac{8}{5}$
+    </div>
+
+    <div class="step" style="margin-top: 18px;">
+      <span class="step-tag">(ii).</span> Direct substitution gives $0/0$. Multiply by the conjugate of the numerator.
+      <div class="math">$$\frac{\sqrt{6x-y}-6}{6x-y-36}\cdot\frac{\sqrt{6x-y}+6}{\sqrt{6x-y}+6}=\frac{(6x-y)-36}{(6x-y-36)(\sqrt{6x-y}+6)}=\frac{1}{\sqrt{6x-y}+6}$$</div>
+      <div class="math">$$\to\frac{1}{\sqrt{36}+6}=\frac{1}{12}$$</div>
+    </div>
+
+    <div class="answer">
+      (ii) $\displaystyle\lim=\dfrac{1}{12}$
+    </div>
+
+    <div class="step" style="margin-top: 18px;">
+      <span class="step-tag">(iii).</span> Try two paths.
+      <div class="math">$$\text{Along }x=0:\quad\frac{y^4-0}{y^4+0}=1\;\to\;1$$</div>
+      <div class="math">$$\text{Along }y=0:\quad\frac{0-2x^2}{0+x^2}=-2\;\to\;-2$$</div>
+      Two different limits along two different paths, so the limit does not exist (Two-Path Test).
+    </div>
+
+    <div class="answer">
+      (iii) Limit <strong>does not exist</strong>.
+    </div>
+  </div>
+
+  <!-- ============== T3 Q2 ============== -->
+  <div class="problem" id="t3q2">
+    <div class="q-header">
+      <span class="q-num">Problem 2</span>
+      <span class="q-topic">§13.3 — implicit partial derivative</span>
+    </div>
+    <div class="q-text">
+      Determine $\dfrac{\partial z}{\partial x}$ if the equation $7xy+z^4 x-3yz=5$ defines $z$ as a function of $x$ and $y$.
+    </div>
+
+    <div class="sol-label">Solution — differentiate both sides w.r.t. $x$, treat $y$ as constant and $z=z(x,y)$.</div>
+
+    <div class="step">
+      <span class="step-tag">Step 1.</span> Apply the chain/product rules term by term.
+      <div class="math">$$\frac{\partial}{\partial x}[7xy]+\frac{\partial}{\partial x}[z^4 x]-\frac{\partial}{\partial x}[3yz]=0$$</div>
+      <div class="math">$$7y+\Big(4z^3\,\frac{\partial z}{\partial x}\,x+z^4\Big)-3y\,\frac{\partial z}{\partial x}=0$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 2.</span> Group $\partial z/\partial x$ on one side.
+      <div class="math">$$(4xz^3-3y)\,\frac{\partial z}{\partial x}=-(7y+z^4)$$</div>
+    </div>
+
+    <div class="answer">
+      $\dfrac{\partial z}{\partial x}=-\dfrac{7y+z^4}{4xz^3-3y}=\dfrac{7y+z^4}{3y-4xz^3}$
+    </div>
+  </div>
+
+  <!-- ============== T3 Q3 ============== -->
+  <div class="problem" id="t3q3">
+    <div class="q-header">
+      <span class="q-num">Problem 3</span>
+      <span class="q-topic">§13.4 — chain rule, answer in terms of $u$ and $v$</span>
+    </div>
+    <div class="q-text">
+      Determine $\dfrac{\partial z}{\partial u}$ for $z=-6e^{x}\ln(y)$, where $x=\ln(u\cos v)$ and $y=u\sin v$.
+    </div>
+
+    <div class="sol-label">Solution</div>
+
+    <div class="step">
+      <span class="step-tag">Step 1.</span> Chain rule.
+      <div class="math">$$\frac{\partial z}{\partial u}=\frac{\partial z}{\partial x}\frac{\partial x}{\partial u}+\frac{\partial z}{\partial y}\frac{\partial y}{\partial u}$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 2.</span> The four pieces.
+      <div class="math">$$\frac{\partial z}{\partial x}=-6e^x\ln y,\qquad \frac{\partial z}{\partial y}=-\frac{6e^x}{y}$$</div>
+      <div class="math">$$\frac{\partial x}{\partial u}=\frac{1}{u\cos v}\cdot\cos v=\frac{1}{u},\qquad \frac{\partial y}{\partial u}=\sin v$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 3.</span> Assemble, then substitute back so that the answer is in $u$ and $v$ only. Note $e^x=u\cos v$ and $y=u\sin v$, so $e^x/u=\cos v$ and $e^x/y=\cos v/\sin v$.
+      <div class="math">$$\frac{\partial z}{\partial u}=-6e^x\ln(y)\cdot\frac{1}{u}-\frac{6e^x}{y}\sin v$$</div>
+      <div class="math">$$=-6\cos v\,\ln(u\sin v)-6\cos v$$</div>
+    </div>
+
+    <div class="answer">
+      $\dfrac{\partial z}{\partial u}=-6\cos v\,\big[\ln(u\sin v)+1\big]$
+    </div>
+  </div>
+
+  <!-- ============== T3 Q4 ============== -->
+  <div class="problem" id="t3q4">
+    <div class="q-header">
+      <span class="q-num">Problem 4</span>
+      <span class="q-topic">§13.5 — direction of fastest decrease</span>
+    </div>
+    <div class="q-text">
+      Consider the function $f(x,y,z)=\ln(xy)+3\ln(yz)+3\ln(xz)$ and the point $P(1,1,1)$.
+      <ul style="margin: 8px 0 0 18px; padding: 0;">
+        <li>(i) Find a unit vector $\mathbf{u}$ that points in the direction in which $f$ <em>decreases</em> most rapidly at $P$.</li>
+        <li>(ii) Compute $D_{\mathbf{u}}f(1,1,1)$.</li>
+      </ul>
+    </div>
+
+    <div class="sol-label">Solution — simplify $f$ first using log rules.</div>
+
+    <div class="step">
+      <span class="step-tag">Step 1.</span> Expand the logs.
+      <div class="math">$$f=\ln x+\ln y+3\ln y+3\ln z+3\ln x+3\ln z=4\ln x+4\ln y+6\ln z$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 2.</span> Gradient.
+      <div class="math">$$\nabla f=\Big\langle\tfrac{4}{x},\tfrac{4}{y},\tfrac{6}{z}\Big\rangle\;\Rightarrow\;\nabla f(1,1,1)=\langle 4,4,6\rangle$$</div>
+      <div class="math">$$\|\nabla f(1,1,1)\|=\sqrt{16+16+36}=\sqrt{68}=2\sqrt{17}$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">(i) Step 3.</span> Direction of fastest decrease is $-\nabla f/\|\nabla f\|$.
+    </div>
+
+    <div class="answer">
+      (i) $\mathbf{u}=\dfrac{-\langle 4,4,6\rangle}{2\sqrt{17}}=\Big\langle -\tfrac{2}{\sqrt{17}},\,-\tfrac{2}{\sqrt{17}},\,-\tfrac{3}{\sqrt{17}}\Big\rangle$
+    </div>
+
+    <div class="step" style="margin-top: 18px;">
+      <span class="step-tag">(ii) Step 4.</span> Since $\mathbf{u}$ is the direction of fastest decrease, $D_{\mathbf{u}}f=-\|\nabla f\|$.
+      <div class="math">$$D_{\mathbf{u}}f(1,1,1)=\nabla f\cdot\mathbf{u}=\frac{(4)(-2)+(4)(-2)+(6)(-3)}{\sqrt{17}}=\frac{-34}{\sqrt{17}}$$</div>
+    </div>
+
+    <div class="answer">
+      (ii) $D_{\mathbf{u}}f(1,1,1)=-\dfrac{34}{\sqrt{17}}=-2\sqrt{17}$
+    </div>
+  </div>
+
+  <!-- ============== T3 Q5 ============== -->
+  <div class="problem" id="t3q5">
+    <div class="q-header">
+      <span class="q-num">Problem 5</span>
+      <span class="q-topic">§13.6 — tangent plane &amp; normal line to a level surface</span>
+    </div>
+    <div class="q-text">
+      Consider the point $P(0,5,3)$ on the surface $S$ given by $\cos(\pi x)-x^2 y+e^{xz}+2yz$.
+      <ul style="margin: 8px 0 0 18px; padding: 0;">
+        <li>(i) Find an equation for the tangent plane to $S$ at $P$.</li>
+        <li>(ii) Find an equation for the normal line to $S$ at $P$.</li>
+      </ul>
+    </div>
+
+    <div class="note">
+      <strong>Setup.</strong> Treat the surface as the level set $F(x,y,z)=\cos(\pi x)-x^2 y+e^{xz}+2yz=c$. The gradient $\nabla F(P)$ is normal to $S$ at $P$.
+    </div>
+
+    <div class="sol-label">Solution</div>
+
+    <div class="step">
+      <span class="step-tag">Step 1.</span> Compute the partials.
+      <div class="math">$$F_x=-\pi\sin(\pi x)-2xy+ze^{xz},\quad F_y=-x^2+2z,\quad F_z=xe^{xz}+2y$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 2.</span> Evaluate at $P(0,5,3)$.
+      <div class="math">$$F_x(P)=-\pi(0)-0+3(1)=3,\quad F_y(P)=0+6=6,\quad F_z(P)=0+10=10$$</div>
+      <div class="math">$$\nabla F(P)=\langle 3,6,10\rangle$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">(i) Step 3.</span> Tangent-plane equation $F_x(x-0)+F_y(y-5)+F_z(z-3)=0$.
+      <div class="math">$$3(x-0)+6(y-5)+10(z-3)=0$$</div>
+      <div class="math">$$3x+6y+10z=60$$</div>
+    </div>
+
+    <div class="answer">
+      (i) Tangent plane: $3x+6y+10z=60$
+    </div>
+
+    <div class="step" style="margin-top: 18px;">
+      <span class="step-tag">(ii) Step 4.</span> Normal line passes through $P$ along $\nabla F(P)=\langle 3,6,10\rangle$.
+    </div>
+
+    <div class="answer">
+      (ii) $x(t)=3t,\quad y(t)=5+6t,\quad z(t)=3+10t,\quad -\infty&lt;t&lt;\infty$
+    </div>
+  </div>
+
+  <!-- ============== T3 Q6 ============== -->
+  <div class="problem" id="t3q6">
+    <div class="q-header">
+      <span class="q-num">Problem 6</span>
+      <span class="q-topic">§13.6 — linearization $L(x,y,z)$</span>
+    </div>
+    <div class="q-text">
+      Find the linearization, $L(x,y,z)$, of $f(x,y,z)=\sqrt{x^2+y^2+z^2}$ at $P(2,6,9)$.
+    </div>
+
+    <div class="sol-label">Solution</div>
+
+    <div class="step">
+      <span class="step-tag">Step 1.</span> Evaluate $f$ at $P$.
+      <div class="math">$$f(2,6,9)=\sqrt{4+36+81}=\sqrt{121}=11$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 2.</span> Partials and their values at $P$.
+      <div class="math">$$f_x=\frac{x}{\sqrt{x^2+y^2+z^2}},\quad f_y=\frac{y}{\cdots},\quad f_z=\frac{z}{\cdots}$$</div>
+      <div class="math">$$f_x(P)=\tfrac{2}{11},\quad f_y(P)=\tfrac{6}{11},\quad f_z(P)=\tfrac{9}{11}$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 3.</span> Linearization formula and simplification.
+      <div class="math">$$L(x,y,z)=11+\tfrac{2}{11}(x-2)+\tfrac{6}{11}(y-6)+\tfrac{9}{11}(z-9)$$</div>
+      Constants combine to $11-\tfrac{4}{11}-\tfrac{36}{11}-\tfrac{81}{11}=\tfrac{121-4-36-81}{11}=0$ — clean!
+    </div>
+
+    <div class="answer">
+      $L(x,y,z)=\dfrac{2x+6y+9z}{11}$
+    </div>
+  </div>
+
+  <!-- ============== T3 Q7 ============== -->
+  <div class="problem" id="t3q7">
+    <div class="q-header">
+      <span class="q-num">Problem 7</span>
+      <span class="q-topic">§13.7 — local extrema &amp; saddle points</span>
+    </div>
+    <div class="q-text">
+      Find all the local maxima, local minima, and saddle points of $f(x,y)=4xy+x^4+y^4$.
+      <em>Hint:</em> $1-a^8=-(a-1)(a+1)(a^2+1)(a^4+1)$.
+    </div>
+
+    <div class="sol-label">Solution</div>
+
+    <div class="step">
+      <span class="step-tag">Step 1.</span> Find critical points by setting $\nabla f=\mathbf{0}$.
+      <div class="math">$$f_x=4y+4x^3=0\;\Rightarrow\;y=-x^3$$</div>
+      <div class="math">$$f_y=4x+4y^3=0\;\Rightarrow\;x=-y^3$$</div>
+      Substitute the first into the second: $x=-(-x^3)^3=x^9$, so $x(x^8-1)=0$.
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 2.</span> Factor $x^8-1=(x-1)(x+1)(x^2+1)(x^4+1)$ (the hint, sign flipped). The last two factors are always positive, so real roots are $x=0,\,\pm 1$. Pairing each with $y=-x^3$:
+      <div class="math">$$\text{Critical points: }(0,0),\;(1,-1),\;(-1,1)$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 3.</span> Hessian.
+      <div class="math">$$f_{xx}=12x^2,\quad f_{yy}=12y^2,\quad f_{xy}=4$$</div>
+      <div class="math">$$H=f_{xx}f_{yy}-(f_{xy})^2=144x^2y^2-16$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 4.</span> Classify.
+      <div class="math">$$\text{At }(0,0):\;H=-16<0\;\Rightarrow\;\text{saddle},\;f(0,0)=0$$</div>
+      <div class="math">$$\text{At }(1,-1):\;H=128>0,\;f_{xx}=12>0\;\Rightarrow\;\text{local min},\;f=-2$$</div>
+      <div class="math">$$\text{At }(-1,1):\;H=128>0,\;f_{xx}=12>0\;\Rightarrow\;\text{local min},\;f=-2$$</div>
+    </div>
+
+    <div class="answer">
+      Local minima at $(1,-1)$ and $(-1,1)$, both with $f=-2$. Saddle point at $(0,0)$ with $f=0$. No local maxima.
+    </div>
+  </div>
+
+  <!-- ============== T3 Q8 ============== -->
+  <div class="problem" id="t3q8">
+    <div class="q-header">
+      <span class="q-num">Problem 8</span>
+      <span class="q-topic">§13.8 — Lagrange multipliers, two constraints</span>
+    </div>
+    <div class="q-text">
+      The function $f(x,y,z)=x^2+2y-z^2$ has a single global extremum — a global maximum — when subject to the constraints $6x-y=0$ and $y+z=0$. Use Lagrange multipliers to find it.
+    </div>
+
+    <div class="sol-label">Solution</div>
+
+    <div class="step">
+      <span class="step-tag">Step 1.</span> Set up $\nabla f=\lambda\nabla g_1+\mu\nabla g_2$.
+      <div class="math">$$\nabla f=\langle 2x,2,-2z\rangle,\quad\nabla g_1=\langle 6,-1,0\rangle,\quad\nabla g_2=\langle 0,1,1\rangle$$</div>
+      <div class="math">$$\begin{cases}2x=6\lambda\\ 2=-\lambda+\mu\\ -2z=\mu\\ 6x-y=0\\ y+z=0\end{cases}$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 2.</span> Reduce. From the constraints, $y=6x$ and $z=-y=-6x$. From the gradient equations, $\lambda=x/3$ and $\mu=-2z=12x$. Plug into $2=-\lambda+\mu$:
+      <div class="math">$$2=-\tfrac{x}{3}+12x=\tfrac{-x+36x}{3}=\tfrac{35x}{3}\;\Rightarrow\;x=\tfrac{6}{35}$$</div>
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 3.</span> Back-solve.
+      <div class="math">$$x=\tfrac{6}{35},\quad y=6x=\tfrac{36}{35},\quad z=-6x=-\tfrac{36}{35}$$</div>
+      Sanity check: $\lambda=\tfrac{2}{35},\;\mu=\tfrac{72}{35}$, and $-\lambda+\mu=\tfrac{70}{35}=2$ ✓.
+    </div>
+
+    <div class="step">
+      <span class="step-tag">Step 4.</span> Function value.
+      <div class="math">$$f=\Big(\tfrac{6}{35}\Big)^2+2\Big(\tfrac{36}{35}\Big)-\Big(-\tfrac{36}{35}\Big)^2=\tfrac{36+2520-1296}{1225}=\tfrac{1260}{1225}=\tfrac{36}{35}$$</div>
+    </div>
+
+    <div class="answer">
+      Global maximum at $\Big(\tfrac{6}{35},\,\tfrac{36}{35},\,-\tfrac{36}{35}\Big)$ with $f=\dfrac{36}{35}\approx 1.029$.
+    </div>
+  </div>
+
+</section>
+
+</div><!-- /#tab-test3 -->
+
+</main>
+
+<footer>
+  Compiled from MAT 262 lecture notes (Dr. Pfeffer) — sections 11.1 through 15.4.
+</footer>
+
+<script>
+  // Theme switching with localStorage persistence
+  function setTheme(name) {
+    if (!name || name === 'default') {
+      document.documentElement.removeAttribute('data-theme');
+    } else {
+      document.documentElement.setAttribute('data-theme', name);
+    }
+    document.querySelectorAll('.theme-toggle button').forEach(btn => {
+      btn.classList.toggle('active', (btn.dataset.theme || 'default') === (name || 'default'));
+    });
+    try { localStorage.setItem('theme', name || 'default'); } catch(e) {}
+  }
+  document.querySelectorAll('.theme-toggle button').forEach(btn => {
+    btn.addEventListener('click', () => setTheme(btn.dataset.theme));
+  });
+  (function loadSavedTheme() {
+    let saved = 'default';
+    try { saved = localStorage.getItem('theme') || 'default'; } catch(e) {}
+    setTheme(saved);
+  })();
+
+  // Tab switching
+  function switchTab(tabId) {
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.tab === tabId);
+    });
+    document.querySelectorAll('.tabpanel').forEach(panel => {
+      panel.classList.toggle('active', panel.id === tabId);
+    });
+    // Trigger MathJax re-typeset for the newly visible content
+    if (window.MathJax && window.MathJax.typesetPromise) {
+      window.MathJax.typesetPromise();
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+  });
+
+  // Open the section if linked via hash, e.g. #s13-7
+  // Or jump to a Test problem (auto-switching to the right tab)
+  if (window.location.hash) {
+    const hash = window.location.hash;
+    const target = document.querySelector(hash);
+    if (target) {
+      if (target.tagName === 'DETAILS') {
+        target.open = true;
+      } else if (hash.match(/^#t3q\d+$/)) {
+        switchTab('tab-test3');
+      } else if (hash.match(/^#t2q\d+$/)) {
+        switchTab('tab-test2');
+      } else if (hash.match(/^#q\d+$/)) {
+        switchTab('tab-test1');
+      }
+    }
+  }
+</script>
+
+</body>
+</html>

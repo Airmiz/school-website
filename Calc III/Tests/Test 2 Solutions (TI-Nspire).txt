@@ -1,0 +1,454 @@
+================================================
+  MAT 262 -- Test 2 Worked Solutions
+  Calc III, Dr. Pfeffer
+  (Chapter 12 -- vector-valued functions)
+================================================
+
+------------------------------------------------
+PROBLEM 1   (Sec 12.1 -- velocity & accel)
+------------------------------------------------
+r(t) = <5sin(t), 5cos(t)>
+(traces x^2 + y^2 = 25 clockwise)
+
+Find v and a at t = pi/3.
+
+Step 1. Differentiate component-wise.
+   v(t) = r'(t)
+        = <5cos(t), -5sin(t)>
+   a(t) = v'(t) = r''(t)
+        = <-5sin(t), -5cos(t)>
+
+Step 2. Evaluate at t = pi/3.
+   cos(pi/3) = 1/2
+   sin(pi/3) = sqrt(3)/2
+
+   v(pi/3) = <5*(1/2), -5*sqrt(3)/2>
+           = <5/2, -5sqrt(3)/2>
+
+   a(pi/3) = <-5*sqrt(3)/2, -5*(1/2)>
+           = <-5sqrt(3)/2, -5/2>
+
+Step 3. Position at t = pi/3:
+   r(pi/3) = <5sqrt(3)/2, 5/2>
+
+ANSWER:
+   v(pi/3) = <5/2, -5sqrt(3)/2>
+   a(pi/3) = <-5sqrt(3)/2, -5/2>
+
+(Graph: circle radius 5;
+ mark point (5sqrt(3)/2, 5/2);
+ v tangent, pointing CW;
+ a points inward toward origin.)
+
+
+------------------------------------------------
+PROBLEM 2   (Sec 12.1 -- tangent line)
+------------------------------------------------
+r(t) = <t*sin(t*pi),
+        ln(7/(2t-1)) + t^2,
+        cos(-t*pi)>
+
+Find parametric eq. of tangent line at t = 4.
+
+Step 1. Compute r(4).
+   x(4) = 4*sin(4pi) = 4*0 = 0
+   y(4) = ln(7/(8-1)) + 16
+        = ln(7/7) + 16
+        = 0 + 16 = 16
+   z(4) = cos(-4pi) = cos(4pi) = 1
+
+   r(4) = (0, 16, 1)   <- the point
+
+Step 2. Compute r'(t).
+   x'(t) = d/dt[t*sin(t*pi)]
+         (product rule)
+         = sin(t*pi) + t*pi*cos(t*pi)
+
+   y'(t) = d/dt[ln(7) - ln(2t-1) + t^2]
+         = -2/(2t-1) + 2t
+
+   z(t) = cos(-t*pi) = cos(t*pi) (cos is even)
+   z'(t) = -pi*sin(t*pi)
+
+Step 3. Evaluate r'(4).
+   x'(4) = sin(4pi) + 4pi*cos(4pi)
+         = 0 + 4pi*(1)
+         = 4pi
+   y'(4) = -2/(8-1) + 8
+         = -2/7 + 56/7
+         = 54/7
+   z'(4) = -pi*sin(4pi) = 0
+
+   v(4) = <4pi, 54/7, 0>
+
+Step 4. Parametric tangent line through
+(0,16,1) with direction <4pi, 54/7, 0>.
+
+ANSWER:
+   x(s) = 4pi*s
+   y(s) = (54/7)*s + 16
+   z(s) = 1
+   -inf < s < inf
+
+
+------------------------------------------------
+PROBLEM 3   (Sec 12.2 -- IVP for r(t))
+------------------------------------------------
+dr/dt = <(9/2)(t+1)^(1/2),
+         3*e^(-t),
+         1/(t+1)>
+with r(0) = <0, 0, 1>.
+
+Integrate component-wise, then use IC.
+
+Step 1. Component 1:
+   integral of (9/2)(t+1)^(1/2) dt
+   u = t+1,  du = dt
+   = (9/2) * (2/3)*(t+1)^(3/2) + C1
+   = 3*(t+1)^(3/2) + C1
+
+   IC: r1(0) = 0
+   3*(1)^(3/2) + C1 = 0
+   3 + C1 = 0  ->  C1 = -3
+   x(t) = 3(t+1)^(3/2) - 3
+
+Step 2. Component 2:
+   integral of 3*e^(-t) dt
+   = -3*e^(-t) + C2
+
+   IC: r2(0) = 0
+   -3*e^0 + C2 = 0
+   -3 + C2 = 0  ->  C2 = 3
+   y(t) = -3*e^(-t) + 3
+
+Step 3. Component 3:
+   integral of 1/(t+1) dt
+   = ln|t+1| + C3
+   (for t >= 0, |t+1| = t+1)
+
+   IC: r3(0) = 1
+   ln(1) + C3 = 1
+   0 + C3 = 1  ->  C3 = 1
+   z(t) = ln(t+1) + 1
+
+ANSWER:
+   r(t) = <3(t+1)^(3/2) - 3,
+            -3e^(-t) + 3,
+            ln(t+1) + 1>
+
+
+------------------------------------------------
+PROBLEM 4   (Sec 12.2 -- projectile motion)
+------------------------------------------------
+Tennis player serves return:
+- 3 ft from back edge
+- v0 = 40 ft/sec
+- launch angle 30 deg
+- ball launched 4 ft above ground
+- g = 32 ft/sec^2
+
+(i) Vector r(t) for ball position
+relative to back edge of court.
+
+   r(t) = <3 + 40cos(30deg)*t,
+            4 + 40sin(30deg)*t - 16*t^2>
+
+   Using cos(30) = sqrt(3)/2,
+         sin(30) = 1/2:
+
+   r(t) = <3 + 20sqrt(3)*t,
+            4 + 20t - 16t^2>
+
+
+(ii) Flight time and range.
+
+Time: solve y(t) = 0.
+   4 + 20t - 16t^2 = 0
+   16t^2 - 20t - 4 = 0
+   4t^2 - 5t - 1 = 0    (divide by 4)
+
+Quadratic formula:
+   t = (5 +/- sqrt(25 + 16)) / 8
+     = (5 +/- sqrt(41)) / 8
+
+   sqrt(41) ~ 6.4031
+   t = (5 + 6.4031)/8 ~ 1.4254 sec
+   t = (5 - 6.4031)/8 ~ -0.1754 sec  (reject)
+
+   Flight time ~ 1.425 sec
+
+Range (x-coordinate at landing):
+   R = 3 + 20*sqrt(3)*(1.425)
+     = 3 + 34.641*(1.425)
+     = 3 + 49.36
+     ~ 52.4 ft
+
+   (using t = 1.42: R ~ 52.2 ft)
+
+
+(iii) Standard tennis court is 78 ft.
+Does the shot land in bounds?
+
+   R ~ 52 ft  <  78 ft
+
+ANSWER:  Yes, the return lands in bounds.
+
+
+------------------------------------------------
+PROBLEM 5   (Sec 12.3, 12.4 -- arclength,
+            unit tangent, normal, curvature)
+------------------------------------------------
+r(t) = <sin^3(t), cos^3(t), 0>
+
+(i) Arclength on 0 <= t <= pi/3.
+
+Step 1. v(t) = r'(t).
+   v(t) = <3sin^2(t)cos(t),
+            -3cos^2(t)sin(t),
+            0>
+
+Step 2. |v(t)|.
+   |v(t)|^2
+   = 9sin^4(t)cos^2(t)
+     + 9cos^4(t)sin^2(t)
+   = 9sin^2(t)cos^2(t)
+     * [sin^2(t) + cos^2(t)]
+   = 9sin^2(t)cos^2(t)
+
+   |v(t)| = 3|sin(t)cos(t)|
+          = 3sin(t)cos(t) on [0, pi/3]
+          (both factors nonneg here)
+
+   Or use sin(2t) = 2sin(t)cos(t):
+   |v(t)| = (3/2) sin(2t)
+
+Step 3. L = integral of |v(t)| dt
+            from 0 to pi/3.
+
+Use sub u = sin(t), du = cos(t) dt:
+   L = integral 3sin(t)cos(t) dt
+     = integral 3u du,
+       u from 0 to sin(pi/3) = sqrt(3)/2
+   = (3/2) u^2  | 0 to sqrt(3)/2
+   = (3/2)(3/4) - 0
+   = 9/8
+
+ANSWER (i):  L = 9/8
+
+
+(ii) Find T(t) and N(t).
+
+T(t) = v(t) / |v(t)|
+     = <3sin^2(t)cos(t), -3cos^2(t)sin(t), 0>
+       / [3sin(t)cos(t)]
+
+   T(t) = <sin(t), -cos(t), 0>
+
+T'(t) = <cos(t), sin(t), 0>
+|T'(t)| = sqrt(cos^2 + sin^2) = 1
+
+N(t) = T'(t) / |T'(t)|
+
+ANSWER (ii):
+   T(t) = <sin(t), -cos(t), 0>
+   N(t) = <cos(t),  sin(t), 0>
+
+
+(iii) Curvature kappa.
+
+   kappa = |T'(t)| / |v(t)|
+         = 1 / (3sin(t)cos(t))
+
+Or equivalently: 2/(3 sin(2t)).
+
+ANSWER (iii):
+   kappa = 1 / (3 sin(t) cos(t))
+         = 2 / (3 sin(2t))
+
+
+------------------------------------------------
+PROBLEM 7   (Sec 12.4 -- curvature in 3-space)
+------------------------------------------------
+NOTE: planar formula does NOT apply.
+For a space curve use:
+   kappa(t) = |r'(t) x r''(t)| / |r'(t)|^3
+
+r(t) = <2t, 3t^2, 4t^3>
+Find kappa at the point (4, 12, 32).
+
+Step 1. Find t at this point.
+   2t = 4  ->  t = 2
+   Check: 3(4) = 12 yes, 4(8) = 32 yes.
+
+Step 2. Compute r' and r'' at t = 2.
+   r'(t)  = <2, 6t, 12t^2>
+   r''(t) = <0, 6, 24t>
+
+   r'(2)  = <2, 12, 48>
+   r''(2) = <0,  6, 48>
+
+Step 3. Cross product r'(2) x r''(2).
+   |  i   j   k |
+   |  2  12  48 |
+   |  0   6  48 |
+
+   i: (12)(48) - (48)(6)
+        = 576 - 288 = 288
+   j: -[ (2)(48) - (48)(0) ]
+        = -(96 - 0) = -96
+   k: (2)(6) - (12)(0)
+        = 12 - 0 = 12
+
+   r'(2) x r''(2) = <288, -96, 12>
+
+Step 4. Magnitudes.
+   |r' x r''|^2 = 288^2 + 96^2 + 12^2
+                = 82944 + 9216 + 144
+                = 92304
+   |r' x r''| = sqrt(92304) = 12*sqrt(641)
+              ~ 303.81
+
+   |r'(2)|^2 = 4 + 144 + 2304 = 2452
+   |r'(2)|   = sqrt(2452) = 2*sqrt(613)
+              ~ 49.518
+   |r'(2)|^3 ~ 121,420
+
+Step 5. Curvature.
+   kappa = 303.81 / 121420
+         ~ 0.002502
+
+ANSWER:
+   kappa = 12*sqrt(641) / (2*sqrt(613))^3
+         = (12*sqrt(641)) / (4904*sqrt(613))
+         ~ 0.00250
+
+
+------------------------------------------------
+PROBLEM 8   (Sec 12.5 -- a = aT*T + aN*N
+            without finding T or N)
+------------------------------------------------
+r(t) = <6e^t * sin(t),
+        6e^t * sqrt(6),
+        6e^t * cos(t)>
+Write a in form aT*T + aN*N at t = 0.
+
+Step 1. Compute v(t) = r'(t).
+   d/dt[6e^t sin(t)]
+       = 6e^t sin(t) + 6e^t cos(t)
+       = 6e^t (sin(t) + cos(t))
+   d/dt[6e^t sqrt(6)] = 6e^t sqrt(6)
+   d/dt[6e^t cos(t)]
+       = 6e^t cos(t) - 6e^t sin(t)
+       = 6e^t (cos(t) - sin(t))
+
+   v(t) = <6e^t(sin t + cos t),
+            6e^t sqrt(6),
+            6e^t(cos t - sin t)>
+
+Step 2. Compute a(t) = v'(t).
+   d/dt[6e^t(sin+cos)]
+       = 6e^t(sin+cos) + 6e^t(cos-sin)
+       = 12e^t cos(t)
+   d/dt[6e^t sqrt(6)] = 6e^t sqrt(6)
+   d/dt[6e^t(cos-sin)]
+       = 6e^t(cos-sin) + 6e^t(-sin-cos)
+       = -12e^t sin(t)
+
+   a(t) = <12e^t cos(t),
+            6e^t sqrt(6),
+            -12e^t sin(t)>
+
+Step 3. Plug t = 0.
+   v(0) = <6(0+1), 6sqrt(6), 6(1-0)>
+        = <6, 6sqrt(6), 6>
+
+   a(0) = <12(1)(1), 6(1)sqrt(6), -12(1)(0)>
+        = <12, 6sqrt(6), 0>
+
+Step 4. Magnitude of v(0).
+   |v(0)|^2 = 36 + 216 + 36 = 288
+   |v(0)|   = sqrt(288) = 12*sqrt(2)
+
+Step 5. aT = (v . a) / |v|.
+   v(0) . a(0)
+     = (6)(12) + (6sqrt(6))(6sqrt(6)) + (6)(0)
+     = 72 + 216 + 0
+     = 288
+
+   aT = 288 / (12*sqrt(2))
+      = 24 / sqrt(2)
+      = 12*sqrt(2)
+
+Step 6. aN via Pythagorean shortcut.
+   |a(0)|^2 = 144 + 216 + 0 = 360
+   aN = sqrt( |a|^2 - aT^2 )
+      = sqrt( 360 - 288 )
+      = sqrt(72)
+      = 6*sqrt(2)
+
+ANSWER:
+   a(0) = 12*sqrt(2) * T  +  6*sqrt(2) * N
+
+   (i.e. aT = 12 sqrt(2),  aN = 6 sqrt(2))
+
+
+================================================
+QUICK FORMULA RECAP (Chapter 12)
+================================================
+
+Velocity, speed, acceleration:
+   v(t) = r'(t)
+   speed = |v(t)|
+   a(t) = v'(t) = r''(t)
+
+Tangent line at t0:
+   point = r(t0)
+   direction = r'(t0)
+   x(s) = x0 + r'(t0)_x * s, etc.
+
+Integrating r'(t):
+   integrate component by component,
+   apply r(t0) = ... to find each Ci.
+
+Projectile (from origin, angle alpha,
+           speed v0, gravity g):
+   r(t) = <v0 cos(a) t,
+           v0 sin(a) t - (1/2) g t^2>
+   shifted: add x0, y0 to components.
+   max height: dy/dt = 0
+   flight time: y(t) = 0
+   range: x at flight time
+
+Arclength:
+   L = integral of |v(t)| dt, a to b
+
+Unit tangent:
+   T(t) = v(t) / |v(t)|
+
+Principal unit normal:
+   N(t) = T'(t) / |T'(t)|
+
+Curvature:
+   space curve:
+     kappa = |r' x r''| / |r'|^3
+   plane y = f(x):
+     kappa = |f''| / (1 + (f')^2)^(3/2)
+   plane param <x(t), y(t)>:
+     kappa = |x' y'' - x'' y'|
+             / ((x')^2 + (y')^2)^(3/2)
+
+Acceleration in TNB frame:
+   a = aT*T + aN*N
+   aT = (v . a)/|v|        (= d|v|/dt)
+   aN = |v x a|/|v|
+      OR aN = sqrt(|a|^2 - aT^2)
+
+3x3 cofactor expansion (cross prod):
+   |i  j  k|
+   |a  b  c|  =
+   |d  e  f|
+   i(bf-ce) - j(af-cd) + k(ae-bd)
+
+================================================
+END
+================================================

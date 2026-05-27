@@ -1,0 +1,342 @@
+================================================
+  MAT 262 -- Test 1 Worked Solutions
+  Calc III, Dr. Pfeffer
+================================================
+
+------------------------------------------------
+PROBLEM 1   (Sec 11.1 -- sphere from general)
+------------------------------------------------
+Find the center c and radius r of:
+   x^2 + y^2 + z^2 - 6x + 2z = 0
+
+Step 1. Group x and z terms.
+   (x^2 - 6x) + y^2 + (z^2 + 2z) = 0
+
+Step 2. Complete the square.
+   x: half(-6) = -3, square = 9
+   z: half(+2) = +1, square = 1
+
+   (x^2 - 6x + 9) - 9
+       + y^2
+       + (z^2 + 2z + 1) - 1 = 0
+
+   (x - 3)^2 + y^2 + (z + 1)^2 = 10
+
+ANSWER:
+   Center: (3, 0, -1)
+   Radius: sqrt(10)
+
+
+------------------------------------------------
+PROBLEM 2   (Sec 11.5 -- angle between planes)
+------------------------------------------------
+M: 8x + 6y = -3
+N: 9x + 5y + 10z = -19
+
+Step 1. Read normals from coefficients
+(M has no z, so 3rd component = 0).
+   n1 = <8, 6, 0>
+   n2 = <9, 5, 10>
+
+Step 2. Dot product and magnitudes.
+   n1 . n2 = 72 + 30 + 0 = 102
+   |n1| = sqrt(64+36+0)  = sqrt(100) = 10
+   |n2| = sqrt(81+25+100) = sqrt(206)
+
+Step 3. Angle formula.
+   cos(theta) = 102 / (10*sqrt(206))
+              = 0.71060
+   theta = arccos(0.71060)
+
+ANSWER:
+   theta ~ 44.71 degrees
+
+
+------------------------------------------------
+PROBLEM 3   (Sec 11.5 -- line meets plane)
+------------------------------------------------
+Line:   x(t) = 1 + 6t
+        y(t) = 2 + 2t
+        z(t) = 1 + 5t
+Plane M:  x + y + z = -9
+
+Step 1. Substitute into plane.
+   (1+6t) + (2+2t) + (1+5t) = -9
+   4 + 13t = -9
+   13t = -13
+   t = -1
+
+Step 2. Plug t = -1 back in.
+   x(-1) = 1 + 6(-1) = -5
+   y(-1) = 2 + 2(-1) =  0
+   z(-1) = 1 + 5(-1) = -4
+
+ANSWER:
+   P = (-5, 0, -4)
+
+
+------------------------------------------------
+PROBLEM 4   (Sec 11.3 -- vector projection)
+------------------------------------------------
+v = <6, 3, -2>,   u = <3, 4, 0>
+Compute proj_v(u).
+
+Formula:
+   proj_v(u) = (u.v / |v|^2) * v
+
+Step 1. Dot product.
+   u.v = (3)(6) + (4)(3) + (0)(-2)
+       = 18 + 12 + 0
+       = 30
+
+Step 2. |v|^2 = 36 + 9 + 4 = 49
+
+Step 3. Plug in.
+   proj_v(u) = (30/49) * <6, 3, -2>
+
+ANSWER:
+   proj_v(u) = <180/49, 90/49, -60/49>
+
+
+------------------------------------------------
+PROBLEM 5   (Sec 11.5 -- point to plane)
+------------------------------------------------
+S = (4, -2, 4)
+M: x + 2y + 2z = 17
+
+Step 1. Pick a point P on the plane.
+Set y = z = 0 -> x = 17, so P = (17, 0, 0).
+
+Step 2. Form PS = S - P  and read normal.
+   PS = <4-17, -2-0, 4-0> = <-13, -2, 4>
+   n = <1, 2, 2>
+   |n| = sqrt(1+4+4) = 3
+
+Step 3. Distance formula.
+   d = |PS . n| / |n|
+   PS . n = (-13)(1) + (-2)(2) + (4)(2)
+          = -13 - 4 + 8
+          = -9
+   d = |-9| / 3 = 9/3
+
+ANSWER:
+   d = 3
+
+
+------------------------------------------------
+PROBLEM 6   (Sec 11.4 -- triangle area)
+------------------------------------------------
+P(1,3,-2),  Q(-1,2,0),  R(-1,5,-1)
+Find area of triangle PQR.
+
+Step 1. Two edges from P.
+   u = PQ = <-2, -1, 2>
+   v = PR = <-2,  2, 1>
+
+Step 2. Cross product u x v.
+   |  i   j   k |
+   | -2  -1   2 |
+   | -2   2   1 |
+
+   i: (-1)(1) - (2)(2)  = -1 - 4 = -5
+   j: -[(-2)(1) - (2)(-2)] = -(-2+4) = -2
+   k: (-2)(2) - (-1)(-2) = -4 - 2 = -6
+
+   u x v = <-5, -2, -6>
+
+Step 3. Magnitude.
+   |u x v| = sqrt(25 + 4 + 36) = sqrt(65)
+
+Step 4. Area = (1/2)|u x v|
+
+ANSWER:
+   A = sqrt(65) / 2  ~  4.03
+
+
+------------------------------------------------
+PROBLEM 7   (Sec 11.4 -- parallelepiped volume)
+------------------------------------------------
+u = <4, 1, 0>
+v = <2, -1, 2>
+w = <4, 0, 4>
+
+Step 1. Compute u x v.
+   |  i   j   k |
+   |  4   1   0 |
+   |  2  -1   2 |
+
+   i: (1)(2) - (0)(-1) = 2
+   j: -[(4)(2) - (0)(2)] = -8
+   k: (4)(-1) - (1)(2) = -4 - 2 = -6
+
+   u x v = <2, -8, -6>
+
+Step 2. Dot with w.
+   (u x v) . w = (2)(4) + (-8)(0) + (-6)(4)
+              = 8 + 0 - 24
+              = -16
+
+Step 3. Volume = |triple product|.
+
+ANSWER:
+   V = |-16| = 16
+
+
+------------------------------------------------
+PROBLEM 8   (Sec 11.5 -- point to line)
+------------------------------------------------
+S = (1, 3, -2)
+Line: x(t) = -1 - 2t
+      y(t) =  5 - t
+      z(t) = -1 + 2t
+
+Step 1. Point on line at t=0:
+   P = (-1, 5, -1)
+   Direction v = <-2, -1, 2>
+   |v| = sqrt(4+1+4) = 3
+
+Step 2. PS = S - P.
+   PS = <1-(-1), 3-5, -2-(-1)>
+      = <2, -2, -1>
+
+Step 3. Cross product PS x v.
+   |  i   j   k |
+   |  2  -2  -1 |
+   | -2  -1   2 |
+
+   i: (-2)(2) - (-1)(-1) = -4 - 1 = -5
+   j: -[(2)(2) - (-1)(-2)] = -(4-2) = -2
+   k: (2)(-1) - (-2)(-2) = -2 - 4 = -6
+
+   PS x v = <-5, -2, -6>
+   |PS x v| = sqrt(25 + 4 + 36) = sqrt(65)
+
+Step 4. Distance formula.
+   d = |PS x v| / |v| = sqrt(65) / 3
+
+ANSWER:
+   d = sqrt(65) / 3  ~  2.687
+
+
+------------------------------------------------
+PROBLEM 9  (Sec 11.5 -- two-plane intersection)
+------------------------------------------------
+M: x + 3y + 3z = -1
+N: x + 2y + 2z =  0
+
+Step 1. Direction of line = n1 x n2.
+   n1 = <1, 3, 3>
+   n2 = <1, 2, 2>
+
+   |  i   j   k |
+   |  1   3   3 |
+   |  1   2   2 |
+
+   i: (3)(2) - (3)(2) = 0
+   j: -[(1)(2) - (3)(1)] = -(-1) = 1
+   k: (1)(2) - (3)(1) = -1
+
+   v = <0, 1, -1>
+
+Step 2. Find a point on both planes.
+Set z = 0.
+   x + 3y = -1
+   x + 2y =  0   ->  x = -2y
+
+   Substitute: (-2y) + 3y = -1
+               y = -1
+               x = -2(-1) = 2
+
+   Point: (2, -1, 0)
+
+Step 3. Parametrize.
+
+ANSWER:
+   x(t) = 2
+   y(t) = -1 + t
+   z(t) = -t        (-inf < t < inf)
+
+
+------------------------------------------------
+PROBLEM 10  (Sec 11.6 -- match quadrics)
+------------------------------------------------
+Recognition cheat sheet:
+ - 2 squared terms = 1 squared term
+       -> CONE
+ - 1 linear term + 2 same-sign squared terms
+       -> PARABOLOID
+ - 1 linear term + opposite-sign squared
+       -> HYPERBOLIC PARABOLOID (saddle)
+ - sum of squares = 1
+       -> ELLIPSOID
+ - mixed signs = 1, ONE +squared term
+       -> HYPERBOLOID of TWO SHEETS
+ - mixed signs = 1, TWO +squared terms
+       -> HYPERBOLOID of ONE SHEET
+
+(a) 16y^2 + 49z^2 = x^2
+       (squared = squared form)
+    -> ELLIPTICAL CONE  (axis = x)
+
+(b) y^2 - x^2 = 4z
+       (saddle, opp signs = linear)
+    -> HYPERBOLIC PARABOLOID
+
+(c) -x^2/25 - y^2/16 = z
+       (two negative squares = linear)
+    -> ELLIPTICAL PARABOLOID
+       (opens downward)
+
+(d) z^2 - x^2 - y^2 = 64
+       Divide by 64:
+       z^2/64 - x^2/64 - y^2/64 = 1
+       (one positive squared term = 1)
+    -> HYPERBOLOID OF TWO SHEETS
+       (along z-axis)
+
+
+================================================
+QUICK FORMULA RECAP
+================================================
+
+Sphere from general form:
+   complete square in x, y, z
+
+Distance:
+   point P1 to P2:
+     d = sqrt((dx)^2+(dy)^2+(dz)^2)
+   point S to plane (n,P):
+     d = |PS . n| / |n|
+   point S to line (v,P):
+     d = |PS x v| / |v|
+
+Angle between planes:
+   cos(theta) = (n1.n2)/(|n1||n2|)
+
+Line meets plane:
+   sub parametric x,y,z into plane,
+   solve for t, plug back.
+
+Two planes intersect:
+   direction = n1 x n2
+   pick z=0 (or x=0, y=0)
+   solve 2x2 system for the point.
+
+Vector projection:
+   proj_v(u) = (u.v / |v|^2) * v
+
+Triangle area (vertices P,Q,R):
+   (1/2) |PQ x PR|
+
+Parallelepiped volume:
+   |(u x v) . w|
+
+3x3 determinant (cross product layout):
+   |i  j  k|
+   |a  b  c|  =
+   |d  e  f|
+   i(bf - ce) - j(af - cd) + k(ae - bd)
+
+================================================
+END
+================================================
