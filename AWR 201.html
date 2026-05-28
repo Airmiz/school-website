@@ -4,6 +4,31 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AWR 201</title>
+<!-- ===COWORK_SITE_PATCH_v1=== -->
+<script>
+  // Cowork: unified theme — runs early to avoid flash
+  (function(){
+    var KEY='site-theme', OLD=['theme','awr201-theme'];
+    var v=null;
+    try{v=localStorage.getItem(KEY);}catch(e){}
+    if(!v){
+      for(var i=0;i<OLD.length;i++){
+        try{var x=localStorage.getItem(OLD[i]); if(x){v=x;break;}}catch(e){}
+      }
+    }
+    if(!v) v='dark';
+    try{
+      localStorage.setItem(KEY,v);
+      localStorage.setItem('theme',v);
+      localStorage.setItem('awr201-theme',v);
+    }catch(e){}
+    if(v==='default'){
+      document.documentElement.removeAttribute('data-theme');
+    } else {
+      document.documentElement.setAttribute('data-theme',v);
+    }
+  })();
+</script>
 <script>
   MathJax = {
     tex: {
@@ -279,8 +304,103 @@
     margin-top: 40px;
   }
 </style>
+<style>
+  /* ---- Dark-mode visibility fixes ---- */
+  [data-theme="dark"] .note { color: var(--ink) !important; }
+  [data-theme="dark"] .example { background: var(--paper) !important; }
+  [data-theme="dark"] .example .ex-question { color: var(--ink) !important; }
+  [data-theme="dark"] .problem .q-text { color: var(--ink) !important; }
+  [data-theme="dark"] .problem .step-bg,
+  [data-theme="dark"] [style*="background: #fafafa"],
+  [data-theme="dark"] [style*="background:#fafafa"] { background: var(--paper) !important; }
+
+  /* MathJax inherits color in dark mode */
+  [data-theme="dark"] mjx-container,
+  [data-theme="dark"] mjx-container[jax],
+  [data-theme="dark"] mjx-container *,
+  [data-theme="dark"] .MathJax,
+  [data-theme="dark"] .MathJax * { color: var(--ink) !important; }
+  [data-theme="dark"] mjx-container svg text,
+  [data-theme="dark"] mjx-container svg g,
+  [data-theme="dark"] mjx-container svg path { fill: currentColor !important; }
+  [data-theme="dark"] mjx-container svg rect[fill="black"],
+  [data-theme="dark"] mjx-container svg line[stroke="black"] { fill: currentColor !important; stroke: currentColor !important; }
+
+  /* Inline tables in dark mode */
+  [data-theme="dark"] table.tracker tbody tr:hover { background: var(--accent-soft); color: var(--ink); }
+  [data-theme="dark"] .status.todo { background: #4a3a17; color: #f0c97c; }
+  [data-theme="dark"] .status.doing { background: #1c3a55; color: #9cc7ec; }
+  [data-theme="dark"] .status.done { background: #1f3a1f; color: #9bd095; }
+
+  /* Smooth UX: focus rings + scroll padding so anchor links don't sit under home button */
+  html { scroll-padding-top: 70px; }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* ---- Floating Home link ---- */
+  .home-link {
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    color: var(--accent);
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 0.86rem;
+    font-weight: 600;
+    box-shadow: var(--shadow);
+    z-index: 100;
+    transition: background 0.12s, color 0.12s, transform 0.12s, border-color 0.12s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .home-link:hover {
+    background: var(--accent);
+    color: var(--paper);
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+  .home-link::before { content: "\2190"; font-size: 1rem; line-height: 1; }
+  @media (max-width: 600px) {
+    .home-link { top: 8px; left: 8px; padding: 6px 10px; font-size: 0.78rem; }
+  }
+
+  /* ---- Back-to-top button (appears after scroll) ---- */
+  .to-top {
+    position: fixed;
+    bottom: 18px;
+    right: 18px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--paper);
+    color: var(--accent);
+    border: 1px solid var(--rule);
+    box-shadow: var(--shadow);
+    font-size: 1.1rem;
+    cursor: pointer;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s, transform 0.12s, background 0.12s, color 0.12s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+  }
+  .to-top.visible { opacity: 1; pointer-events: auto; }
+  .to-top:hover { background: var(--accent); color: var(--paper); border-color: var(--accent); transform: translateY(-2px); }
+</style>
 </head>
 <body>
+<a href="index.html" class="home-link" title="Back to home">Home</a>
 
 <header>
   <h1>AWR 201 &mdash; Writing and Research</h1>
@@ -305,8 +425,6 @@
     <ul>
       <li><a href="#overview">Course Overview</a></li>
       <li><a href="#assignments">Assignments</a></li>
-      <li><a href="#process-work-1">Process Work 1</a></li>
-      <li><a href="#process-work-2">Process Work 2</a></li>
       <li><a href="#calendar">Course Calendar</a></li>
       <li><a href="#resources">Resources</a></li>
     </ul>
@@ -427,8 +545,8 @@
         <table class="tracker">
           <thead><tr><th>Item</th><th>Due</th><th>Status</th></tr></thead>
           <tbody>
-            <tr><td><a class="file-link" href="#process-work-1">PW 1 &mdash; CoR Ch. 1 + Wilkerson</a> &nbsp;<a class="file-link" href="AWR%20201/Assignments/Process%20Work%201.pdf">[PDF]</a></td><td>Tue, May 26</td><td><span class="status done">Done</span></td></tr>
-            <tr><td><a class="file-link" href="#process-work-2">PW 2 &mdash; Brainstorming Research Activity</a> &nbsp;<a class="file-link" href="AWR%20201/Assignments/Process%20Work%202.pdf">[PDF]</a></td><td>Wed, May 27</td><td><span class="status done">Done</span></td></tr>
+            <tr><td><a class="file-link" href="AWR%20201/Process%20Work%201.html">PW 1 &mdash; CoR Ch. 1 + Wilkerson</a> &nbsp;<a class="file-link" href="AWR%20201/Assignments/Process%20Work%201.pdf">[PDF]</a></td><td>Tue, May 26</td><td><span class="status done">Done</span></td></tr>
+            <tr><td><a class="file-link" href="AWR%20201/Process%20Work%202.html">PW 2 &mdash; Brainstorming Research Activity</a> &nbsp;<a class="file-link" href="AWR%20201/Assignments/Process%20Work%202.pdf">[PDF]</a></td><td>Wed, May 27</td><td><span class="status done">Done</span></td></tr>
             <tr><td>PW &mdash; Research Proposal Draft</td><td>Fri, May 29</td><td><span class="status todo">To do</span></td></tr>
             <tr><td>PW &mdash; Revision Plan</td><td>Mon, Jun 1</td><td><span class="status todo">To do</span></td></tr>
             <tr style="background:var(--accent-soft);"><td><strong>Major #1 &mdash; Research Proposal</strong></td><td><strong>Mon, Jun 2</strong></td><td><span class="status todo">To do</span></td></tr>
@@ -490,242 +608,8 @@
     </div>
   </section>
 
-  <section class="chapter" id="process-work-1">
-    <h2><span class="ch-num">3</span>Process Work 1</h2>
-
-    <details class="section" open>
-      <summary>Prompt</summary>
-      <div class="sec-body">
-        <p><strong>Course:</strong> AWR 201 &middot; <strong>Instructor:</strong> Dr. Nadarajah</p>
-        <p>
-          Read
-          <a class="file-link" href="https://www.edweek.org/teaching-learning/opinion-i-dont-have-to-love-my-students-to-be-a-good-teacher/2022/03" target="_blank" rel="noopener">
-            &ldquo;I Don't Have to Love My Students to Be a Good Teacher&rdquo;
-          </a>
-          by Jherine Wilkerson and Chapter 1 from <em>The Craft of Research</em>, then respond to the prompts below.
-        </p>
-        <ol>
-          <li>What central question is Wilkerson responding to, and how effectively does she answer it? Use one specific example.</li>
-          <li>What &ldquo;problem&rdquo; does Wilkerson identify about the labor expectation of teachers, and why might it matter to educators?</li>
-          <li>List two topics you'd consider researching in each category: College, Social Media/Pop Culture, Sports, Workforce/Labor.</li>
-        </ol>
-        <p><a class="file-link" href="AWR%20201/Assignments/Process%20Work%201.pdf">Open the submitted PDF &rarr;</a></p>
-      </div>
-    </details>
-
-    <details class="section" open>
-      <summary>1. Wilkerson's central question</summary>
-      <div class="sec-body">
-        <p>
-          The central question Wilkerson is responding to is, is it the teacher's job to love the kids,
-          is it okay to just do our job. Responding to her principle &ldquo;'I want you to love your work
-          and love the kids.' Why do I need to do anything other than what I am contractually obligated
-          to do.&rdquo; I would say that she does a very good job of explaining her position and gives
-          very good examples. One thing I would say though is she leaves out in my opinion the biggest
-          contributor to her discussion that is age. She is an elementary school teacher &mdash; the
-          overall opinion is if you teach young kids, you must love the kids and your job. This stigma
-          decreases as the students increase in age, and she does not talk about this. For example,
-          where she says &ldquo;My doctor doesn't love me, nor do my dentist or my therapist&rdquo; &mdash;
-          of course you're a grown person, but when you're a kid that stigma changes.
-        </p>
-      </div>
-    </details>
-
-    <details class="section" open>
-      <summary>2. The labor-expectation problem</summary>
-      <div class="sec-body">
-        <p>
-          She addresses the problem that teachers must go above and beyond their job description to be
-          considered good teachers &mdash; teachers are pressured into unpaid hours, emotional
-          overextension, and a broken personal life. She says this is excused for teachers if you love
-          the kids. She addresses a topic that has such stigma that it is not talked about. By writing
-          this she is opening a discussion that allows other teachers to think about it and share their
-          opinions.
-        </p>
-      </div>
-    </details>
-
-    <details class="section" open>
-      <summary>3. Research topic ideas</summary>
-      <div class="sec-body">
-        <p><strong>College</strong></p>
-        <ul>
-          <li>Development of drug abuse</li>
-          <li>Peer pressure related to drugs</li>
-        </ul>
-        <p><strong>Social Media / Pop Culture</strong></p>
-        <ul>
-          <li>Glamorization of drug abuse</li>
-          <li>How social media starts or influences addiction</li>
-        </ul>
-        <p><strong>Sports</strong></p>
-        <ul>
-          <li>Drug use in sports</li>
-          <li>CTE</li>
-        </ul>
-        <p><strong>Workforce / Labor</strong></p>
-        <ul>
-          <li>Drugs in the workplace</li>
-          <li>AI</li>
-        </ul>
-        <div class="note">Common thread across these picks: <strong>drug use &amp; addiction</strong> in different contexts &mdash; a strong jumping-off point for a research question.</div>
-      </div>
-    </details>
-  </section>
-
-  <section class="chapter" id="process-work-2">
-    <h2><span class="ch-num">4</span>Process Work 2 &mdash; Brainstorming Research Activity</h2>
-
-    <details class="section" open>
-      <summary>Prompt</summary>
-      <div class="sec-body">
-        <p>
-          Pick two specified topics from the brainstorming freewrite. For each, answer seven prompts:
-          (1) personal interest, (2) why it matters now, (3) questions to investigate, (4) who is most impacted,
-          (5) viewpoints/perspectives, (6) keywords, (7) one primary source with a 2&ndash;3 sentence summary.
-        </p>
-        <p><a class="file-link" href="AWR%20201/Assignments/Process%20Work%202.pdf">Open the submitted PDF &rarr;</a></p>
-      </div>
-    </details>
-
-    <details class="section" open>
-      <summary>Topic 1 &mdash; Treatment of alcoholism (medical &amp; psychological)</summary>
-      <div class="sec-body">
-
-        <p><strong>1. What interests me</strong></p>
-        <p>
-          I'm very interested in the treatment and cause of addiction. My major is biochemistry, and
-          I'm looking toward jobs/research in addiction.
-        </p>
-
-        <p><strong>2. Why it matters now</strong></p>
-        <p>
-          Alcoholism &mdash; alcohol use disorder (AUD) &mdash; affects roughly 29 million Americans
-          and 209 million people globally. U.S. alcohol-related deaths run around 178,000 per year, yet
-          only about 7% of people with AUD receive any treatment in a given year. The first-year relapse
-          rate is roughly 40&ndash;60% (needs further verification). FDA-approved medications like
-          naltrexone and acamprosate exist but are dramatically underprescribed, while peer-support
-          models like AA remain the cultural default despite mixed evidence on their effectiveness. The
-          gap between what the science supports and what patients actually receive is actively debated
-          in addiction medicine.
-        </p>
-
-        <p><strong>3. Questions to investigate</strong></p>
-        <ul>
-          <li>Does combining pharmacological treatment with cognitive-behavioral therapy produce better long-term abstinence outcomes than either approach alone?</li>
-          <li>Why are FDA-approved AUD medications (naltrexone, acamprosate, disulfiram) so underprescribed by primary-care physicians?</li>
-          <li>How do the neurological changes from chronic alcohol use shape relapse risk even after extended abstinence &mdash; why does AUD behave as a chronic relapsing condition?</li>
-          <li>Do harm-reduction approaches (controlled drinking) produce better outcomes for certain patient subgroups than abstinence-only approaches?</li>
-        </ul>
-
-        <p><strong>4. Who is most impacted</strong></p>
-        <p>
-          Most directly, the 29 million U.S. adults with AUD and their families &mdash; but the impact
-          is unevenly distributed. Men die of alcohol-related causes at roughly 2&ndash;3&times; the rate
-          of women, though the gap is narrowing as women's drinking rises. Native American and Alaska
-          Native populations face the highest alcohol-related mortality of any U.S. demographic group.
-          Adults aged 45&ndash;74 carry the heaviest mortality. Beyond the patients themselves, the topic
-          affects healthcare systems (alcohol is a leading cause of preventable ER visits and liver
-          transplants), employers, the criminal justice system, and children of parents with AUD, who
-          face elevated risk of developing AUD themselves.
-        </p>
-
-        <p><strong>5. Viewpoints &amp; perspectives</strong></p>
-        <ul>
-          <li><em>Disease model vs. behavioral/choice model</em> &mdash; Is addiction a chronic brain disease or a learned behavior responsive to incentives and environment?</li>
-          <li><em>Abstinence-only vs. harm reduction</em> &mdash; AA and most U.S. treatment centers require total abstinence; European models accept moderation (e.g. methadone for opioid users).</li>
-          <li><em>Medication vs. psychosocial treatment</em> &mdash; Should pharmacology be first-line, or are behavioral interventions sufficient for most patients?</li>
-          <li><em>12-step vs. evidence-based approaches</em> &mdash; AA is the most accessible support system but has historically resisted clinical evaluation. Researchers argue its dominance has crowded out better-supported methods.</li>
-        </ul>
-
-        <p><strong>6. Keywords</strong></p>
-        <p>
-          <em>General topic:</em> Addiction Treatment<br>
-          <em>Specified research topic:</em> Medical and psychological treatment of alcohol use disorder<br>
-          <em>Keywords:</em> alcoholism; alcohol use disorder; AUD; pharmacotherapy; cognitive-behavioral therapy; relapse prevention; Alcoholics Anonymous; AA
-        </p>
-
-        <p><strong>7. Primary source</strong></p>
-        <div class="note">
-          <p style="margin:0 0 6px;"><strong>Source:</strong> <a class="file-link" href="https://www.niaaa.nih.gov/publications/brochures-and-fact-sheets/treatment-alcohol-problems-finding-and-getting-help" target="_blank" rel="noopener">Treatment for Alcohol Problems: Finding and Getting Help &mdash; NIAAA / NIH</a></p>
-          <p style="margin:0;">
-            This NIAAA publication is a federal-government primary source that lays out current
-            evidence-based treatment options for AUD. It covers both medications and behavioral
-            approaches for treating AUD.
-          </p>
-        </div>
-      </div>
-    </details>
-
-    <details class="section" open>
-      <summary>Topic 2 &mdash; F1, sustainable fuels, and the future of the ICE</summary>
-      <div class="sec-body">
-
-        <p><strong>1. What interests me</strong></p>
-        <p>
-          I love watching F1 &mdash; the races, the drama. Recently there was a rule change to incorporate
-          more electricity into the cars and use 100% sustainable fuels. I want to know whether F1's
-          impact reaches outside racing and what that means for other car manufacturers.
-        </p>
-
-        <p><strong>2. Why it matters now</strong></p>
-        <p>
-          F1's 2026 regulations mandate 100% sustainable fuels and a roughly 50/50 split between
-          internal combustion and electric power. Formula 1 leadership has explicitly framed this as a
-          demonstration that ICE vehicles have a future &mdash; running directly against the EU's
-          planned 2035 ban on new ICE passenger-car sales, California's 2035 zero-emission mandate, and
-          similar policies in the UK, Norway, and parts of Asia.
-        </p>
-
-        <p><strong>3. Questions to investigate</strong></p>
-        <ul>
-          <li>Does F1's sustainable-fuel program produce fuels that are technically and economically viable for mass-market passenger cars?</li>
-          <li>Why have major automakers committed to F1's 2026 sustainable-fuel hybrid platform at the same time they're committing to all-EV roadmaps?</li>
-          <li>Has F1's historical role as a technology-transfer pipeline (disc brakes, hybrids, aerodynamics) continued into the sustainable-fuel era, or is the transfer mostly symbolic?</li>
-          <li>How does the lifecycle carbon footprint of F1-developed sustainable fuels compare with battery electric vehicles?</li>
-        </ul>
-
-        <p><strong>4. Who is most impacted</strong></p>
-        <p>
-          Most directly, everyone who drives a car or relies on cars for food, goods, transport, or
-          enjoyment &mdash; essentially everyone. Roughly 1.4 billion passenger vehicles are on the
-          road globally, almost all using internal combustion. If sustainable fuels prove viable, those
-          vehicles could potentially be decarbonized without replacement; if not, they'll need to be
-          phased out and replaced. The impact also spreads to automakers, oil and energy companies, and
-          anyone whose modern life depends on cars and engines. Cars are just one step toward a
-          sustainable economy.
-        </p>
-
-        <p><strong>5. Viewpoints &amp; perspectives</strong></p>
-        <ul>
-          <li><em>Sustainable fuels as a legitimate parallel path</em> &mdash; the e-fuel industry argues e-fuels can decarbonize the existing fleet faster than replacing it, since you can't replace 1.4 billion cars in a decade.</li>
-          <li><em>The motorsport-relevance perspective</em> &mdash; some argue F1's fuel work is genuinely transferable to road use; others say the 2026 regulations are about preserving the sport's identity, not advancing road tech.</li>
-          <li><em>Sustainable fuels as industry delay</em> &mdash; environmental groups argue synthetic fuels are too expensive, too energy-inefficient, and primarily serve to extend ICE manufacturers' and oil companies' relevance past the point where electrification is ready.</li>
-          <li><em>The thermodynamic critique</em> &mdash; engineers argue that using renewable electricity to make synthetic fuels and then burning them at ~30% efficiency is dramatically worse than putting that same electricity directly into a battery at ~80% efficiency.</li>
-          <li><em>The grid counter</em> &mdash; the argument that battery manufacturing's mineral demands (lithium, cobalt, nickel), regional grid carbon intensity, and infrastructure constraints make EVs less clean than the headline numbers suggest.</li>
-        </ul>
-
-        <p><strong>6. Keywords</strong></p>
-        <p>
-          <em>General topic:</em> Cars<br>
-          <em>Specified research topic:</em> F1's sustainable-fuels program and the future of the internal combustion engine<br>
-          <em>Keywords:</em> Formula 1; sustainable fuels; e-fuels; synthetic fuels; 2026 regulations; internal combustion engine; ICE ban; electrification
-        </p>
-
-        <p><strong>7. Primary source</strong></p>
-        <div class="note">
-          <p style="margin:0 0 6px;"><strong>Source:</strong> <a class="file-link" href="https://www.formula1.com/en/latest/article/explained-2026-power-unit-regulations-fia.68izKQ2tn1voQPWvgLVMXN" target="_blank" rel="noopener">"2026 F1 power unit regulations explained: More electrical power, more overtaking aids and more sustainable" &mdash; Formula 1</a></p>
-          <p style="margin:0;">
-            Published directly by F1, the article explains why F1 is moving to 100% sustainable fuel and
-            frames the decision as deliberately road-relevant.
-          </p>
-        </div>
-      </div>
-    </details>
-  </section>
-
   <section class="chapter" id="calendar">
-    <h2><span class="ch-num">5</span>Course Calendar</h2>
+    <h2><span class="ch-num">3</span>Course Calendar</h2>
 
     <details class="section" open>
       <summary>Key dates</summary>
@@ -833,7 +717,7 @@
   </section>
 
   <section class="chapter" id="resources">
-    <h2><span class="ch-num">6</span>Resources</h2>
+    <h2><span class="ch-num">4</span>Resources</h2>
 
     <details class="section">
       <summary>Required materials</summary>
@@ -886,5 +770,45 @@
   })();
 </script>
 
+<script>
+  // Cowork: site-theme write-through + back-to-top
+  (function(){
+    var KEY='site-theme';
+    function syncButtons(theme){
+      document.querySelectorAll('[data-theme-btn]').forEach(function(b){
+        b.classList.toggle('active', b.dataset.themeBtn===theme);
+      });
+      document.querySelectorAll('button[data-theme]').forEach(function(b){
+        b.classList.toggle('active', b.dataset.theme===theme);
+      });
+    }
+    // Sync UI to current theme on load
+    var current = document.documentElement.getAttribute('data-theme') || 'default';
+    syncButtons(current);
+
+    // Wrap existing setTheme so it ALSO writes to site-theme key
+    if (typeof window.setTheme === 'function'){
+      var orig = window.setTheme;
+      window.setTheme = function(n){
+        orig.call(this, n);
+        try { localStorage.setItem(KEY, n); } catch(e){}
+        syncButtons(n);
+      };
+    }
+
+    // Back-to-top button
+    var btn = document.createElement('button');
+    btn.className = 'to-top';
+    btn.setAttribute('aria-label', 'Back to top');
+    btn.innerHTML = '\u2191';
+    btn.onclick = function(){ window.scrollTo({top:0, behavior:'smooth'}); };
+    document.body.appendChild(btn);
+    function onScroll(){
+      if (window.scrollY > 400) btn.classList.add('visible');
+      else btn.classList.remove('visible');
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+  })();
+</script>
 </body>
 </html>

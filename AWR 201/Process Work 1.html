@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Process Work 1 — AWR 201</title>
+<!-- ===COWORK_SITE_PATCH_v1=== -->
+<script>
+  // Cowork: unified theme - runs early to avoid flash
+  (function(){
+    var KEY='site-theme', OLD=['theme','awr201-theme'];
+    var v=null;
+    try{v=localStorage.getItem(KEY);}catch(e){}
+    if(!v){ for(var i=0;i<OLD.length;i++){ try{var x=localStorage.getItem(OLD[i]); if(x){v=x;break;}}catch(e){} } }
+    if(!v) v='dark';
+    try{ localStorage.setItem(KEY,v); localStorage.setItem('theme',v); localStorage.setItem('awr201-theme',v); }catch(e){}
+    if(v==='default'){ document.documentElement.removeAttribute('data-theme'); }
+    else { document.documentElement.setAttribute('data-theme',v); }
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fdfcf8; --paper: #ffffff; --ink: #1a1a1a; --muted: #5b5b5b;
+    --rule: #d8d2c4; --accent: #2c5a7a; --accent-soft: #e6eef5;
+    --shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 14px rgba(0,0,0,0.06);
+  }
+  :root[data-theme="ut"] {
+    --bg: #fdfaf8; --paper: #ffffff; --ink: #1a1a1a; --muted: #5b5b5b;
+    --rule: #e0d5d3; --accent: #B22634; --accent-soft: #fae0e3;
+    --shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 14px rgba(178,38,52,0.08);
+  }
+  :root[data-theme="dark"] {
+    --bg: #15171c; --paper: #1f2228; --ink: #e8e8e6; --muted: #9098a4;
+    --rule: #2c2f36; --accent: #7ab0d8; --accent-soft: #1c2a38;
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.4);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "Iowan Old Style", "Palatino", Georgia, serif;
+    font-size: 17px; line-height: 1.55;
+  }
+  header {
+    background: linear-gradient(180deg, var(--paper) 0%, var(--bg) 100%);
+    border-bottom: 1px solid var(--rule); padding: 56px 24px 28px; text-align: center;
+  }
+  .breadcrumb {
+    font-size: 0.86rem; color: var(--muted); margin-bottom: 18px;
+    letter-spacing: 0.03em;
+  }
+  .breadcrumb a {
+    color: var(--accent); text-decoration: none;
+    border-bottom: 1px dotted transparent;
+  }
+  .breadcrumb a:hover { border-bottom-color: var(--accent); }
+  header h1 { margin: 0 0 4px 0; font-size: 2.1rem; letter-spacing: -0.01em; }
+  header .subtitle { color: var(--muted); font-style: italic; font-size: 1.05rem; }
+  main { max-width: 880px; margin: 0 auto; padding: 24px; }
+
+  details.section {
+    background: var(--paper); border: 1px solid var(--rule); border-radius: 6px;
+    margin-bottom: 14px; box-shadow: var(--shadow); overflow: hidden;
+  }
+  details.section[open] { border-color: var(--accent); }
+  details.section > summary {
+    cursor: pointer; padding: 14px 22px; list-style: none;
+    font-weight: 600; font-size: 1.05rem;
+    display: flex; align-items: baseline; gap: 10px;
+    user-select: none; transition: background 0.12s;
+  }
+  details.section > summary:hover { background: var(--accent-soft); }
+  details.section > summary::-webkit-details-marker { display: none; }
+  details.section > summary::before {
+    content: "▸"; color: var(--accent); font-size: 0.85rem;
+    transition: transform 0.18s ease; display: inline-block;
+  }
+  details.section[open] > summary::before { transform: rotate(90deg); }
+  .sec-body {
+    padding: 4px 28px 22px 28px; border-top: 1px solid var(--rule);
+  }
+  .sec-body p { margin: 12px 0; }
+  .sec-body ul { margin: 8px 0 8px 4px; padding-left: 22px; }
+  .sec-body li { margin: 4px 0; }
+  .note {
+    background: var(--accent-soft); border-left: 3px solid var(--accent);
+    padding: 10px 14px; border-radius: 0 4px 4px 0;
+    margin: 14px 0; font-size: 0.95rem;
+  }
+  [data-theme="dark"] .note { color: var(--ink); }
+
+  a.file-link {
+    color: var(--accent); text-decoration: none;
+    border-bottom: 1px dotted var(--accent);
+  }
+  a.file-link:hover { border-bottom-style: solid; }
+
+  /* Floating back nav */
+  .home-link {
+    position: fixed; top: 14px; left: 14px;
+    background: var(--paper); border: 1px solid var(--rule);
+    color: var(--accent); padding: 8px 14px; border-radius: 8px;
+    text-decoration: none; font-family: inherit;
+    font-size: 0.86rem; font-weight: 600;
+    box-shadow: var(--shadow); z-index: 100;
+    transition: background 0.12s, color 0.12s, transform 0.12s, border-color 0.12s;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .home-link:hover {
+    background: var(--accent); color: var(--paper); border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+  .home-link::before { content: "\2190"; font-size: 1rem; line-height: 1; }
+
+  /* Back-to-top */
+  .to-top {
+    position: fixed; bottom: 18px; right: 18px;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--paper); color: var(--accent);
+    border: 1px solid var(--rule); box-shadow: var(--shadow);
+    font-size: 1.1rem; cursor: pointer; z-index: 100;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.18s, transform 0.12s, background 0.12s, color 0.12s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .to-top.visible { opacity: 1; pointer-events: auto; }
+  .to-top:hover { background: var(--accent); color: var(--paper); border-color: var(--accent); transform: translateY(-2px); }
+
+  footer {
+    text-align: center; color: var(--muted); font-size: 0.85rem;
+    padding: 28px 24px 40px; border-top: 1px solid var(--rule);
+    margin-top: 40px;
+  }
+  @media (max-width: 600px) {
+    .home-link { top: 8px; left: 8px; padding: 6px 10px; font-size: 0.78rem; }
+  }
+</style>
+</head>
+<body>
+
+<a href="../AWR%20201.html" class="home-link" title="Back to AWR 201">AWR 201</a>
+
+<header>
+  <div class="breadcrumb">
+    <a href="../index.html">Home</a> &rsaquo;
+    <a href="../AWR%20201.html">AWR 201</a> &rsaquo;
+    Process Work 1
+  </div>
+  <h1>Process Work 1</h1>
+  <div class="subtitle">CoR Ch. 1 + Wilkerson reading</div>
+</header>
+
+<main>
+
+  <details class="section" open>
+    <summary>Prompt</summary>
+    <div class="sec-body">
+      <p><strong>Course:</strong> AWR 201 &middot; <strong>Instructor:</strong> Dr. Nadarajah</p>
+      <p>
+        Read
+        <a class="file-link" href="https://www.edweek.org/teaching-learning/opinion-i-dont-have-to-love-my-students-to-be-a-good-teacher/2022/03" target="_blank" rel="noopener">
+          &ldquo;I Don't Have to Love My Students to Be a Good Teacher&rdquo;
+        </a>
+        by Jherine Wilkerson and Chapter 1 from <em>The Craft of Research</em>, then respond to the prompts below.
+      </p>
+      <ol>
+        <li>What central question is Wilkerson responding to, and how effectively does she answer it? Use one specific example.</li>
+        <li>What &ldquo;problem&rdquo; does Wilkerson identify about the labor expectation of teachers, and why might it matter to educators?</li>
+        <li>List two topics you'd consider researching in each category: College, Social Media/Pop Culture, Sports, Workforce/Labor.</li>
+      </ol>
+      <p><a class="file-link" href="Assignments/Process%20Work%201.pdf">Open the submitted PDF &rarr;</a></p>
+    </div>
+  </details>
+
+  <details class="section" open>
+    <summary>1. Wilkerson's central question</summary>
+    <div class="sec-body">
+      <p>
+        The central question Wilkerson is responding to is, is it the teacher's job to love the kids,
+        is it okay to just do our job. Responding to her principle &ldquo;'I want you to love your work
+        and love the kids.' Why do I need to do anything other than what I am contractually obligated
+        to do.&rdquo; I would say that she does a very good job of explaining her position and gives
+        very good examples. One thing I would say though is she leaves out in my opinion the biggest
+        contributor to her discussion that is age. She is an elementary school teacher &mdash; the
+        overall opinion is if you teach young kids, you must love the kids and your job. This stigma
+        decreases as the students increase in age, and she does not talk about this. For example,
+        where she says &ldquo;My doctor doesn't love me, nor do my dentist or my therapist&rdquo; &mdash;
+        of course you're a grown person, but when you're a kid that stigma changes.
+      </p>
+    </div>
+  </details>
+
+  <details class="section" open>
+    <summary>2. The labor-expectation problem</summary>
+    <div class="sec-body">
+      <p>
+        She addresses the problem that teachers must go above and beyond their job description to be
+        considered good teachers &mdash; teachers are pressured into unpaid hours, emotional
+        overextension, and a broken personal life. She says this is excused for teachers if you love
+        the kids. She addresses a topic that has such stigma that it is not talked about. By writing
+        this she is opening a discussion that allows other teachers to think about it and share their
+        opinions.
+      </p>
+    </div>
+  </details>
+
+  <details class="section" open>
+    <summary>3. Research topic ideas</summary>
+    <div class="sec-body">
+      <p><strong>College</strong></p>
+      <ul>
+        <li>Development of drug abuse</li>
+        <li>Peer pressure related to drugs</li>
+      </ul>
+      <p><strong>Social Media / Pop Culture</strong></p>
+      <ul>
+        <li>Glamorization of drug abuse</li>
+        <li>How social media starts or influences addiction</li>
+      </ul>
+      <p><strong>Sports</strong></p>
+      <ul>
+        <li>Drug use in sports</li>
+        <li>CTE</li>
+      </ul>
+      <p><strong>Workforce / Labor</strong></p>
+      <ul>
+        <li>Drugs in the workplace</li>
+        <li>AI</li>
+      </ul>
+      <div class="note">Common thread across these picks: <strong>drug use &amp; addiction</strong> in different contexts &mdash; a strong jumping-off point for a research question.</div>
+    </div>
+  </details>
+
+</main>
+
+<footer>
+  Process Work 1 &middot; AWR 201 &middot; Spring/Summer 2026
+</footer>
+
+<script>
+  // Back-to-top
+  (function(){
+    var btn = document.createElement('button');
+    btn.className = 'to-top';
+    btn.setAttribute('aria-label', 'Back to top');
+    btn.innerHTML = '↑';
+    btn.onclick = function(){ window.scrollTo({top:0, behavior:'smooth'}); };
+    document.body.appendChild(btn);
+    window.addEventListener('scroll', function(){
+      if (window.scrollY > 400) btn.classList.add('visible');
+      else btn.classList.remove('visible');
+    }, {passive:true});
+  })();
+</script>
+
+</body>
+</html>
