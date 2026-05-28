@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viewer</title>
+<!-- ===COWORK_SITE_PATCH_v1=== -->
+<script>
+  (function(){
+    var KEY='site-theme', OLD=['theme','awr201-theme'];
+    var v=null;
+    try{v=localStorage.getItem(KEY);}catch(e){}
+    if(!v){ for(var i=0;i<OLD.length;i++){ try{var x=localStorage.getItem(OLD[i]); if(x){v=x;break;}}catch(e){} } }
+    if(!v) v='dark';
+    try{ localStorage.setItem(KEY,v); localStorage.setItem('theme',v); localStorage.setItem('awr201-theme',v); }catch(e){}
+    if(v==='default'){ document.documentElement.removeAttribute('data-theme'); }
+    else { document.documentElement.setAttribute('data-theme',v); }
+  })();
+</script>
+<!-- ===COWORK_THEME_VALVE_v1=== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="assets/theme.css">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+  body {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  header { text-align: center; }
+  main {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 32px 24px 24px;
+  }
+  /* Rendered content panel */
+  .content-panel {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 36px 40px;
+    position: relative;
+    margin-top: 8px;
+  }
+  .content-panel::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 26px; height: 26px;
+    border-top: 2px solid var(--accent);
+    border-left: 2px solid var(--accent);
+  }
+  .content-panel::after {
+    content: "";
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 26px; height: 26px;
+    border-bottom: 2px solid var(--accent);
+    border-right: 2px solid var(--accent);
+    opacity: 0.55;
+  }
+  /* Markdown body styles */
+  #content h1, #content h2, #content h3, #content h4 {
+    font-family: 'Barlow Condensed', 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    margin: 28px 0 14px;
+    line-height: 1.15;
+  }
+  #content h1 { font-size: 2rem; color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 8px; }
+  #content h2 { font-size: 1.5rem; margin-top: 32px; }
+  #content h2::after {
+    content: ""; display: block;
+    width: 48px; height: 3px;
+    background: var(--accent); margin-top: 6px;
+  }
+  #content h3 { font-size: 1.2rem; color: var(--accent); }
+  #content p { margin: 14px 0; color: var(--ink); }
+  #content ul, #content ol { margin: 12px 0; padding-left: 26px; }
+  #content li { margin: 4px 0; }
+  #content strong { color: var(--ink); font-weight: 700; }
+  #content em { color: var(--ink-dim); }
+  #content a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--accent);
+  }
+  #content a:hover { border-bottom-style: solid; }
+  #content code {
+    background: rgba(0,0,0,0.3);
+    color: var(--accent);
+    padding: 2px 7px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9em;
+    border: 1px solid var(--rule);
+  }
+  #content pre {
+    background: var(--bg-deep);
+    color: var(--ink);
+    padding: 18px 22px;
+    overflow-x: auto;
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent);
+    margin: 16px 0;
+  }
+  #content pre code {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: var(--ink);
+  }
+  #content blockquote {
+    border-left: 3px solid var(--accent);
+    background: var(--accent-soft);
+    margin: 16px 0;
+    padding: 12px 20px;
+    color: var(--ink);
+  }
+  #content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0;
+    background: var(--bg-deep);
+    border: 1px solid var(--rule);
+  }
+  #content table th {
+    background: rgba(0,0,0,0.3);
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+    padding: 10px 12px;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+  #content table td {
+    border-bottom: 1px solid var(--rule);
+    padding: 10px 12px;
+    color: var(--ink);
+  }
+  #content hr {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 28px 0;
+  }
+  /* Raw text mode */
+  #content pre.raw {
+    font-family: 'JetBrains Mono', 'Menlo', monospace;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  /* Loading / error states */
+  .loading, .error {
+    text-align: center;
+    padding: 64px 24px;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+  .error { color: #ee5a5a; }
+  .error code {
+    background: rgba(0,0,0,0.3);
+    padding: 2px 8px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--ink);
+    border: 1px solid var(--rule);
+  }
+  .file-meta {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 14px;
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .file-meta .chip {
+    border: 1px solid var(--rule-bright);
+    padding: 4px 10px;
+    color: var(--muted);
+  }
+  .file-meta .chip strong {
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .breadcrumb {
+    font-size: 0.86rem;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .breadcrumb a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .breadcrumb a:hover { border-bottom: 1px solid var(--accent); }
+  footer { text-align: center; }
+</style>
+</head>
+<body>
+
+<a href="index.html" class="home-link" title="Back to home">Home</a>
+
+<header>
+  <div class="breadcrumb" id="breadcrumb">
+    <a href="index.html">Home</a> &rsaquo; <span id="bc-file">Loading…</span>
+  </div>
+  <h1 id="title">Viewer</h1>
+  <div class="subtitle" id="subtitle">Reading file</div>
+  <div class="file-meta">
+    <div class="chip">FILE <strong id="meta-file">—</strong></div>
+    <div class="chip">TYPE <strong id="meta-type">—</strong></div>
+  </div>
+</header>
+
+<main>
+  <div class="content-panel">
+    <div id="content"><div class="loading">Loading…</div></div>
+  </div>
+</main>
+
+<footer>
+  Generic viewer &middot; renders .md and .txt files
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js"></script>
+<script>
+  // Parse ?file= param
+  function getParam(name) {
+    var m = new RegExp('[?&]' + name + '=([^&]+)').exec(window.location.search);
+    return m ? decodeURIComponent(m[1]) : null;
+  }
+
+  function basename(path) {
+    var p = path.split('/');
+    return p[p.length - 1] || path;
+  }
+  function extOf(path) {
+    var b = basename(path);
+    var i = b.lastIndexOf('.');
+    return i >= 0 ? b.substring(i + 1).toLowerCase() : '';
+  }
+  function escapeHtml(s) {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  var file = getParam('file');
+  var contentEl = document.getElementById('content');
+  var titleEl = document.getElementById('title');
+  var subEl = document.getElementById('subtitle');
+  var metaFile = document.getElementById('meta-file');
+  var metaType = document.getElementById('meta-type');
+  var bcFile = document.getElementById('bc-file');
+
+  if (!file) {
+    contentEl.innerHTML = '<div class="error">No file specified.<br><br>Usage: <code>viewer.html?file=path/to/file.md</code></div>';
+    titleEl.textContent = 'No File';
+    subEl.textContent = 'Missing ?file= parameter';
+    metaFile.textContent = '—';
+    metaType.textContent = '—';
+    bcFile.textContent = '(none)';
+  } else {
+    var name = basename(file);
+    var ext = extOf(file);
+    var title = name.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ');
+    titleEl.textContent = title;
+    subEl.textContent = file;
+    metaFile.textContent = name;
+    metaType.textContent = ext ? '.' + ext : 'TEXT';
+    bcFile.textContent = name;
+    document.title = title + ' — Viewer';
+
+    fetch(file)
+      .then(function(r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.text();
+      })
+      .then(function(text) {
+        if (ext === 'md' || ext === 'markdown') {
+          try {
+            // Render markdown
+            marked.setOptions({ breaks: false, gfm: true });
+            contentEl.innerHTML = marked.parse(text);
+          } catch (e) {
+            contentEl.innerHTML = '<pre class="raw">' + escapeHtml(text) + '</pre>';
+          }
+        } else {
+          // Render as raw text
+          contentEl.innerHTML = '<pre class="raw">' + escapeHtml(text) + '</pre>';
+        }
+      })
+      .catch(function(err) {
+        var isFileProto = window.location.protocol === 'file:';
+        var msg;
+        if (isFileProto) {
+          msg = '<div class="error">'
+            + '<p style="font-size:1.1rem; margin-bottom:18px;">This viewer can\'t load files when opened directly from disk.</p>'
+            + '<p style="text-align:left; max-width:560px; margin:0 auto;">Browsers block <code>fetch()</code> from <code>file://</code> URLs for security reasons. To use the viewer locally, run a tiny local server from the project folder:</p>'
+            + '<pre style="text-align:left; max-width:640px; margin:18px auto; padding:14px 18px; background:rgba(0,0,0,0.4); border:1px solid var(--rule); border-left:3px solid var(--accent); font-family:\'JetBrains Mono\',monospace; font-size:0.85rem; color:var(--ink); white-space:pre-wrap;">cd "/Users/jordansyring/Documents/School Website"\npython3 -m http.server 8000</pre>'
+            + '<p style="text-align:left; max-width:560px; margin:0 auto;">Then open <code>http://localhost:8000/viewer.html?file=' + escapeHtml(file) + '</code> in your browser.</p>'
+            + '<p style="text-align:left; max-width:560px; margin:18px auto 0;">Or push the site to GitHub Pages &mdash; it works there with no extra setup.</p>'
+            + '</div>';
+        } else {
+          msg = '<div class="error">Could not load file: <code>' + escapeHtml(file) + '</code><br><br>' + escapeHtml(err.message) + '</div>';
+        }
+        contentEl.innerHTML = msg;
+      });
+  }
+
+  // Back-to-top
+  (function(){
+    var btn = document.createElement('button');
+    btn.className = 'to-top';
+    btn.setAttribute('aria-label', 'Back to top');
+    btn.innerHTML = '↑';
+    btn.onclick = function(){ window.scrollTo({top:0, behavior:'smooth'}); };
+    document.body.appendChild(btn);
+    window.addEventListener('scroll', function(){
+      if (window.scrollY > 400) btn.classList.add('visible');
+      else btn.classList.remove('visible');
+    }, {passive:true});
+  })();
+</script>
+
+</body>
+</html>

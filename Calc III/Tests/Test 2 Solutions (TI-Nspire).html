@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test 2 Solutions (TI-Nspire) — Calc III</title>
+<!-- ===COWORK_SITE_PATCH_v1=== -->
+<script>
+  (function(){
+    var KEY='site-theme', OLD=['theme','awr201-theme'];
+    var v=null;
+    try{v=localStorage.getItem(KEY);}catch(e){}
+    if(!v){ for(var i=0;i<OLD.length;i++){ try{var x=localStorage.getItem(OLD[i]); if(x){v=x;break;}}catch(e){} } }
+    if(!v) v='dark';
+    try{ localStorage.setItem(KEY,v); localStorage.setItem('theme',v); localStorage.setItem('awr201-theme',v); }catch(e){}
+    if(v==='default'){ document.documentElement.removeAttribute('data-theme'); }
+    else { document.documentElement.setAttribute('data-theme',v); }
+  })();
+</script>
+<!-- ===COWORK_THEME_VALVE_v1=== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="../../assets/theme.css">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+  body { margin: 0; font-size: 17px; line-height: 1.6; min-height: 100vh; }
+  header { text-align: center; }
+  .breadcrumb { font-size: 0.86rem; color: var(--muted); margin-bottom: 14px; letter-spacing: 0.03em; }
+  .breadcrumb a { color: var(--accent); text-decoration: none; }
+  .breadcrumb a:hover { border-bottom: 1px solid var(--accent); }
+  main { max-width: 980px; margin: 0 auto; padding: 32px 24px 24px; }
+
+  .file-list {
+    display: flex; flex-direction: column;
+    gap: 6px;
+    margin-top: 14px;
+  }
+  .file-row {
+    display: grid;
+    grid-template-columns: 50px 1fr auto auto;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 18px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    text-decoration: none;
+    color: var(--ink);
+    position: relative;
+    transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+  }
+  .file-row:hover {
+    border-color: var(--accent);
+    transform: translateX(3px);
+    box-shadow: -3px 0 0 var(--accent), 0 4px 14px rgba(0,0,0,0.4);
+  }
+  .file-row .idx {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent);
+    font-size: 0.86rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .file-row .name {
+    font-weight: 500;
+    color: var(--ink);
+    font-size: 1.02rem;
+  }
+  .file-row .name .sub {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .file-row .size {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .file-row .ext {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid var(--accent);
+  }
+  .group-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin: 24px 0 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .group-label:first-of-type { margin-top: 8px; }
+
+  .summary-bar {
+    display: flex; gap: 14px; justify-content: center;
+    margin-top: 14px; flex-wrap: wrap;
+  }
+  .summary-bar .chip {
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    border: 1px solid var(--rule-bright);
+    padding: 5px 12px;
+  }
+  .summary-bar .chip strong {
+    color: var(--accent);
+    font-weight: 700;
+  }
+  footer { text-align: center; }
+  @media (max-width: 600px) {
+    .file-row { grid-template-columns: 40px 1fr auto; }
+    .file-row .size { display: none; }
+  }
+</style>
+<style>
+  .doc-panel {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 32px 36px;
+    position: relative;
+  }
+  .doc-panel::before {
+    content: ""; position: absolute; top:0; left:0;
+    width:26px; height:26px;
+    border-top: 2px solid var(--accent);
+    border-left: 2px solid var(--accent);
+  }
+  .doc-panel::after {
+    content: ""; position: absolute; bottom:0; right:0;
+    width:26px; height:26px;
+    border-bottom: 2px solid var(--accent);
+    border-right: 2px solid var(--accent);
+    opacity: 0.55;
+  }
+  pre.txt {
+    font-family: 'JetBrains Mono', 'Menlo', monospace;
+    font-size: 0.86rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 0;
+    color: var(--ink);
+  }
+</style></head>
+<body>
+
+<a href="../../index.html" class="home-link" title="Back to home">Home</a>
+
+<header>
+  <div class="breadcrumb">
+    <a href="../../index.html">Home</a> &rsaquo;
+    <a href="../Calc%20III%20Formula%20Reference.html">Calc III</a> &rsaquo;
+    <a href="index.html">Tests</a> &rsaquo;
+    Test 2 Solutions (TI-Nspire)
+  </div>
+  <h1>Test 2 Solutions (TI-Nspire)</h1>
+  <div class="subtitle">Worked Solutions</div>
+</header>
+
+<main>
+  <article class="doc-panel">
+    <pre class="txt">================================================
+  MAT 262 -- Test 2 Worked Solutions
+  Calc III, Dr. Pfeffer
+  (Chapter 12 -- vector-valued functions)
+================================================
+
+------------------------------------------------
+PROBLEM 1   (Sec 12.1 -- velocity &amp; accel)
+------------------------------------------------
+r(t) = &lt;5sin(t), 5cos(t)&gt;
+(traces x^2 + y^2 = 25 clockwise)
+
+Find v and a at t = pi/3.
+
+Step 1. Differentiate component-wise.
+   v(t) = r&#x27;(t)
+        = &lt;5cos(t), -5sin(t)&gt;
+   a(t) = v&#x27;(t) = r&#x27;&#x27;(t)
+        = &lt;-5sin(t), -5cos(t)&gt;
+
+Step 2. Evaluate at t = pi/3.
+   cos(pi/3) = 1/2
+   sin(pi/3) = sqrt(3)/2
+
+   v(pi/3) = &lt;5*(1/2), -5*sqrt(3)/2&gt;
+           = &lt;5/2, -5sqrt(3)/2&gt;
+
+   a(pi/3) = &lt;-5*sqrt(3)/2, -5*(1/2)&gt;
+           = &lt;-5sqrt(3)/2, -5/2&gt;
+
+Step 3. Position at t = pi/3:
+   r(pi/3) = &lt;5sqrt(3)/2, 5/2&gt;
+
+ANSWER:
+   v(pi/3) = &lt;5/2, -5sqrt(3)/2&gt;
+   a(pi/3) = &lt;-5sqrt(3)/2, -5/2&gt;
+
+(Graph: circle radius 5;
+ mark point (5sqrt(3)/2, 5/2);
+ v tangent, pointing CW;
+ a points inward toward origin.)
+
+
+------------------------------------------------
+PROBLEM 2   (Sec 12.1 -- tangent line)
+------------------------------------------------
+r(t) = &lt;t*sin(t*pi),
+        ln(7/(2t-1)) + t^2,
+        cos(-t*pi)&gt;
+
+Find parametric eq. of tangent line at t = 4.
+
+Step 1. Compute r(4).
+   x(4) = 4*sin(4pi) = 4*0 = 0
+   y(4) = ln(7/(8-1)) + 16
+        = ln(7/7) + 16
+        = 0 + 16 = 16
+   z(4) = cos(-4pi) = cos(4pi) = 1
+
+   r(4) = (0, 16, 1)   &lt;- the point
+
+Step 2. Compute r&#x27;(t).
+   x&#x27;(t) = d/dt[t*sin(t*pi)]
+         (product rule)
+         = sin(t*pi) + t*pi*cos(t*pi)
+
+   y&#x27;(t) = d/dt[ln(7) - ln(2t-1) + t^2]
+         = -2/(2t-1) + 2t
+
+   z(t) = cos(-t*pi) = cos(t*pi) (cos is even)
+   z&#x27;(t) = -pi*sin(t*pi)
+
+Step 3. Evaluate r&#x27;(4).
+   x&#x27;(4) = sin(4pi) + 4pi*cos(4pi)
+         = 0 + 4pi*(1)
+         = 4pi
+   y&#x27;(4) = -2/(8-1) + 8
+         = -2/7 + 56/7
+         = 54/7
+   z&#x27;(4) = -pi*sin(4pi) = 0
+
+   v(4) = &lt;4pi, 54/7, 0&gt;
+
+Step 4. Parametric tangent line through
+(0,16,1) with direction &lt;4pi, 54/7, 0&gt;.
+
+ANSWER:
+   x(s) = 4pi*s
+   y(s) = (54/7)*s + 16
+   z(s) = 1
+   -inf &lt; s &lt; inf
+
+
+------------------------------------------------
+PROBLEM 3   (Sec 12.2 -- IVP for r(t))
+------------------------------------------------
+dr/dt = &lt;(9/2)(t+1)^(1/2),
+         3*e^(-t),
+         1/(t+1)&gt;
+with r(0) = &lt;0, 0, 1&gt;.
+
+Integrate component-wise, then use IC.
+
+Step 1. Component 1:
+   integral of (9/2)(t+1)^(1/2) dt
+   u = t+1,  du = dt
+   = (9/2) * (2/3)*(t+1)^(3/2) + C1
+   = 3*(t+1)^(3/2) + C1
+
+   IC: r1(0) = 0
+   3*(1)^(3/2) + C1 = 0
+   3 + C1 = 0  -&gt;  C1 = -3
+   x(t) = 3(t+1)^(3/2) - 3
+
+Step 2. Component 2:
+   integral of 3*e^(-t) dt
+   = -3*e^(-t) + C2
+
+   IC: r2(0) = 0
+   -3*e^0 + C2 = 0
+   -3 + C2 = 0  -&gt;  C2 = 3
+   y(t) = -3*e^(-t) + 3
+
+Step 3. Component 3:
+   integral of 1/(t+1) dt
+   = ln|t+1| + C3
+   (for t &gt;= 0, |t+1| = t+1)
+
+   IC: r3(0) = 1
+   ln(1) + C3 = 1
+   0 + C3 = 1  -&gt;  C3 = 1
+   z(t) = ln(t+1) + 1
+
+ANSWER:
+   r(t) = &lt;3(t+1)^(3/2) - 3,
+            -3e^(-t) + 3,
+            ln(t+1) + 1&gt;
+
+
+------------------------------------------------
+PROBLEM 4   (Sec 12.2 -- projectile motion)
+------------------------------------------------
+Tennis player serves return:
+- 3 ft from back edge
+- v0 = 40 ft/sec
+- launch angle 30 deg
+- ball launched 4 ft above ground
+- g = 32 ft/sec^2
+
+(i) Vector r(t) for ball position
+relative to back edge of court.
+
+   r(t) = &lt;3 + 40cos(30deg)*t,
+            4 + 40sin(30deg)*t - 16*t^2&gt;
+
+   Using cos(30) = sqrt(3)/2,
+         sin(30) = 1/2:
+
+   r(t) = &lt;3 + 20sqrt(3)*t,
+            4 + 20t - 16t^2&gt;
+
+
+(ii) Flight time and range.
+
+Time: solve y(t) = 0.
+   4 + 20t - 16t^2 = 0
+   16t^2 - 20t - 4 = 0
+   4t^2 - 5t - 1 = 0    (divide by 4)
+
+Quadratic formula:
+   t = (5 +/- sqrt(25 + 16)) / 8
+     = (5 +/- sqrt(41)) / 8
+
+   sqrt(41) ~ 6.4031
+   t = (5 + 6.4031)/8 ~ 1.4254 sec
+   t = (5 - 6.4031)/8 ~ -0.1754 sec  (reject)
+
+   Flight time ~ 1.425 sec
+
+Range (x-coordinate at landing):
+   R = 3 + 20*sqrt(3)*(1.425)
+     = 3 + 34.641*(1.425)
+     = 3 + 49.36
+     ~ 52.4 ft
+
+   (using t = 1.42: R ~ 52.2 ft)
+
+
+(iii) Standard tennis court is 78 ft.
+Does the shot land in bounds?
+
+   R ~ 52 ft  &lt;  78 ft
+
+ANSWER:  Yes, the return lands in bounds.
+
+
+------------------------------------------------
+PROBLEM 5   (Sec 12.3, 12.4 -- arclength,
+            unit tangent, normal, curvature)
+------------------------------------------------
+r(t) = &lt;sin^3(t), cos^3(t), 0&gt;
+
+(i) Arclength on 0 &lt;= t &lt;= pi/3.
+
+Step 1. v(t) = r&#x27;(t).
+   v(t) = &lt;3sin^2(t)cos(t),
+            -3cos^2(t)sin(t),
+            0&gt;
+
+Step 2. |v(t)|.
+   |v(t)|^2
+   = 9sin^4(t)cos^2(t)
+     + 9cos^4(t)sin^2(t)
+   = 9sin^2(t)cos^2(t)
+     * [sin^2(t) + cos^2(t)]
+   = 9sin^2(t)cos^2(t)
+
+   |v(t)| = 3|sin(t)cos(t)|
+          = 3sin(t)cos(t) on [0, pi/3]
+          (both factors nonneg here)
+
+   Or use sin(2t) = 2sin(t)cos(t):
+   |v(t)| = (3/2) sin(2t)
+
+Step 3. L = integral of |v(t)| dt
+            from 0 to pi/3.
+
+Use sub u = sin(t), du = cos(t) dt:
+   L = integral 3sin(t)cos(t) dt
+     = integral 3u du,
+       u from 0 to sin(pi/3) = sqrt(3)/2
+   = (3/2) u^2  | 0 to sqrt(3)/2
+   = (3/2)(3/4) - 0
+   = 9/8
+
+ANSWER (i):  L = 9/8
+
+
+(ii) Find T(t) and N(t).
+
+T(t) = v(t) / |v(t)|
+     = &lt;3sin^2(t)cos(t), -3cos^2(t)sin(t), 0&gt;
+       / [3sin(t)cos(t)]
+
+   T(t) = &lt;sin(t), -cos(t), 0&gt;
+
+T&#x27;(t) = &lt;cos(t), sin(t), 0&gt;
+|T&#x27;(t)| = sqrt(cos^2 + sin^2) = 1
+
+N(t) = T&#x27;(t) / |T&#x27;(t)|
+
+ANSWER (ii):
+   T(t) = &lt;sin(t), -cos(t), 0&gt;
+   N(t) = &lt;cos(t),  sin(t), 0&gt;
+
+
+(iii) Curvature kappa.
+
+   kappa = |T&#x27;(t)| / |v(t)|
+         = 1 / (3sin(t)cos(t))
+
+Or equivalently: 2/(3 sin(2t)).
+
+ANSWER (iii):
+   kappa = 1 / (3 sin(t) cos(t))
+         = 2 / (3 sin(2t))
+
+
+------------------------------------------------
+PROBLEM 7   (Sec 12.4 -- curvature in 3-space)
+------------------------------------------------
+NOTE: planar formula does NOT apply.
+For a space curve use:
+   kappa(t) = |r&#x27;(t) x r&#x27;&#x27;(t)| / |r&#x27;(t)|^3
+
+r(t) = &lt;2t, 3t^2, 4t^3&gt;
+Find kappa at the point (4, 12, 32).
+
+Step 1. Find t at this point.
+   2t = 4  -&gt;  t = 2
+   Check: 3(4) = 12 yes, 4(8) = 32 yes.
+
+Step 2. Compute r&#x27; and r&#x27;&#x27; at t = 2.
+   r&#x27;(t)  = &lt;2, 6t, 12t^2&gt;
+   r&#x27;&#x27;(t) = &lt;0, 6, 24t&gt;
+
+   r&#x27;(2)  = &lt;2, 12, 48&gt;
+   r&#x27;&#x27;(2) = &lt;0,  6, 48&gt;
+
+Step 3. Cross product r&#x27;(2) x r&#x27;&#x27;(2).
+   |  i   j   k |
+   |  2  12  48 |
+   |  0   6  48 |
+
+   i: (12)(48) - (48)(6)
+        = 576 - 288 = 288
+   j: -[ (2)(48) - (48)(0) ]
+        = -(96 - 0) = -96
+   k: (2)(6) - (12)(0)
+        = 12 - 0 = 12
+
+   r&#x27;(2) x r&#x27;&#x27;(2) = &lt;288, -96, 12&gt;
+
+Step 4. Magnitudes.
+   |r&#x27; x r&#x27;&#x27;|^2 = 288^2 + 96^2 + 12^2
+                = 82944 + 9216 + 144
+                = 92304
+   |r&#x27; x r&#x27;&#x27;| = sqrt(92304) = 12*sqrt(641)
+              ~ 303.81
+
+   |r&#x27;(2)|^2 = 4 + 144 + 2304 = 2452
+   |r&#x27;(2)|   = sqrt(2452) = 2*sqrt(613)
+              ~ 49.518
+   |r&#x27;(2)|^3 ~ 121,420
+
+Step 5. Curvature.
+   kappa = 303.81 / 121420
+         ~ 0.002502
+
+ANSWER:
+   kappa = 12*sqrt(641) / (2*sqrt(613))^3
+         = (12*sqrt(641)) / (4904*sqrt(613))
+         ~ 0.00250
+
+
+------------------------------------------------
+PROBLEM 8   (Sec 12.5 -- a = aT*T + aN*N
+            without finding T or N)
+------------------------------------------------
+r(t) = &lt;6e^t * sin(t),
+        6e^t * sqrt(6),
+        6e^t * cos(t)&gt;
+Write a in form aT*T + aN*N at t = 0.
+
+Step 1. Compute v(t) = r&#x27;(t).
+   d/dt[6e^t sin(t)]
+       = 6e^t sin(t) + 6e^t cos(t)
+       = 6e^t (sin(t) + cos(t))
+   d/dt[6e^t sqrt(6)] = 6e^t sqrt(6)
+   d/dt[6e^t cos(t)]
+       = 6e^t cos(t) - 6e^t sin(t)
+       = 6e^t (cos(t) - sin(t))
+
+   v(t) = &lt;6e^t(sin t + cos t),
+            6e^t sqrt(6),
+            6e^t(cos t - sin t)&gt;
+
+Step 2. Compute a(t) = v&#x27;(t).
+   d/dt[6e^t(sin+cos)]
+       = 6e^t(sin+cos) + 6e^t(cos-sin)
+       = 12e^t cos(t)
+   d/dt[6e^t sqrt(6)] = 6e^t sqrt(6)
+   d/dt[6e^t(cos-sin)]
+       = 6e^t(cos-sin) + 6e^t(-sin-cos)
+       = -12e^t sin(t)
+
+   a(t) = &lt;12e^t cos(t),
+            6e^t sqrt(6),
+            -12e^t sin(t)&gt;
+
+Step 3. Plug t = 0.
+   v(0) = &lt;6(0+1), 6sqrt(6), 6(1-0)&gt;
+        = &lt;6, 6sqrt(6), 6&gt;
+
+   a(0) = &lt;12(1)(1), 6(1)sqrt(6), -12(1)(0)&gt;
+        = &lt;12, 6sqrt(6), 0&gt;
+
+Step 4. Magnitude of v(0).
+   |v(0)|^2 = 36 + 216 + 36 = 288
+   |v(0)|   = sqrt(288) = 12*sqrt(2)
+
+Step 5. aT = (v . a) / |v|.
+   v(0) . a(0)
+     = (6)(12) + (6sqrt(6))(6sqrt(6)) + (6)(0)
+     = 72 + 216 + 0
+     = 288
+
+   aT = 288 / (12*sqrt(2))
+      = 24 / sqrt(2)
+      = 12*sqrt(2)
+
+Step 6. aN via Pythagorean shortcut.
+   |a(0)|^2 = 144 + 216 + 0 = 360
+   aN = sqrt( |a|^2 - aT^2 )
+      = sqrt( 360 - 288 )
+      = sqrt(72)
+      = 6*sqrt(2)
+
+ANSWER:
+   a(0) = 12*sqrt(2) * T  +  6*sqrt(2) * N
+
+   (i.e. aT = 12 sqrt(2),  aN = 6 sqrt(2))
+
+
+================================================
+QUICK FORMULA RECAP (Chapter 12)
+================================================
+
+Velocity, speed, acceleration:
+   v(t) = r&#x27;(t)
+   speed = |v(t)|
+   a(t) = v&#x27;(t) = r&#x27;&#x27;(t)
+
+Tangent line at t0:
+   point = r(t0)
+   direction = r&#x27;(t0)
+   x(s) = x0 + r&#x27;(t0)_x * s, etc.
+
+Integrating r&#x27;(t):
+   integrate component by component,
+   apply r(t0) = ... to find each Ci.
+
+Projectile (from origin, angle alpha,
+           speed v0, gravity g):
+   r(t) = &lt;v0 cos(a) t,
+           v0 sin(a) t - (1/2) g t^2&gt;
+   shifted: add x0, y0 to components.
+   max height: dy/dt = 0
+   flight time: y(t) = 0
+   range: x at flight time
+
+Arclength:
+   L = integral of |v(t)| dt, a to b
+
+Unit tangent:
+   T(t) = v(t) / |v(t)|
+
+Principal unit normal:
+   N(t) = T&#x27;(t) / |T&#x27;(t)|
+
+Curvature:
+   space curve:
+     kappa = |r&#x27; x r&#x27;&#x27;| / |r&#x27;|^3
+   plane y = f(x):
+     kappa = |f&#x27;&#x27;| / (1 + (f&#x27;)^2)^(3/2)
+   plane param &lt;x(t), y(t)&gt;:
+     kappa = |x&#x27; y&#x27;&#x27; - x&#x27;&#x27; y&#x27;|
+             / ((x&#x27;)^2 + (y&#x27;)^2)^(3/2)
+
+Acceleration in TNB frame:
+   a = aT*T + aN*N
+   aT = (v . a)/|v|        (= d|v|/dt)
+   aN = |v x a|/|v|
+      OR aN = sqrt(|a|^2 - aT^2)
+
+3x3 cofactor expansion (cross prod):
+   |i  j  k|
+   |a  b  c|  =
+   |d  e  f|
+   i(bf-ce) - j(af-cd) + k(ae-bd)
+
+================================================
+END
+================================================
+</pre>
+  </article>
+</main>
+
+<footer>
+  Test 2 Solutions (TI-Nspire) &middot; Calc III &middot; Worked Solutions
+</footer>
+
+<script>
+  (function(){
+    var btn = document.createElement('button');
+    btn.className = 'to-top';
+    btn.setAttribute('aria-label', 'Back to top');
+    btn.innerHTML = '↑';
+    btn.onclick = function(){ window.scrollTo({top:0, behavior:'smooth'}); };
+    document.body.appendChild(btn);
+    window.addEventListener('scroll', function(){
+      if (window.scrollY > 400) btn.classList.add('visible');
+      else btn.classList.remove('visible');
+    }, {passive:true});
+  })();
+</script>
+</body>
+</html>

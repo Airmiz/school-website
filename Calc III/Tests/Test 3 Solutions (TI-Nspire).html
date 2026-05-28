@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test 3 Solutions (TI-Nspire) — Calc III</title>
+<!-- ===COWORK_SITE_PATCH_v1=== -->
+<script>
+  (function(){
+    var KEY='site-theme', OLD=['theme','awr201-theme'];
+    var v=null;
+    try{v=localStorage.getItem(KEY);}catch(e){}
+    if(!v){ for(var i=0;i<OLD.length;i++){ try{var x=localStorage.getItem(OLD[i]); if(x){v=x;break;}}catch(e){} } }
+    if(!v) v='dark';
+    try{ localStorage.setItem(KEY,v); localStorage.setItem('theme',v); localStorage.setItem('awr201-theme',v); }catch(e){}
+    if(v==='default'){ document.documentElement.removeAttribute('data-theme'); }
+    else { document.documentElement.setAttribute('data-theme',v); }
+  })();
+</script>
+<!-- ===COWORK_THEME_VALVE_v1=== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="../../assets/theme.css">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+  body { margin: 0; font-size: 17px; line-height: 1.6; min-height: 100vh; }
+  header { text-align: center; }
+  .breadcrumb { font-size: 0.86rem; color: var(--muted); margin-bottom: 14px; letter-spacing: 0.03em; }
+  .breadcrumb a { color: var(--accent); text-decoration: none; }
+  .breadcrumb a:hover { border-bottom: 1px solid var(--accent); }
+  main { max-width: 980px; margin: 0 auto; padding: 32px 24px 24px; }
+
+  .file-list {
+    display: flex; flex-direction: column;
+    gap: 6px;
+    margin-top: 14px;
+  }
+  .file-row {
+    display: grid;
+    grid-template-columns: 50px 1fr auto auto;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 18px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    text-decoration: none;
+    color: var(--ink);
+    position: relative;
+    transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+  }
+  .file-row:hover {
+    border-color: var(--accent);
+    transform: translateX(3px);
+    box-shadow: -3px 0 0 var(--accent), 0 4px 14px rgba(0,0,0,0.4);
+  }
+  .file-row .idx {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent);
+    font-size: 0.86rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .file-row .name {
+    font-weight: 500;
+    color: var(--ink);
+    font-size: 1.02rem;
+  }
+  .file-row .name .sub {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .file-row .size {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .file-row .ext {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid var(--accent);
+  }
+  .group-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin: 24px 0 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .group-label:first-of-type { margin-top: 8px; }
+
+  .summary-bar {
+    display: flex; gap: 14px; justify-content: center;
+    margin-top: 14px; flex-wrap: wrap;
+  }
+  .summary-bar .chip {
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    border: 1px solid var(--rule-bright);
+    padding: 5px 12px;
+  }
+  .summary-bar .chip strong {
+    color: var(--accent);
+    font-weight: 700;
+  }
+  footer { text-align: center; }
+  @media (max-width: 600px) {
+    .file-row { grid-template-columns: 40px 1fr auto; }
+    .file-row .size { display: none; }
+  }
+</style>
+<style>
+  .doc-panel {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 32px 36px;
+    position: relative;
+  }
+  .doc-panel::before {
+    content: ""; position: absolute; top:0; left:0;
+    width:26px; height:26px;
+    border-top: 2px solid var(--accent);
+    border-left: 2px solid var(--accent);
+  }
+  .doc-panel::after {
+    content: ""; position: absolute; bottom:0; right:0;
+    width:26px; height:26px;
+    border-bottom: 2px solid var(--accent);
+    border-right: 2px solid var(--accent);
+    opacity: 0.55;
+  }
+  pre.txt {
+    font-family: 'JetBrains Mono', 'Menlo', monospace;
+    font-size: 0.86rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 0;
+    color: var(--ink);
+  }
+</style></head>
+<body>
+
+<a href="../../index.html" class="home-link" title="Back to home">Home</a>
+
+<header>
+  <div class="breadcrumb">
+    <a href="../../index.html">Home</a> &rsaquo;
+    <a href="../Calc%20III%20Formula%20Reference.html">Calc III</a> &rsaquo;
+    <a href="index.html">Tests</a> &rsaquo;
+    Test 3 Solutions (TI-Nspire)
+  </div>
+  <h1>Test 3 Solutions (TI-Nspire)</h1>
+  <div class="subtitle">Worked Solutions</div>
+</header>
+
+<main>
+  <article class="doc-panel">
+    <pre class="txt">================================================
+  MAT 262 -- Test 3 Worked Solutions
+  (paper labels this Exam 4; file: Test 4.pdf)
+  Calc III, Dr. Pfeffer
+  (Chapter 13 -- partial derivatives)
+================================================
+
+------------------------------------------------
+PROBLEM 1   (Sec 13.2 -- multivariable limits)
+------------------------------------------------
+
+(i)  lim_(x,y)-&gt;(0,0)  4*e^(-5y)*sin(-2x) / (5x)
+
+Split into a product of pieces whose limits
+are easy:
+
+  4*e^(-5y)*sin(-2x) / (5x)
+  = [4*e^(-5y) / 5] * [sin(-2x) / x]
+  = [4*e^(-5y) / 5] * (-2) * [sin(-2x)/(-2x)]
+
+Use sin(theta)/theta -&gt; 1 as theta -&gt; 0:
+
+  -&gt; (4*e^0 / 5) * (-2) * 1
+  = (4/5) * (-2)
+  = -8/5
+
+ANSWER (i): -8/5
+
+
+(ii) lim_(x,y)-&gt;(6,0) (sqrt(6x-y) - 6)/(6x-y-36)
+
+Plugging in gives 0/0.  Multiply by conjugate:
+
+   (sqrt(6x-y)-6)(sqrt(6x-y)+6)
+   ----------------------------
+   (6x-y-36)(sqrt(6x-y)+6)
+
+The numerator becomes (6x-y) - 36 = 6x-y-36,
+which cancels the (6x-y-36) on bottom:
+
+   = 1 / (sqrt(6x-y) + 6)
+
+Now plug in (6,0):  6x-y = 36
+
+   -&gt; 1 / (sqrt(36) + 6) = 1 / (6 + 6) = 1/12
+
+ANSWER (ii): 1/12
+
+
+(iii) lim_(x,y)-&gt;(0,0) (y^4 - 2x^2)/(y^4 + x^2)
+
+Try two paths.
+
+Path 1: along x = 0 (the y-axis)
+   = y^4 / y^4 = 1   -&gt;  1
+
+Path 2: along y = 0 (the x-axis)
+   = -2x^2 / x^2 = -2   -&gt;  -2
+
+Different limits on different paths.
+
+ANSWER (iii):  Limit DOES NOT EXIST.
+
+
+------------------------------------------------
+PROBLEM 2   (Sec 13.3 -- implicit partial)
+------------------------------------------------
+7xy + z^4 * x - 3yz = 5
+defines z = z(x,y).  Find dz/dx.
+
+Differentiate both sides w.r.t. x, treating y
+as a constant and z as a function of x:
+
+   d/dx[7xy] + d/dx[z^4 x] - d/dx[3yz] = 0
+
+   7y + (4z^3 * dz/dx * x + z^4)
+       - 3y * dz/dx = 0
+
+Group dz/dx terms:
+
+   (4xz^3 - 3y) * dz/dx = -(7y + z^4)
+
+ANSWER:
+   dz/dx = -(7y + z^4) / (4xz^3 - 3y)
+         =  (7y + z^4) / (3y - 4xz^3)
+
+
+------------------------------------------------
+PROBLEM 3   (Sec 13.4 -- chain rule)
+------------------------------------------------
+z = -6 * e^x * ln(y),
+where x = ln(u*cos(v)) and y = u*sin(v).
+Find dz/du.
+
+Step 1. Chain rule:
+   dz/du = (dz/dx)(dx/du) + (dz/dy)(dy/du)
+
+Step 2. Pieces:
+   dz/dx = -6 * e^x * ln(y)
+   dz/dy = -6 * e^x / y
+   dx/du = [1/(u*cos(v))] * cos(v) = 1/u
+   dy/du = sin(v)
+
+Step 3. Plug in:
+   dz/du = [-6 e^x ln(y)] * (1/u)
+         + [-6 e^x / y] * sin(v)
+
+         = -6 e^x ln(y) / u
+           - 6 e^x sin(v) / y
+
+Step 4. Convert back to u, v.
+(The grader specifically wanted final
+ answer in u and v only.)
+
+   e^x = e^(ln(u cos v)) = u cos(v)
+   y   = u sin(v)
+
+   So  e^x / y = (u cos v)/(u sin v) = cot(v)
+       e^x / u = cos(v)
+
+   dz/du = -6 cos(v) * ln(u sin(v))
+           - 6 cos(v)
+
+ANSWER:
+   dz/du = -6 cos(v) [ln(u sin(v)) + 1]
+
+
+------------------------------------------------
+PROBLEM 4   (Sec 13.5 -- direction &amp; D_u f)
+------------------------------------------------
+f(x,y,z) = ln(xy) + 3 ln(yz) + 3 ln(xz),
+P = (1, 1, 1).
+
+Trick: simplify first using ln rules.
+   ln(xy)   = ln(x) + ln(y)
+   3 ln(yz) = 3 ln(y) + 3 ln(z)
+   3 ln(xz) = 3 ln(x) + 3 ln(z)
+
+   f = 4 ln(x) + 4 ln(y) + 6 ln(z)
+
+Step 1. Gradient.
+   f_x = 4/x,   f_y = 4/y,   f_z = 6/z
+   gradf(1,1,1) = &lt;4, 4, 6&gt;
+   |gradf|   = sqrt(16+16+36) = sqrt(68)
+             = 2*sqrt(17)
+
+
+(i) Direction of FASTEST DECREASE.
+This is the unit vector pointing along -gradf:
+
+   u = -gradf / |gradf|
+
+ANSWER (i):
+   u = (-1 / (2*sqrt(17))) * &lt;4, 4, 6&gt;
+     = &lt;-2/sqrt(17), -2/sqrt(17), -3/sqrt(17)&gt;
+
+
+(ii) D_u f(1,1,1)  with that u.
+Since u points in the fastest-decrease
+direction, D_u f = -|gradf|.
+
+Or check directly:
+   D_u f = gradf . u
+         = &lt;4,4,6&gt; . &lt;-2,-2,-3&gt;/sqrt(17)
+         = (-8 - 8 - 18)/sqrt(17)
+         = -34/sqrt(17)
+         = -34*sqrt(17)/17
+         = -2*sqrt(17)
+
+ANSWER (ii):  D_u f(1,1,1) = -2*sqrt(17)
+
+
+------------------------------------------------
+PROBLEM 5   (Sec 13.6 -- tangent plane &amp;
+            normal line to a level surface)
+------------------------------------------------
+P = (0, 5, 3) on surface
+   F(x,y,z) = cos(pi*x) - x^2 y + e^(xz) + 2yz
+
+(Note: F(0,5,3) = 1 - 0 + 1 + 30 = 32, so the
+ level surface is F = 32.)
+
+Step 1. Compute partials.
+   F_x = -pi*sin(pi*x) - 2xy + z*e^(xz)
+   F_y = -x^2 + 2z
+   F_z = x*e^(xz) + 2y
+
+Step 2. Evaluate at (0, 5, 3).
+   F_x(0,5,3) = -pi*0 - 0 + 3*e^0 = 3
+   F_y(0,5,3) = 0 + 2*3 = 6
+   F_z(0,5,3) = 0*1 + 2*5 = 10
+
+   gradF(0,5,3) = &lt;3, 6, 10&gt;
+
+
+(i) Tangent plane through P with normal gradF.
+   3(x-0) + 6(y-5) + 10(z-3) = 0
+   3x + 6y - 30 + 10z - 30 = 0
+   3x + 6y + 10z = 60
+
+ANSWER (i):  3x + 6y + 10z = 60
+
+
+(ii) Normal line through P with direction gradF.
+
+ANSWER (ii):
+   x(t) = 0  + 3t
+   y(t) = 5  + 6t
+   z(t) = 3  + 10t      -inf &lt; t &lt; inf
+
+
+------------------------------------------------
+PROBLEM 6   (Sec 13.6 -- linearization L)
+------------------------------------------------
+f(x,y,z) = sqrt(x^2 + y^2 + z^2),
+P = (2, 6, 9).
+
+Step 1. f at P.
+   f(2,6,9) = sqrt(4 + 36 + 81)
+            = sqrt(121) = 11
+
+Step 2. Partials.
+   f_x = x / sqrt(x^2+y^2+z^2)
+   f_y = y / sqrt(x^2+y^2+z^2)
+   f_z = z / sqrt(x^2+y^2+z^2)
+
+   f_x(P) = 2/11,  f_y(P) = 6/11,
+   f_z(P) = 9/11
+
+Step 3. Linearization formula.
+   L = f(P) + f_x(P)(x-2)
+            + f_y(P)(y-6)
+            + f_z(P)(z-9)
+
+     = 11 + (2/11)(x-2) + (6/11)(y-6)
+              + (9/11)(z-9)
+
+     = 11 + (2x-4)/11 + (6y-36)/11
+              + (9z-81)/11
+
+Combine constants:
+   11 - 4/11 - 36/11 - 81/11
+   = (121 - 4 - 36 - 81)/11
+   = 0/11 = 0    (clean!)
+
+ANSWER:
+   L(x,y,z) = (2x + 6y + 9z) / 11
+
+
+------------------------------------------------
+PROBLEM 7   (Sec 13.7 -- local extrema and
+            saddle points)
+------------------------------------------------
+f(x,y) = 4xy + x^4 + y^4.
+
+Step 1. Critical points: gradf = 0.
+   f_x = 4y + 4x^3 = 0   -&gt;  y = -x^3
+   f_y = 4x + 4y^3 = 0   -&gt;  x = -y^3
+
+Substitute the first into the second:
+   x = -(-x^3)^3 = -(-x^9) = x^9
+   So  x^9 - x = 0
+       x(x^8 - 1) = 0
+
+Use the hint:
+   x^8 - 1 = (x-1)(x+1)(x^2+1)(x^4+1)
+
+The two complex factors are always &gt; 0, so
+real solutions are:
+   x = 0, x = 1, x = -1
+Then y = -x^3:
+   x=0  -&gt; y=0
+   x=1  -&gt; y=-1
+   x=-1 -&gt; y=1
+
+Critical points: (0,0), (1,-1), (-1,1).
+
+
+Step 2. Hessian.
+   f_xx = 12x^2,  f_yy = 12y^2,  f_xy = 4
+   H = f_xx*f_yy - (f_xy)^2
+     = 144 x^2 y^2 - 16
+
+
+Step 3. Classify each point.
+
+  (0,0):  H = 0 - 16 = -16  &lt; 0
+        -&gt; SADDLE POINT
+        f(0,0) = 0
+
+  (1,-1): H = 144(1)(1) - 16 = 128 &gt; 0
+          f_xx = 12 &gt; 0
+        -&gt; LOCAL MIN
+        f(1,-1) = 4(-1) + 1 + 1 = -2
+
+  (-1,1): H = 144(1)(1) - 16 = 128 &gt; 0
+          f_xx = 12 &gt; 0
+        -&gt; LOCAL MIN
+        f(-1,1) = -4 + 1 + 1 = -2
+
+ANSWER:
+   Local minima: (1, -1) and (-1, 1),
+                 each with f-value -2.
+   Saddle point: (0, 0), f-value 0.
+   No local maxima.
+
+
+------------------------------------------------
+PROBLEM 8   (Sec 13.8 -- Lagrange w/ TWO
+            constraints)
+------------------------------------------------
+Maximize f(x,y,z) = x^2 + 2y - z^2
+subject to
+   g1: 6x - y = 0
+   g2: y + z = 0
+
+Setup: gradf = lambda*gradg1 + mu*gradg2
+   gradf  = &lt;2x, 2, -2z&gt;
+   gradg1 = &lt;6, -1, 0&gt;
+   gradg2 = &lt;0,  1, 1&gt;
+
+System:
+   (1)  2x = 6*lambda  -&gt; x = 3*lambda
+   (2)  2  = -lambda + mu
+   (3) -2z = mu
+   (4)  6x - y = 0
+   (5)  y + z = 0
+
+From (4): y = 6x
+From (5): z = -y = -6x
+From (3): mu = -2z = -2(-6x) = 12x
+From (1): lambda = x/3
+Plug both into (2):
+   2 = -(x/3) + 12x
+   2 = (-x + 36x)/3
+   2 = 35x/3
+   x = 6/35
+
+So:
+   x = 6/35
+   y = 6x = 36/35
+   z = -6x = -36/35
+
+Check lambda, mu:
+   lambda = (6/35)/3 = 2/35
+   mu = 12*(6/35) = 72/35
+   -lambda + mu = -2/35 + 72/35
+                = 70/35 = 2  OK
+
+f-value at the global max:
+   f = (6/35)^2 + 2*(36/35) - (-36/35)^2
+     = 36/1225 + 72/35 - 1296/1225
+     = (36 + 2520 - 1296)/1225
+     = 1260/1225
+     = 36/35
+
+ANSWER:
+   Global max at (6/35, 36/35, -36/35)
+   Value: f = 36/35  (~ 1.029)
+
+
+================================================
+QUICK FORMULA RECAP (Chapter 13)
+================================================
+
+Limits:
+  - Try direct sub first (factor &amp; cancel).
+  - If 0/0 with a sqrt: multiply by conjugate.
+  - If you suspect DNE: try x=0, y=0, y=x.
+  - Two paths giving different limits =&gt; DNE.
+
+Implicit partials (F(x,y,z)=c):
+  dz/dx = -F_x / F_z
+  dz/dy = -F_y / F_z
+  (Or do d/dx of both sides directly.)
+
+Chain rule (z = f(x,y), x and y both
+            functions of u, v):
+  dz/du = (dz/dx)(dx/du) + (dz/dy)(dy/du)
+  dz/dv = (dz/dx)(dx/dv) + (dz/dy)(dy/dv)
+
+Gradient and direction:
+  fastest INCREASE direction:  +gradf/|gradf|
+  fastest DECREASE direction:  -gradf/|gradf|
+  max rate = |gradf|, min rate = -|gradf|
+  D_u f = gradf . u   (u must be unit!)
+
+Tangent plane to F(x,y,z) = c at P0:
+  F_x(P0)(x-x0) + F_y(P0)(y-y0)
+                + F_z(P0)(z-z0) = 0
+
+Normal line through P0 along gradF(P0):
+  x = x0 + F_x t,
+  y = y0 + F_y t,
+  z = z0 + F_z t,    -inf &lt; t &lt; inf
+
+Linearization at P0:
+  L(x) = f(P0) + gradf(P0) . &lt;x-P0&gt;
+
+Critical points and 2nd derivative test:
+  f_x = 0 and f_y = 0
+  H = f_xx * f_yy - (f_xy)^2
+  H &gt; 0, f_xx &gt; 0  -&gt; local MIN
+  H &gt; 0, f_xx &lt; 0  -&gt; local MAX
+  H &lt; 0            -&gt; saddle
+  H = 0            -&gt; inconclusive
+
+Lagrange (one constraint g = 0):
+  gradf = lambda * gradg, plus g = 0.
+
+Lagrange (two constraints g1=0, g2=0):
+  gradf = lambda * gradg1 + mu * gradg2,
+  plus g1 = 0 and g2 = 0.
+
+================================================
+END
+================================================
+</pre>
+  </article>
+</main>
+
+<footer>
+  Test 3 Solutions (TI-Nspire) &middot; Calc III &middot; Worked Solutions
+</footer>
+
+<script>
+  (function(){
+    var btn = document.createElement('button');
+    btn.className = 'to-top';
+    btn.setAttribute('aria-label', 'Back to top');
+    btn.innerHTML = '↑';
+    btn.onclick = function(){ window.scrollTo({top:0, behavior:'smooth'}); };
+    document.body.appendChild(btn);
+    window.addEventListener('scroll', function(){
+      if (window.scrollY > 400) btn.classList.add('visible');
+      else btn.classList.remove('visible');
+    }, {passive:true});
+  })();
+</script>
+</body>
+</html>

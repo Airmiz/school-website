@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calc III — Lecture Notes — Browse</title>
+<!-- ===COWORK_SITE_PATCH_v1=== -->
+<script>
+  (function(){
+    var KEY='site-theme', OLD=['theme','awr201-theme'];
+    var v=null;
+    try{v=localStorage.getItem(KEY);}catch(e){}
+    if(!v){ for(var i=0;i<OLD.length;i++){ try{var x=localStorage.getItem(OLD[i]); if(x){v=x;break;}}catch(e){} } }
+    if(!v) v='dark';
+    try{ localStorage.setItem(KEY,v); localStorage.setItem('theme',v); localStorage.setItem('awr201-theme',v); }catch(e){}
+    if(v==='default'){ document.documentElement.removeAttribute('data-theme'); }
+    else { document.documentElement.setAttribute('data-theme',v); }
+  })();
+</script>
+<!-- ===COWORK_THEME_VALVE_v1=== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="../../assets/theme.css">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+  body { margin: 0; font-size: 17px; line-height: 1.6; min-height: 100vh; }
+  header { text-align: center; }
+  .breadcrumb { font-size: 0.86rem; color: var(--muted); margin-bottom: 14px; letter-spacing: 0.03em; }
+  .breadcrumb a { color: var(--accent); text-decoration: none; }
+  .breadcrumb a:hover { border-bottom: 1px solid var(--accent); }
+  main { max-width: 980px; margin: 0 auto; padding: 32px 24px 24px; }
+
+  .file-list {
+    display: flex; flex-direction: column;
+    gap: 6px;
+    margin-top: 14px;
+  }
+  .file-row {
+    display: grid;
+    grid-template-columns: 50px 1fr auto auto;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 18px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    text-decoration: none;
+    color: var(--ink);
+    position: relative;
+    transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+  }
+  .file-row:hover {
+    border-color: var(--accent);
+    transform: translateX(3px);
+    box-shadow: -3px 0 0 var(--accent), 0 4px 14px rgba(0,0,0,0.4);
+  }
+  .file-row .idx {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent);
+    font-size: 0.86rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .file-row .name {
+    font-weight: 500;
+    color: var(--ink);
+    font-size: 1.02rem;
+  }
+  .file-row .name .sub {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .file-row .size {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .file-row .ext {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid var(--accent);
+  }
+  .group-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin: 24px 0 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .group-label:first-of-type { margin-top: 8px; }
+
+  .summary-bar {
+    display: flex; gap: 14px; justify-content: center;
+    margin-top: 14px; flex-wrap: wrap;
+  }
+  .summary-bar .chip {
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    border: 1px solid var(--rule-bright);
+    padding: 5px 12px;
+  }
+  .summary-bar .chip strong {
+    color: var(--accent);
+    font-weight: 700;
+  }
+  footer { text-align: center; }
+  @media (max-width: 600px) {
+    .file-row { grid-template-columns: 40px 1fr auto; }
+    .file-row .size { display: none; }
+  }
+</style>
+</head>
+<body>
+<a href="../../index.html" class="home-link" title="Back to home">Home</a>
+
+<header>
+  <div class="breadcrumb">
+    <a href="../../index.html">Home</a> &rsaquo; <a href="../../Calc%20III%20Formula%20Reference.html">Calc III</a> &rsaquo; Lecture Notes
+  </div>
+  <h1>Calc III — Lecture Notes</h1>
+  <div class="subtitle">Section PDFs (MAT 262)</div>
+  <div class='summary-bar'><div class='chip'>FILES <strong>29</strong></div><div class='chip'>TOTAL <strong>3.1 MB</strong></div></div>
+</header>
+
+<main>
+  <div class="group-label">Chapter 11</div>
+  <div class="file-list">
+    <a class="file-row" href="11.1%20-%20Three-Dimensional%20Coordinate%20Systems.pdf">
+      <span class="idx">01</span>
+      <span class="name">11.1 - Three-Dimensional Coordinate Systems</span>
+      <span class="size">67 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+    <a class="file-row" href="11.2%20-%20Vectors.pdf">
+      <span class="idx">02</span>
+      <span class="name">11.2 - Vectors</span>
+      <span class="size">77 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+    <a class="file-row" href="11.3%20-%20The%20Dot%20Product.pdf">
+      <span class="idx">03</span>
+      <span class="name">11.3 - The Dot Product</span>
+      <span class="size">81 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+    <a class="file-row" href="11.4%20-%20The%20Cross%20Product.pdf">
+      <span class="idx">04</span>
+      <span class="name">11.4 - The Cross Product</span>
+      <span class="size">85 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+    <a class="file-row" href="11.5%20-%20Lines%20and%20Planes%20in%20Space.pdf">
+      <span class="idx">05</span>
+      <span class="name">11.5 - Lines and Planes in Space</span>
+      <span class="size">82 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+    <a class="file-row" href="11.6%20-%20Cylinders%20and%20Quadric%20Surfaces.pdf">
+      <span class="idx">06</span>
+      <span class="name">11.6 - Cylinders and Quadric Surfaces</span>
+      <span class="size">87 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+  </div>
+  <div class="group-label">Chapter 12</div>
+  <div class="file-list">
+    <a class="file-row" href="12.1%20-%20Curves%20in%20Space%20and%20Their%20Tangents.pdf">
+      <span class="idx">01</span>
+      <span class="name">12.1 - Curves in Space and Their Tangents</span>
+      <span class="size">101 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+    <a class="file-row" href="12.2%20-%20Integrals%20of%20Vector%20Functions%3B%20Projectile%20Motion.pdf">
+      <span class="idx">02</span>
+      <span class="name">12.2 - Integrals of Vector Functions; Projectile Motion</span>
+      <span class="size">92 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+    <a class="file-row" href="12.3%20-%20Arclength%20in%20Space.pdf">
+      <span class="idx">03</span>
+      <span class="name">12.3 - Arclength in Space</span>
+      <span class="size">98 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+    <a class="file-row" href="12.4%20-%20Curvature%20and%20Normal%20Vectors%20of%20a%20Curve.pdf">
+      <span class="idx">04</span>
+      <span class="name">12.4 - Curvature and Normal Vectors of a Curve</span>
+      <span class="size">164 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+    <a class="file-row" href="12.5%20-%20Tangential%20and%20Normal%20Components%20of%20Acceleration.pdf">
+      <span class="idx">05</span>
+      <span class="name">12.5 - Tangential and Normal Components of Acceleration</span>
+      <span class="size">154 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+  </div>
+  <div class="group-label">Chapter 13</div>
+  <div class="file-list">
+    <a class="file-row" href="13.1%20-%20Functions%20of%20Several%20Variables%20%281%29.pdf">
+      <span class="idx">01</span>
+      <span class="name">13.1 - Functions of Several Variables (1)</span>
+      <span class="size">249 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+    <a class="file-row" href="13.2%20-%20Limits%20and%20Continuity%20in%20Higher%20Dimensions%20%281%29.pdf">
+      <span class="idx">02</span>
+      <span class="name">13.2 - Limits and Continuity in Higher Dimensions (1)</span>
+      <span class="size">130 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+    <a class="file-row" href="13.3%20-%20Partial%20Derivatives%20%281%29.pdf">
+      <span class="idx">03</span>
+      <span class="name">13.3 - Partial Derivatives (1)</span>
+      <span class="size">119 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+    <a class="file-row" href="13.4%20-%20The%20Chain%20Rule%20%282%29.pdf">
+      <span class="idx">04</span>
+      <span class="name">13.4 - The Chain Rule (2)</span>
+      <span class="size">85 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+    <a class="file-row" href="13.5%20-%20Directional%20Derivatives%20and%20Gradient%20Vectors%20%281%29.pdf">
+      <span class="idx">05</span>
+      <span class="name">13.5 - Directional Derivatives and Gradient Vectors (1)</span>
+      <span class="size">107 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+    <a class="file-row" href="13.6%20-%20Tangent%20Planes%20and%20Differentials%20%282%29.pdf">
+      <span class="idx">06</span>
+      <span class="name">13.6 - Tangent Planes and Differentials (2)</span>
+      <span class="size">93 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+    <a class="file-row" href="13.7%20-%20Extreme%20Values%20and%20Saddle%20Points%20%281%29.pdf">
+      <span class="idx">07</span>
+      <span class="name">13.7 - Extreme Values and Saddle Points (1)</span>
+      <span class="size">152 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+    <a class="file-row" href="13.8%20-%20Lagrange%20Multipliers%20%282%29.pdf">
+      <span class="idx">08</span>
+      <span class="name">13.8 - Lagrange Multipliers (2)</span>
+      <span class="size">105 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+  </div>
+  <div class="group-label">Chapter 14</div>
+  <div class="file-list">
+    <a class="file-row" href="14.1%20-%20Double%20and%20Iterated%20Integrals%20over%20Rectangles.pdf">
+      <span class="idx">01</span>
+      <span class="name">14.1 - Double and Iterated Integrals over Rectangles</span>
+      <span class="size">85 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+    <a class="file-row" href="14.2%20-%20Double%20Integrals%20over%20General%20Regions.pdf">
+      <span class="idx">02</span>
+      <span class="name">14.2 - Double Integrals over General Regions</span>
+      <span class="size">96 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+    <a class="file-row" href="14.3%20-%20Area%20by%20Double%20Integration.pdf">
+      <span class="idx">03</span>
+      <span class="name">14.3 - Area by Double Integration</span>
+      <span class="size">76 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+    <a class="file-row" href="14.4%20-%20Double%20Integrals%20in%20Polar%20Form.pdf">
+      <span class="idx">04</span>
+      <span class="name">14.4 - Double Integrals in Polar Form</span>
+      <span class="size">91 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+    <a class="file-row" href="14.5%20-%20Triple%20Integrals%20in%20Rectangular%20Coordinates.pdf">
+      <span class="idx">05</span>
+      <span class="name">14.5 - Triple Integrals in Rectangular Coordinates</span>
+      <span class="size">91 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+    <a class="file-row" href="14.7%20-%20Triple%20Integrals%20in%20Cylindrical%20and%20Spherical%20Coordinates.pdf">
+      <span class="idx">06</span>
+      <span class="name">14.7 - Triple Integrals in Cylindrical and Spherical Coordinates</span>
+      <span class="size">129 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+  </div>
+  <div class="group-label">Chapter 15</div>
+  <div class="file-list">
+    <a class="file-row" href="15.1%20-%20Line%20Integrals.pdf">
+      <span class="idx">01</span>
+      <span class="name">15.1 - Line Integrals</span>
+      <span class="size">87 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+    <a class="file-row" href="15.2%20-%20Vector%20Fields%2C%20Circulation%2C%20and%20Flux.pdf">
+      <span class="idx">02</span>
+      <span class="name">15.2 - Vector Fields, Circulation, and Flux</span>
+      <span class="size">135 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+    <a class="file-row" href="15.3%20-%20Path%20Independence%2C%20Conservative%20Fields%2C%20and%20Potential%20Functions.pdf">
+      <span class="idx">03</span>
+      <span class="name">15.3 - Path Independence, Conservative Fields, and Potential Functions</span>
+      <span class="size">134 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+    <a class="file-row" href="15.4%20-%20Green%27s%20Theorem%20in%20the%20Plane.pdf">
+      <span class="idx">04</span>
+      <span class="name">15.4 - Green&#x27;s Theorem in the Plane</span>
+      <span class="size">114 KB</span>
+      <span class="ext">PDF</span>
+    </a>
+  </div>
+</main>
+
+<footer>Calc III — Lecture Notes &middot; Personal study archive</footer>
+<script>
+  (function(){
+    var btn = document.createElement('button');
+    btn.className = 'to-top';
+    btn.setAttribute('aria-label', 'Back to top');
+    btn.innerHTML = '↑';
+    btn.onclick = function(){ window.scrollTo({top:0, behavior:'smooth'}); };
+    document.body.appendChild(btn);
+    window.addEventListener('scroll', function(){
+      if (window.scrollY > 400) btn.classList.add('visible');
+      else btn.classList.remove('visible');
+    }, {passive:true});
+  })();
+</script>
+</body>
+</html>

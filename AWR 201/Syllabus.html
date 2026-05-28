@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Syllabus — AWR 201</title>
+<!-- ===COWORK_SITE_PATCH_v1=== -->
+<script>
+  (function(){
+    var KEY='site-theme', OLD=['theme','awr201-theme'];
+    var v=null;
+    try{v=localStorage.getItem(KEY);}catch(e){}
+    if(!v){ for(var i=0;i<OLD.length;i++){ try{var x=localStorage.getItem(OLD[i]); if(x){v=x;break;}}catch(e){} } }
+    if(!v) v='dark';
+    try{ localStorage.setItem(KEY,v); localStorage.setItem('theme',v); localStorage.setItem('awr201-theme',v); }catch(e){}
+    if(v==='default'){ document.documentElement.removeAttribute('data-theme'); }
+    else { document.documentElement.setAttribute('data-theme',v); }
+  })();
+</script>
+<!-- ===COWORK_THEME_VALVE_v1=== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="../assets/theme.css">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+  body { margin: 0; font-size: 17px; line-height: 1.6; min-height: 100vh; }
+  header { text-align: center; }
+  .breadcrumb { font-size: 0.86rem; color: var(--muted); margin-bottom: 14px; letter-spacing: 0.03em; }
+  .breadcrumb a { color: var(--accent); text-decoration: none; }
+  .breadcrumb a:hover { border-bottom: 1px solid var(--accent); }
+  main { max-width: 920px; margin: 0 auto; padding: 32px 24px 24px; }
+
+  .doc-panel {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 40px 44px;
+    position: relative;
+  }
+  .doc-panel::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 26px; height: 26px;
+    border-top: 2px solid var(--accent);
+    border-left: 2px solid var(--accent);
+  }
+  .doc-panel::after {
+    content: "";
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 26px; height: 26px;
+    border-bottom: 2px solid var(--accent);
+    border-right: 2px solid var(--accent);
+    opacity: 0.55;
+  }
+
+  .doc-panel h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 10px;
+    margin: 0 0 18px;
+    font-size: 2rem;
+  }
+  .doc-panel h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    margin: 36px 0 14px;
+    font-size: 1.5rem;
+    position: relative;
+    padding-bottom: 8px;
+  }
+  .doc-panel h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 48px; height: 3px;
+    background: var(--accent);
+  }
+  .doc-panel h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    margin: 24px 0 10px;
+    font-size: 1.15rem;
+  }
+  .doc-panel p { margin: 12px 0; color: var(--ink); }
+  .doc-panel ul { margin: 12px 0; padding-left: 26px; color: var(--ink); }
+  .doc-panel li { margin: 6px 0; }
+  .doc-panel strong { color: var(--ink); font-weight: 700; }
+  .doc-panel em { color: var(--ink-dim, #b8c2cf); }
+  .doc-panel a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--accent);
+  }
+  .doc-panel a:hover { border-bottom-style: solid; }
+  .doc-panel table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0;
+    background: var(--bg-deep, #050810);
+    border: 1px solid var(--rule);
+  }
+  .doc-panel table th {
+    background: rgba(0,0,0,0.3);
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+    padding: 10px 12px;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+  .doc-panel table td {
+    border-bottom: 1px solid var(--rule);
+    padding: 10px 12px;
+    color: var(--ink);
+  }
+  .doc-panel .note {
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    padding: 14px 18px;
+    margin: 20px 0;
+    color: var(--ink);
+  }
+  .doc-panel .note strong { color: var(--accent); }
+
+  footer { text-align: center; }
+</style>
+</head>
+<body>
+
+<a href="../AWR%20201.html" class="home-link" title="Back to AWR 201">AWR 201</a>
+
+<header>
+  <div class="breadcrumb">
+    <a href="../index.html">Home</a> &rsaquo;
+    <a href="../AWR%20201.html">AWR 201</a> &rsaquo;
+    Syllabus
+  </div>
+  <h1>Syllabus</h1>
+  <div class="subtitle">AWR 201 &middot; Summer I 2026</div>
+</header>
+
+<main>
+  <article class="doc-panel">
+
+    <h1>AWR 201: Writing and Research &mdash; The Local and the Global</h1>
+    <p><strong>Section 1 &middot; Summer I Session 2026</strong></p>
+
+    <h2>Course Information</h2>
+    <ul>
+      <li><strong>Meeting times:</strong> Monday, Tuesday, Wednesday, Thursday &mdash; 10:15am to 12:30pm</li>
+      <li><strong>Location:</strong> Grand Center (CG) Room 125</li>
+      <li><strong>Credit hours:</strong> 4</li>
+    </ul>
+
+    <h2>Instructor</h2>
+    <ul>
+      <li><strong>Instructor:</strong> Dr. Madhu Nadarajah ("Dr. N")</li>
+      <li><strong>Email:</strong> <a href="mailto:mnadarajah@ut.edu">mnadarajah@ut.edu</a></li>
+      <li><strong>Office:</strong> Plant Hall 311C</li>
+      <li><strong>Office hours:</strong> MTWTH 12:30pm &ndash; 1:45pm (in-person) and by appointment</li>
+      <li>Replies to emails within 48 hrs Mon&ndash;Thu. Does not check email Fri 2pm &ndash; Mon 9am.</li>
+    </ul>
+
+    <h2>Course Description</h2>
+    <p>AWR 201 builds on AWR 101 by inviting students to examine their relation to the community and the world. It teaches the conventions of academic research writing and guides students through an extended research project: project discovery, source annotation, drafting and revision, a polished final essay with proper citation, and a clear oral presentation. Because this is an accelerated 6-week course, students choose their own research topic.</p>
+
+    <h2>Required Materials</h2>
+    <ul>
+      <li>Wirebound notebook with pens/pencils (lots of hand-written in-class work)</li>
+      <li>Laptop or tablet (charged)</li>
+      <li><em>The Craft of Research</em> (5th edition) by Wayne C. Booth &mdash; UTampa bookstore</li>
+      <li><em>Reading and Writing Your Way into UTampa</em> &mdash; PDF on Canvas</li>
+      <li>Other readings provided on Canvas</li>
+    </ul>
+
+    <h2>Grading Breakdown</h2>
+    <table>
+      <thead><tr><th>Component</th><th>Weight</th></tr></thead>
+      <tbody>
+        <tr><td>Research Proposal (Major #1)</td><td>15%</td></tr>
+        <tr><td>Annotated Bibliography (Major #2)</td><td>20%</td></tr>
+        <tr><td>Research Essay, 8&ndash;10 pages (Major #3)</td><td>30%</td></tr>
+        <tr><td>Oral Presentation on Research Essay (Major #4)</td><td>10%</td></tr>
+        <tr><td>Process Work (in-class + homework)</td><td>20%</td></tr>
+        <tr><td>Attendance / Participation</td><td>5%</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Grading Scale</h2>
+    <table>
+      <thead><tr><th>Letter</th><th>%</th><th>Standard</th></tr></thead>
+      <tbody>
+        <tr><td>A</td><td>93+</td><td>Outstanding</td></tr>
+        <tr><td>AB</td><td>88 &ndash; 92.9</td><td>Excellent</td></tr>
+        <tr><td>B</td><td>83 &ndash; 87.9</td><td>Very Good</td></tr>
+        <tr><td>BC</td><td>78 &ndash; 82.9</td><td>Good</td></tr>
+        <tr><td>C</td><td>73 &ndash; 77.9</td><td>Average</td></tr>
+        <tr><td>CD</td><td>68 &ndash; 72.9</td><td>Below Average</td></tr>
+        <tr><td>D</td><td>63 &ndash; 67.9</td><td>Passing</td></tr>
+        <tr><td>F</td><td>&lt; 63</td><td>Failing</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Attendance</h2>
+    <ul>
+      <li>2 absences allowed without penalty (excused + unexcused combined).</li>
+      <li>Beyond 2, each absence significantly impacts the Attendance/Participation grade.</li>
+      <li>Showing up 5+ minutes late on 3+ occasions = marked "late."</li>
+    </ul>
+
+    <h2>Late Work</h2>
+    <ul>
+      <li><strong>Process Work:</strong> accepted up to 24 hrs late with a penalty &mdash; 1 pt off if worth &lt; 10 pts, 2 pts off if worth 10+ pts. Not accepted after 24 hrs.</li>
+      <li><strong>Major Assignments:</strong> &minus;10% per day late. Not accepted after 48 hrs.</li>
+      <li>Extensions only if requested before the deadline.</li>
+    </ul>
+
+    <h2>AI Policy</h2>
+    <div class="note">
+      <strong>AI use is prohibited</strong> in the Academic Writing classroom except where the instructor has given express permission. This covers all stages: summarizing, brainstorming, outlining, drafting, revision. Violations may result in a zero on the assignment, an Academic Integrity charge, or course failure.
+    </div>
+
+    <h2>Plagiarism Policy</h2>
+    <p>All cases of plagiarism result in a zero on the assignment. Subsequent acts may go to the Academic Integrity committee and may result in failure of the course or suspension.</p>
+
+    <h2>Saunders Writing Center</h2>
+    <p>Plant Hall 323 &middot; 813-253-6244 &middot; summer appointment info on Canvas.</p>
+
+    <h2>Key Dates</h2>
+    <ul>
+      <li><strong>June 1, June 25</strong> &mdash; Zoom individual conferences (no class)</li>
+      <li><strong>June 2</strong> &mdash; Research Proposal due</li>
+      <li><strong>June 8</strong> &mdash; Mini-Presentations on Research Topic (slides due 10am)</li>
+      <li><strong>June 9</strong> &mdash; Annotated Bibliography due</li>
+      <li><strong>June 29</strong> &mdash; Revised Research Essay due</li>
+      <li><strong>July 1, 2</strong> &mdash; Oral Presentations</li>
+      <li><strong>July 6</strong> &mdash; Final grades available</li>
+    </ul>
+
+  </article>
+</main>
+
+<footer>
+  Syllabus &middot; AWR 201 &middot; Summer I 2026
+</footer>
+
+<script>
+  // Back-to-top
+  (function(){
+    var btn = document.createElement('button');
+    btn.className = 'to-top';
+    btn.setAttribute('aria-label', 'Back to top');
+    btn.innerHTML = '↑';
+    btn.onclick = function(){ window.scrollTo({top:0, behavior:'smooth'}); };
+    document.body.appendChild(btn);
+    window.addEventListener('scroll', function(){
+      if (window.scrollY > 400) btn.classList.add('visible');
+      else btn.classList.remove('visible');
+    }, {passive:true});
+  })();
+</script>
+
+</body>
+</html>

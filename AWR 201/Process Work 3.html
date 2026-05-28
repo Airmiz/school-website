@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Process Work 3 — AWR 201</title>
+<!-- ===COWORK_SITE_PATCH_v1=== -->
+<script>
+  (function(){
+    var KEY='site-theme', OLD=['theme','awr201-theme'];
+    var v=null;
+    try{v=localStorage.getItem(KEY);}catch(e){}
+    if(!v){ for(var i=0;i<OLD.length;i++){ try{var x=localStorage.getItem(OLD[i]); if(x){v=x;break;}}catch(e){} } }
+    if(!v) v='dark';
+    try{ localStorage.setItem(KEY,v); localStorage.setItem('theme',v); localStorage.setItem('awr201-theme',v); }catch(e){}
+    if(v==='default'){ document.documentElement.removeAttribute('data-theme'); }
+    else { document.documentElement.setAttribute('data-theme',v); }
+  })();
+</script>
+<!-- ===COWORK_THEME_VALVE_v1=== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="../assets/theme.css">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+  body { margin: 0; font-size: 17px; line-height: 1.6; min-height: 100vh; }
+  header { text-align: center; }
+  .breadcrumb { font-size: 0.86rem; color: var(--muted); margin-bottom: 14px; letter-spacing: 0.03em; }
+  .breadcrumb a { color: var(--accent); text-decoration: none; }
+  .breadcrumb a:hover { border-bottom: 1px solid var(--accent); }
+  main { max-width: 880px; margin: 0 auto; padding: 24px; }
+
+  details.section {
+    background: var(--paper); border: 1px solid var(--rule);
+    margin-bottom: 14px; overflow: hidden;
+  }
+  details.section[open] { border-color: var(--accent); }
+  details.section > summary {
+    cursor: pointer; padding: 14px 22px; list-style: none;
+    font-weight: 600; font-size: 1.05rem;
+    display: flex; align-items: baseline; gap: 10px;
+    user-select: none; transition: background 0.12s;
+  }
+  details.section > summary:hover { background: var(--accent-soft); }
+  details.section > summary::-webkit-details-marker { display: none; }
+  details.section > summary::before {
+    content: "▸"; color: var(--accent); font-size: 0.85rem;
+    transition: transform 0.18s ease; display: inline-block;
+  }
+  details.section[open] > summary::before { transform: rotate(90deg); }
+  .sec-body { padding: 4px 28px 22px 28px; border-top: 1px solid var(--rule); }
+  .sec-body p { margin: 12px 0; }
+  .sec-body ul, .sec-body ol { margin: 8px 0 8px 4px; padding-left: 22px; }
+  .sec-body li { margin: 6px 0; }
+  .note {
+    background: var(--accent-soft); border-left: 3px solid var(--accent);
+    padding: 12px 16px; margin: 14px 0; font-size: 0.95rem;
+  }
+  blockquote {
+    margin: 16px 0;
+    padding: 14px 20px;
+    border-left: 3px solid var(--accent);
+    background: var(--accent-soft);
+    font-style: italic;
+    color: var(--ink);
+  }
+  blockquote cite { font-style: normal; color: var(--muted); display: block; margin-top: 8px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; }
+  a.file-link {
+    color: var(--accent); text-decoration: none;
+    border-bottom: 1px dotted var(--accent);
+  }
+  a.file-link:hover { border-bottom-style: solid; }
+  ol.ranked {
+    counter-reset: rank;
+    list-style: none;
+    padding-left: 0;
+  }
+  ol.ranked > li {
+    counter-increment: rank;
+    position: relative;
+    padding: 14px 18px 14px 60px;
+    margin: 10px 0;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+  }
+  ol.ranked > li::before {
+    content: counter(rank, decimal-leading-zero);
+    position: absolute;
+    left: 18px; top: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+  }
+  ol.ranked > li:first-child {
+    border-left: 3px solid var(--accent);
+    background: var(--accent-soft);
+  }
+  ol.ranked .tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.66rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    padding: 2px 8px;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  footer { text-align: center; }
+</style>
+</head>
+<body>
+
+<a href="../AWR%20201.html" class="home-link" title="Back to AWR 201">AWR 201</a>
+
+<header>
+  <div class="breadcrumb">
+    <a href="../index.html">Home</a> &rsaquo;
+    <a href="../AWR%20201.html">AWR 201</a> &rsaquo;
+    Process Work 3
+  </div>
+  <h1>Process Work 3</h1>
+  <div class="subtitle">Research Proposal Draft</div>
+</header>
+
+<main>
+
+  <details class="section" open>
+    <summary>Prompt</summary>
+    <div class="sec-body">
+      <p><strong>Course:</strong> AWR 201 &middot; <strong>Instructor:</strong> Dr. Nadarajah</p>
+      <ol>
+        <li>State your specified research topic.</li>
+        <li>Draft Part 1 of the Research Proposal (~300&ndash;400 words): introduce the topic, give pertinent background, convince readers it matters, and integrate one quote from a primary source.</li>
+        <li>Generate 5 possible research questions, ranked by preference.</li>
+      </ol>
+      <p><a class="file-link" href="Assignments/Process%20Work%203.pdf">Open the submitted PDF &rarr;</a></p>
+    </div>
+  </details>
+
+  <details class="section" open>
+    <summary>1. Specified research topic</summary>
+    <div class="sec-body">
+      <p><strong>Treatment of Alcoholism</strong></p>
+    </div>
+  </details>
+
+  <details class="section" open>
+    <summary>2. Research Proposal &mdash; Part 1 draft</summary>
+    <div class="sec-body">
+      <p>
+        Alcohol use disorder (AUD) affects roughly 29 million Americans, yet only about 7% will
+        ever receive treatment in a given year. Even for those who do get treatment, relapse rates
+        remain stubbornly high, often cited around 40&ndash;60% within the first year. This problem
+        hit close to home for me, as I have had personal experience with alcoholism. It begs the
+        question of what are ways to actually treat AUD? The two main approaches are
+        medication-assisted treatment (MAT), using FDA-approved drugs like naltrexone and
+        acamprosate, and behavioral therapy, like cognitive-behavioral therapy (CBT). Both are
+        evidence-based, but the question of whether combining them produces better outcomes than
+        either alone is not as settled as you would think.
+      </p>
+
+      <p>
+        One of the most important studies to address this question is the COMBINE Study by Anton
+        et al., published in <em>JAMA</em> in 2006. This study is the largest pharmacotherapy
+        trial conducted for AUD in the United States and randomized 1,383 alcohol-dependent
+        patients to nine different treatment combinations involving naltrexone, acamprosate,
+        CBT-based behavioral intervention (CBI), and medical management. Interestingly, the
+        researchers found that
+      </p>
+
+      <blockquote>
+        &ldquo;patients receiving naltrexone plus medical management, CBI plus medical management
+        and placebos, or both naltrexone and CBI plus medical management had higher percent days
+        abstinent (80.6, 79.2, and 77.1, respectively) than the 75.1 in those receiving placebos
+        and medical management only&rdquo;
+        <cite>&mdash; Anton et al., COMBINE Study (JAMA, 2006)</cite>
+      </blockquote>
+
+      <p>
+        What is striking here is that combining naltrexone with CBI did <em>not</em> produce
+        better results than either treatment alone, contradicting the common assumption that more
+        treatment is always better.
+      </p>
+
+      <p>
+        Furthermore, these findings matter because clinicians and patients are constantly making
+        decisions about treatment plans, often under the assumption that the combined approach is
+        the gold standard. Moreover, if the COMBINE Study is correct, healthcare systems may be
+        wasting resources on the combination when either treatment alone could achieve similar
+        outcomes. Additionally, with alcohol-related deaths in the U.S. rising to over 178,000
+        per year (CDC), getting treatment right is not just an academic question, it is a matter
+        of life and death. Understanding which approach works best, and for whom, is essential
+        for clinicians to design more effective treatment protocols going forward.
+      </p>
+
+      <div class="note"><strong>Word count target:</strong> 300&ndash;400 words.</div>
+    </div>
+  </details>
+
+  <details class="section" open>
+    <summary>3. Possible research questions (ranked)</summary>
+    <div class="sec-body">
+      <p>Top preference first.</p>
+      <ol class="ranked">
+        <li>
+          Does combining cognitive-behavioral therapy with medication-assisted treatment produce
+          significantly lower relapse rates in patients with alcohol use disorder than either
+          treatment alone?
+          <span class="tag">Top Pick</span>
+        </li>
+        <li>
+          How do patient-specific factors (genetic markers, severity of AUD, coexisting
+          psychiatric conditions, social support) predict which AUD treatment approach will be
+          most effective for that individual?
+        </li>
+        <li>
+          How does the medical and psychological treatment of alcohol use disorder differ between
+          adolescents and adults, and what explains those differences?
+        </li>
+        <li>
+          How do long-term outcomes (5+ years post-treatment) compare between AUD patients
+          treated with MAT only, CBT only, or a combined approach?
+        </li>
+        <li>
+          Why are FDA-approved medications for alcohol use disorder (naltrexone, acamprosate,
+          disulfiram) so significantly underprescribed by primary care physicians despite proven
+          efficacy?
+        </li>
+      </ol>
+    </div>
+  </details>
+
+</main>
+
+<footer>
+  Process Work 3 &middot; AWR 201 &middot; Research Proposal Draft
+</footer>
+
+<script>
+  (function(){
+    var btn = document.createElement('button');
+    btn.className = 'to-top';
+    btn.setAttribute('aria-label', 'Back to top');
+    btn.innerHTML = '↑';
+    btn.onclick = function(){ window.scrollTo({top:0, behavior:'smooth'}); };
+    document.body.appendChild(btn);
+    window.addEventListener('scroll', function(){
+      if (window.scrollY > 400) btn.classList.add('visible');
+      else btn.classList.remove('visible');
+    }, {passive:true});
+  })();
+</script>
+
+</body>
+</html>
